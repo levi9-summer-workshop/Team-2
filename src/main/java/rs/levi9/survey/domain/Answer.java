@@ -8,6 +8,10 @@ import java.io.Serializable;
 @Table(name = "answer")
 public class Answer extends BaseEntity implements Serializable {
 
+
+    @NotNull
+    private String answer_text;
+
     @NotNull
     @ManyToOne
     @JoinColumn(name = "question_id", nullable = false)

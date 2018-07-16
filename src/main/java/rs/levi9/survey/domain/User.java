@@ -8,10 +8,7 @@ import java.util.Set;
 public class User extends BaseEntity {
 
     @Column(nullable = false)
-    private String firstName;
-
-    @Column(nullable = false)
-    private String lastName;
+    private String username;
 
     @Column(nullable = false)
     private String email;
@@ -27,29 +24,21 @@ public class User extends BaseEntity {
     public User() {
     }
 
-    public User(String firstName, String lastName, String email, String password, Set<Role> roles) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public User(String username, String email, String password, Set<Role> roles) {
+        this.username = username;
         this.email = email;
         this.password = password;
         this.roles = roles;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
 
     public String getEmail() {
         return email;
