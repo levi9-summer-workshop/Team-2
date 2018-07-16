@@ -30,8 +30,3 @@ proguard/
 *.iws
 .idea/
 
-#Gradle
-.gradletasknamecache
-.gradle/
-build/
-bin/
