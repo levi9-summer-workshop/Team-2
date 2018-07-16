@@ -1,0 +1,79 @@
+.registration-box {
+    width: 420px;
+    height: 730px;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    box-sizing: border-box;
+    padding: 50px 50px;
+}
+
+h1 {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-size: 30px;
+}
+
+.registration-box p{
+    margin: 0;
+    padding: 0;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.registration-box input {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.registration-box input[type="text"],
+input[type="password"] {
+    border: none;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    outline: none;
+    height: 35px;
+    color: #fff;
+    font-size: 16px;
+}
+
+.registration-box input[type="submit"] {
+    border: none;
+    outline: none;
+    height: 40px;
+    background: #1c8adb;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 20px;
+}
+
+.registration-box input[type="submit"]:hover {
+    cursor: pointer;
+    background: white;
+    color: #000;
+}
+
+.registration-box a {
+    text-decoration: none;
+    font-size: 14px;
+    color: dodgerblue;
+}
+
+.registration-box a:hover {
+    cursor: pointer;
+    background: white;
+    color: #000;
+}
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+select:hover {
+    cursor: pointer;
+}
