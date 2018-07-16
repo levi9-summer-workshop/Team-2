@@ -1,11 +1,18 @@
 plugins {
-    id 'java'
+    id 'org.springframework.boot' version '1.5.3.RELEASE'
 }
+
+apply plugin: 'java'
 
 group 'rs.levi9.team2.online-survey-creator'
 version '0.0.1-SNAPSHOT'
 
 sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.5'
+}
 
 repositories {
     mavenCentral()
