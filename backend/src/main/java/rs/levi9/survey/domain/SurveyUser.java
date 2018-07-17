@@ -1,11 +1,12 @@
 package rs.levi9.survey.domain;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Set;
 
 @Entity
 @Table(name = "user")
-public class User extends BaseEntity {
+public class SurveyUser extends BaseEntity {
 
     @Column(nullable = false)
     private String username;
@@ -21,16 +22,6 @@ public class User extends BaseEntity {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
 
-    public User() {
-    }
-
-    public User(String username, String email, String password, Set<Role> roles) {
-        this.username = username;
-        this.email = email;
-        this.password = password;
-        this.roles = roles;
-    }
-
     public String getUsername() {
         return username;
     }
@@ -38,7 +29,6 @@ public class User extends BaseEntity {
     public void setUsername(String username) {
         this.username = username;
     }
-
 
     public String getEmail() {
         return email;

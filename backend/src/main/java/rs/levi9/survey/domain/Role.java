@@ -1,13 +1,12 @@
 package rs.levi9.survey.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Set;
 
 @Entity
-@Table(name = "role")
-public class Role extends BaseEntity {
+public class Role extends BaseEntity implements Serializable {
+
     @Enumerated(EnumType.STRING)
     private RoleType type;
 
