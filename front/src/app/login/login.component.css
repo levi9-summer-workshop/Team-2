@@ -1,0 +1,22 @@
+.registration-form{
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 60px;
+    background-color: #ecfaf7;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+h1 {
+    font-weight: 600;
+    font-family: 'Alegreya Sans SC', sans-serif;
+}
+
+.btn {
+    background-color: #1abc9c;
+    color: white;
+}
+
+a {
+    text-decoration: none;
+}
