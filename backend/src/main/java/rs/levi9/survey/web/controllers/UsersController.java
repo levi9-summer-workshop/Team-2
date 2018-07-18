@@ -5,20 +5,22 @@ import org.springframework.web.bind.annotation.*;
 import rs.levi9.survey.domain.SurveyUser;
 import rs.levi9.survey.services.SurveyUserService;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/registration")
+@RequestMapping("/users")
 @CrossOrigin(origins = "http://localhost:4200")
-public class RegistrationController {
+public class UsersController {
 
     private SurveyUserService surveyUserService;
 
     @Autowired
-    public RegistrationController(SurveyUserService surveyUserService) {
+    public UsersController(SurveyUserService surveyUserService) {
         this.surveyUserService = surveyUserService;
     }
 
-    @PostMapping
-    public SurveyUser save(@RequestBody SurveyUser surveyUser) {
-        return surveyUserService.save(surveyUser);
+    @RequestMapping(method = RequestMethod.GET)
+    public List<SurveyUser> findAll() {
+        return surveyUserService.findAll();
     }
 }

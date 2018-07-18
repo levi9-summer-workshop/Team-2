@@ -6,6 +6,7 @@ import rs.levi9.survey.domain.SurveyUser;
 import rs.levi9.survey.repositories.SurveyUserRepository;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Transactional
 @Service
@@ -19,5 +20,9 @@ public class SurveyUserService {
 
     public SurveyUser save(SurveyUser surveyUser) {
         return surveyUserRepository.save(surveyUser);
+    }
+
+    public List<SurveyUser> findAll() {
+        return surveyUserRepository.findAll();
     }
 }
