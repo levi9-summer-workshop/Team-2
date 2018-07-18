@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Observable } from '../../../node_modules/rxjs/Observable';
-import { User } from './user.model';
-import { UserService } from './user.service';
-import { HttpErrorResponse } from '../../../node_modules/@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+import { User } from '../users/user.model';
+import { UserService } from '../users/user.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 @Component({

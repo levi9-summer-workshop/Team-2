@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="col">
+      <div class="table-responsive">
+          <table class="table table-bordered">
+              <thead>
+                  <tr>
+                      <th scope="col" class="text-center align-middle">#</th>
+                      <th scope="col" class="text-center align-middle">Username</th>
+                      <th scope="col" class="text-center align-middle">Email</th>
+                      <th scope="col" class="text-center align-middle">Password</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor='let user of (users$ | async); let i = index'>
+                      <th scope="row" class="text-center align-middle">{{ i + 1 }}</th>
+                      <td class="text-center align-middle">{{ user.username }}</td>
+                      <td class="text-center align-middle">{{ user.email }}</td>
+                      <td class="text-center align-middle">{{ user.password }}</td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
+  </div>
+</div>
