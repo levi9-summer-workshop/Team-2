@@ -11,10 +11,18 @@ import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { MyServeysComponent } from './my-serveys/my-serveys.component';
 import { HttpClientModule } from '@angular/common/http';
+<<<<<<< HEAD
 import { UserService } from './users/user.service';
 import { SharedComponent } from './shared/shared.component';
 import { ConfirmEqualValidatorDirective } from './shared/confirm-equal-validator.directive';
 import { UserListComponent } from './user-list/user-list.component';
+=======
+import { UserService } from './registration/user.service';
+import { SharedComponent } from './shared/shared.component';
+import { ConfirmEqualValidatorDirective } from './shared/confirm-equal-validator.directive';
+
+
+>>>>>>> home-page-front
 
 @NgModule({
   declarations: [
@@ -27,8 +35,12 @@ import { UserListComponent } from './user-list/user-list.component';
     MyServeysComponent,
     MyServeysComponent,
     SharedComponent,
+<<<<<<< HEAD
     ConfirmEqualValidatorDirective,
     UserListComponent
+=======
+    ConfirmEqualValidatorDirective
+>>>>>>> home-page-front
   ],
   imports: [
     BrowserModule,
