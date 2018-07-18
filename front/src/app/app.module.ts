@@ -11,6 +11,9 @@ import { FooterComponent } from './footer/footer.component';
 import { HomeComponent } from './home/home.component';
 import { UsersComponent } from './users/users.component';
 import { MyServeysComponent } from './my-serveys/my-serveys.component';
+import { SharedComponent } from './shared/shared.component';
+import { ConfirmEqualValidatorDirective } from './shared/confirm-equal-validator.directive';
+
 
 
 @NgModule({
@@ -22,7 +25,9 @@ import { MyServeysComponent } from './my-serveys/my-serveys.component';
     FooterComponent,
     HomeComponent,
     UsersComponent,
-    MyServeysComponent
+    MyServeysComponent,
+    SharedComponent,
+    ConfirmEqualValidatorDirective
   ],
   imports: [
     BrowserModule,
