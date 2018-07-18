@@ -6,7 +6,7 @@
         <br>
     </div>
     <div class="form-container text-center">
-        <form role="form" #f="ngForm">
+        <form (ngSubmit)="onUserSubmit(f)" role="form" #f="ngForm">
             <div class="form-group">
                 <input type="text" class="form-control" name="username" id="username" placeholder="Username" ngModel required #username="ngModel" [ngClass]="{'is-invalid': error?.username || (username.invalid && (username.dirty || username.touched))}" minlength="5" maxlength="20">
                 <div class="invalid-feedback" *ngIf="username.invalid && (username.dirty || username.touched)">Your username must be between 5-20 characters</div>
