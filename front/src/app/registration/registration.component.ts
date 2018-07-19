@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormGroup, FormControl } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { User } from '../users/user.model';
 import { UserService } from '../users/user.service';

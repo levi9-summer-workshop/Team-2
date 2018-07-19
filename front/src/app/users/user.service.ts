@@ -6,7 +6,7 @@ import { User } from './user.model';
 @Injectable()
 export class UserService {
 
-  APIRegistration = 'http://localhost:8080/registration';
+  APIRegistration = 'http://localhost:8080/users/registration';
   APIUsers = 'http://localhost:8080/users';
 
   constructor(private httpClient: HttpClient) { }
@@ -15,11 +15,13 @@ export class UserService {
     return this.httpClient.get<User[]>(this.APIUsers);
   }
 
+
   deleteUser(userId: number){
     return this.httpClient.delete(this.APIUsers + '/' + (userId));
   }
 
   saveUser(user: User): Observable<any> {
+    console.log(user.email + " " + user.password)
     return this.httpClient.post(this.APIRegistration, user);
   }
 }

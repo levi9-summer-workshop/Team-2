@@ -59,4 +59,10 @@ public class SurveyUserService {
     public void delete(Long id) {
         surveyUserRepository.delete(id);
     }
+
+    public boolean checkIfUserExists(SurveyUser surveyUser) {
+        SurveyUser user1 = surveyUserRepository.findByUsername(surveyUser.getUsername());
+        SurveyUser user2 = surveyUserRepository.findByEmail(surveyUser.getEmail());
+        return(user1 == null && user2 == null);
+    }
 }
