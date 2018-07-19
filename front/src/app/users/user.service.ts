@@ -15,6 +15,10 @@ export class UserService {
     return this.httpClient.get<User[]>(this.APIUsers);
   }
 
+  deleteUser(userId: number){
+    return this.httpClient.delete(this.APIUsers + '/' + (userId));
+  }
+
   saveUser(user: User): Observable<any> {
     return this.httpClient.post(this.APIRegistration, user);
   }

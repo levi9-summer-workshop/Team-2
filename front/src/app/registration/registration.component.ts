@@ -16,6 +16,8 @@ export class RegistrationComponent implements OnInit {
   users$: Observable<User[]>;
   @ViewChild('f') addUserForm: NgForm;
   error: {username: string, email: string, password: string};
+  selectedUser: User = { id: null, username: null, email: null, password: null };
+  operation: string;
 
   constructor(private userService: UserService) { }
 
@@ -25,8 +27,11 @@ export class RegistrationComponent implements OnInit {
 
   onUserSubmit(form: NgForm) {
 
-    this.userService.saveUser({username: form.value.username, 
-      email: form.value.email, password: form.value.pass})
+    this.userService.saveUser({
+      id: this.operation === 'Add' ? null : this.selectedUser.id,
+      username: form.value.username, 
+      email: form.value.email, 
+      password: form.value.pass})
       .subscribe(
         () => {
           this.users$ = this.userService.getUsers();
