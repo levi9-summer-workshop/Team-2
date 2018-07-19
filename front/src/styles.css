@@ -16,3 +16,7 @@ body, html {
 a {
     text-decoration: none;
 }
+
+footer {
+    bottom: 0 !important;
+}
