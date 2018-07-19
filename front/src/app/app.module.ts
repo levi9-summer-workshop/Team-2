@@ -30,7 +30,8 @@ import { AuthService } from './login/auth.service';
     MyServeysComponent,
     SharedComponent,
     ConfirmEqualValidatorDirective,
-    UserListComponent
+    UserListComponent,
+
   ],
   imports: [
     BrowserModule,

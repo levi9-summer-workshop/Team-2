@@ -1,6 +1,8 @@
 package rs.levi9.survey.web.controllers;
 
+import com.sun.deploy.net.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,5 +32,15 @@ public class UsersController {
     public ResponseEntity delete(@PathVariable("id") Long id) {
         surveyUserService.delete(id);
         return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @PostMapping("/registration")
+    public ResponseEntity registration(@RequestBody SurveyUser surveyUser) {
+        if(surveyUserService.checkIfUserExists(surveyUser)) {
+            return new ResponseEntity(surveyUserService.save(surveyUser), HttpStatus.OK);
+        }
+        else {
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        }
     }
 }
