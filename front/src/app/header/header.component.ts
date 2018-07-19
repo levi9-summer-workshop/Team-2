@@ -7,9 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  public options = [{name: 'Profile'}, {name: 'Logout'}];
+
+  constructor() {
+    this.getOptions();
+   }
 
   ngOnInit() {
+  }
+
+  getOptions() {
+    return this.options;
   }
 
 }

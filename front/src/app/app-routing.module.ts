@@ -7,6 +7,7 @@ import { MyServeysComponent } from './my-serveys/my-serveys.component';
 import { UserListComponent } from './user-list/user-list.component';
 
 const appRoutes: Routes = [
+  { path: '', redirectTo:'/home', pathMatch: 'full' },
   { path: 'login', component: LoginComponent},
   { path: 'registration', component: RegistrationComponent },
   { path: 'home', component: HomeComponent},
