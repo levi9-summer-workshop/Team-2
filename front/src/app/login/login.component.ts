@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+
 import { AuthService } from './auth.service';
-import { markParentViewsForCheckProjectedViews } from '../../../node_modules/@angular/core/src/view/util';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-login',
+  selector: 'library-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
 
+  //Property error
   error: Error;
 
   constructor(private authService: AuthService, private router: Router) { }
@@ -19,16 +20,15 @@ export class LoginComponent implements OnInit {
   }
 
   onLogin(form: NgForm) {
-    // debugger
     const username = form.value.username;
     const password = form.value.password;
-    console.log(username, password);
-    this.authService.login(username,password)
-    .subscribe( 
-      () => this.router.navigate(['home']),
-      (error) => {
-        this.error = error;
-      }
-    );
-  }
-}
+    this.authService.login(username, password)
+      .subscribe(
+        () => this.router.navigate(['/home']),
+        (error) => {
+          this.error = error;
+          // console.error(error);
+        }
+      ); //Ended subscribe
+  } //Ended method onLogin()
+} //Ended class LoginComponent()

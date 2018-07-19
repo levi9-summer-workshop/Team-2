@@ -5,6 +5,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import rs.levi9.survey.domain.Role;
@@ -18,7 +19,7 @@ import java.util.Set;
 
 @Transactional
 @Service
-public class SurveyUserService {
+public class SurveyUserService implements UserDetailsService {
 
     private SurveyUserRepository surveyUserRepository;
 
@@ -27,7 +28,8 @@ public class SurveyUserService {
         this.surveyUserRepository = surveyUserRepository;
     }
 
-    public UserDetails loadUserbyUsername(String username) throws UsernameNotFoundException {
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         try {
             SurveyUser surveyUser = surveyUserRepository.findByUsername(username);
             if (surveyUser == null) {

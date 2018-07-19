@@ -14,8 +14,9 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:4200")
 public class LoginController {
 
-    @RequestMapping("login")
+    @RequestMapping("/login")
     public AuthenticatedUser getUser(Authentication authentication) {
+
         List<String> roles = new ArrayList<>();
         for(GrantedAuthority authority : authentication.getAuthorities()) {
             roles.add(authority.getAuthority());
