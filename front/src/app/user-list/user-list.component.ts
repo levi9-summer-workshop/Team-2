@@ -11,11 +11,26 @@ import { UserService } from '../users/user.service';
 export class UserListComponent implements OnInit {
 
   users$: Observable<User[]>
+  selectedUser: User = new User(null, null, null, null);
 
   constructor(private userService: UserService) { }
 
   ngOnInit() {
     this.users$ = this.userService.getUsers();
+  }
+
+  onUserDelete(user: User) {
+    this.selectedUser = user;
+  }
+
+  onUserDeleteSubmit() {
+    this.userService.deleteUser(this.selectedUser.id)
+      .subscribe(
+        () => {
+          this.users$ = this.userService.getUsers();
+          this.selectedUser = new User(null, null, null, null);
+        }
+      );
   }
 
 }

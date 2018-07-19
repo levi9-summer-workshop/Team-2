@@ -55,4 +55,8 @@ public class SurveyUserService {
     public List<SurveyUser> findAll() {
         return surveyUserRepository.findAll();
     }
+
+    public void delete(Long id) {
+        surveyUserRepository.delete(id);
+    }
 }
