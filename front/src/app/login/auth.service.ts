@@ -24,7 +24,7 @@ export class AuthService {
       authorization: 'Basic ' + base64Credential
     });
     return this.httpClient
-      .get<User>('http://localhost:8080/login', { headers: headers })
+      .get<User>('http://localhost:8080/users', { headers: headers })
       .do(user => {
         this.user = user;
         this.headers = headers;
