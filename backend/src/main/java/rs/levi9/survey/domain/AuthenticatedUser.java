@@ -3,6 +3,7 @@ package rs.levi9.survey.domain;
 import java.util.List;
 
 public class AuthenticatedUser {
+
     private String username;
     private List<String> roles;
 
@@ -30,4 +31,6 @@ public class AuthenticatedUser {
     public void setRoles(List<String> roles) {
         this.roles = roles;
     }
+
+
 }

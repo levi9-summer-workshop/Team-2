@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../login/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +10,7 @@ export class HeaderComponent implements OnInit {
 
   public options = [{name: 'Profile'}, {name: 'Logout'}];
 
-  constructor() {
+  constructor(public authService: AuthService) {
     this.getOptions();
    }
 
