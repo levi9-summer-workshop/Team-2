@@ -25,7 +25,7 @@
                         <input type="password" class="form-control" name="confirm" id="confirm" placeholder="Confirm your password" appConfirmEqualValidator="pass" ngModel required #confirm="ngModel" [ngClass]="{'is-invalid': error?.confirm || (confirm.invalid && (confirm.dirty || confirm.touched))}">
                         <div class="invalid-feedback"  *ngIf="confirm.errors?.notEqual && !confirm.errors?.required">Please enter matching passwords</div>
                         </div>
-                        <button type="submit" class="btn" data-toggle="modal" data-target="#confirmModal" [disabled]="!f.valid">Submit</button>
+                        <button type="submit" class="btn btn-sm" data-toggle="modal" data-target="#confirmModal" [disabled]="!f.valid">Submit</button>
                         <br><br>
                         <small id="account-exists" class="form-text text-muted">Already have an account? <a href="http://localhost:4200/#/login">Great! Log right in.</a></small>
                     </form>
@@ -39,7 +39,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Thank you!</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <button type="button" class="close btn-sm" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
@@ -47,7 +47,7 @@
           You have successfully registered to our website.
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn" data-dismiss="modal" (click)="showLoginPage()">Close</button>
+          <button type="button" class="btn btn-sm" data-dismiss="modal" (click)="showLoginPage()">Close</button>
         </div>
       </div>
     </div>
