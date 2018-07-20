@@ -10,6 +10,10 @@ import rs.levi9.survey.domain.AuthenticatedUser;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Controller for login that only have one method for user authentication
+ */
+
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 public class LoginController {

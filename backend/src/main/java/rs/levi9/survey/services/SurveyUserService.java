@@ -17,6 +17,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Service that will communicating with repository
+ */
+
 @Transactional
 @Service
 public class SurveyUserService implements UserDetailsService {
@@ -50,14 +54,29 @@ public class SurveyUserService implements UserDetailsService {
         return authorities;
     }
 
+    /**
+     * Save user in repository
+     *
+     * @param surveyUser
+     * @return
+     */
     public SurveyUser save(SurveyUser surveyUser) {
         return surveyUserRepository.save(surveyUser);
     }
 
+    /**
+     * Get all users from repository
+     *
+     * @return
+     */
     public List<SurveyUser> findAll() {
         return surveyUserRepository.findAll();
     }
 
+    /**
+     * Delete user by id from repository
+     * @param id
+     */
     public void delete(Long id) {
         surveyUserRepository.delete(id);
     }
