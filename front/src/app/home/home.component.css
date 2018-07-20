@@ -1,5 +1,6 @@
 .my-container{
     background-color: #ECFAF7;
+    overflow: hidden;
  }
 
 .headline{
