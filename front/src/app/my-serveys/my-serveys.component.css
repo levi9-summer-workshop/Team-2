@@ -1,0 +1,14 @@
+#delete-button {
+    background-color: #1abc9c;
+    color: white;
+}
+
+table {
+    margin-top: 8%;
+    margin-bottom: 8%;
+}
+
+thead {
+    background-color: #ECFAF7;
+    font-family: 'Roboto', sans-serif;
+}
