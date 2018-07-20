@@ -25,6 +25,11 @@ export class RegistrationComponent implements OnInit {
     this.users$ = this.userService.getUsers();
   }
 
+  showLoginPage(){
+    window.open("http://localhost:4200/#/login");
+    window.close();
+  }
+
   onUserSubmit(form: NgForm) {
 
     this.userService.saveUser({
