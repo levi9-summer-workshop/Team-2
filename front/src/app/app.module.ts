@@ -15,6 +15,8 @@ import { UserService } from './users/user.service';
 import { SharedComponent } from './shared/shared.component';
 import { ConfirmEqualValidatorDirective } from './shared/confirm-equal-validator.directive';
 import { UserListComponent } from './user-list/user-list.component';
+import { AuthService } from './login/auth.service';
+
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { UserListComponent } from './user-list/user-list.component';
     MyServeysComponent,
     SharedComponent,
     ConfirmEqualValidatorDirective,
-    UserListComponent
+    UserListComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -36,7 +39,7 @@ import { UserListComponent } from './user-list/user-list.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [UserService],
+  providers: [UserService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

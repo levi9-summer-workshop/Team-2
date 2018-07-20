@@ -1,31 +1,54 @@
 <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC:100" rel="stylesheet">
-
-<div class="registration-form">
-    <div class="form-title">
-        <h1>sign up</h1>
-        <br>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="registration-form">
+                <div class="form-title">
+                    <h1>sign up</h1>
+                    <br>
+                </div>
+                <div class="form-container text-center">
+                    <form (ngSubmit)="onUserSubmit(f)" role="form" #f="ngForm">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="username" id="username" placeholder="Username" ngModel required #username="ngModel" [ngClass]="{'is-invalid': error?.username || (username.invalid && (username.dirty || username.touched))}" minlength="5" maxlength="20">
+                            <div class="invalid-feedback" *ngIf="username.invalid && (username.dirty || username.touched)">Your username must be between 5-20 characters</div>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" name="email" id="email" placeholder="Your email" ngModel required #email="ngModel" [ngClass]="{'is-invalid': error?.email || (email.invalid && (email.dirty || email.touched))}" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+                            <div class="invalid-feedback" *ngIf="email.invalid && (email.dirty || email.touched)">Please enter a valid email address</div>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" name="pass" id="pass" placeholder="Your password" ngModel required #pass="ngModel" [ngClass]="{'is-invalid': error?.pass || (pass.invalid && (pass.dirty || pass.touched))}" minlength="6" maxlength="30"> 
+                            <div class="invalid-feedback" *ngIf="pass.invalid && (pass.dirty || pass.touched)">Your password must be between 6-30 characters</div>
+                        </div>
+                        <div class="form-group">
+                        <input type="password" class="form-control" name="confirm" id="confirm" placeholder="Confirm your password" appConfirmEqualValidator="pass" ngModel required #confirm="ngModel" [ngClass]="{'is-invalid': error?.confirm || (confirm.invalid && (confirm.dirty || confirm.touched))}">
+                        <div class="invalid-feedback"  *ngIf="confirm.errors?.notEqual && !confirm.errors?.required">Please enter matching passwords</div>
+                        </div>
+                        <button type="submit" class="btn" data-toggle="modal" data-target="#confirmModal" [disabled]="!f.valid">Submit</button>
+                        <br><br>
+                        <small id="account-exists" class="form-text text-muted">Already have an account? <a href="http://localhost:4200/#/login">Great! Log right in.</a></small>
+                    </form>
+                </div>    
+            </div>
+        </div>
     </div>
-    <div class="form-container text-center">
-        <form (ngSubmit)="onUserSubmit(f)" role="form" #f="ngForm">
-            <div class="form-group">
-                <input type="text" class="form-control" name="username" id="username" placeholder="Username" ngModel required #username="ngModel" [ngClass]="{'is-invalid': error?.username || (username.invalid && (username.dirty || username.touched))}" minlength="5" maxlength="20">
-                <div class="invalid-feedback" *ngIf="username.invalid && (username.dirty || username.touched)">Your username must be between 5-20 characters</div>
-            </div>
-            <div class="form-group">
-                <input type="email" class="form-control" name="email" id="email" placeholder="Your email" ngModel required #email="ngModel" [ngClass]="{'is-invalid': error?.email || (email.invalid && (email.dirty || email.touched))}" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
-                <div class="invalid-feedback" *ngIf="email.invalid && (email.dirty || email.touched)">Please enter a valid email address</div>
-            </div>
-            <div class="form-group">
-                <input type="password" class="form-control" name="pass" id="pass" placeholder="Your password" ngModel required #pass="ngModel" [ngClass]="{'is-invalid': error?.pass || (pass.invalid && (pass.dirty || pass.touched))}" minlength="6" maxlength="30"> 
-                <div class="invalid-feedback" *ngIf="pass.invalid && (pass.dirty || pass.touched)">Your password must be between 6-30 characters</div>
-            </div>
-            <div class="form-group">
-              <input type="password" class="form-control" name="confirm" id="confirm" placeholder="Confirm your password" appConfirmEqualValidator="pass" ngModel required #confirm="ngModel" [ngClass]="{'is-invalid': error?.confirm || (confirm.invalid && (confirm.dirty || confirm.touched))}">
-              <div class="invalid-feedback"  *ngIf="confirm.errors?.notEqual && !confirm.errors?.required">Please enter matching passwords</div>
-            </div>
-            <button type="submit" class="btn" [disabled]="!f.valid">Submit</button>
-            <br><br>
-            <small id="account-exists" class="form-text text-muted">Already have an account? <a href=#>Great! Log right in.</a></small>
-        </form>
-    <div>
 </div>
+<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Thank you!</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          You have successfully registered to our website.
+        </div>
+        <div class="modal-footer">
+          <a href="http://localhost:4200/#/login"><button type="button" class="btn" data-dismiss="modal">Close</button></a>
+        </div>
+      </div>
+    </div>
+  </div>

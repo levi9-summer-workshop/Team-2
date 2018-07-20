@@ -1,9 +1,15 @@
 package rs.levi9.survey.web.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import rs.levi9.survey.domain.SurveyUser;
 import rs.levi9.survey.services.SurveyUserService;
+
+/**
+ * Controller for registration with method that check if user exist
+ */
 
 @RestController
 @RequestMapping("/registration")
@@ -17,8 +23,21 @@ public class RegistrationController {
         this.surveyUserService = surveyUserService;
     }
 
+    /**
+     * User registration
+     *
+     * @param surveyUser - that wants to be registered
+     * @return
+     */
     @PostMapping
-    public SurveyUser save(@RequestBody SurveyUser surveyUser) {
-        return surveyUserService.save(surveyUser);
+    public ResponseEntity registration(@RequestBody SurveyUser surveyUser) {
+        if(surveyUserService.checkIfUserExists(surveyUser)) {
+            // If not exist insert into database
+            return new ResponseEntity(surveyUserService.save(surveyUser), HttpStatus.OK);
+        }
+        else {
+            // If exist send HttpStatus 400(Bad request)
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        }
     }
 }
