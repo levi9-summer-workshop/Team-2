@@ -9,6 +9,7 @@
                       <th scope="col" class="text-center align-middle">Email</th>
                       <th scope="col" class="text-center align-middle">Password</th>
                       <th scope="col" class="text-center align-middle">Delete</th> 
+                      <th scope="col" class="text-center align-middle">Block</th>
                   </tr>
               </thead>
               <tbody>
@@ -22,6 +23,12 @@
                             <button type="button" class="btn btn-danger" (click)="onUserDelete(user)" data-toggle="modal" data-target="#deleteUserModal">
                                     Delete
                             </button> 
+                      </td>
+
+                      <td class="text-center align-middle">
+                          <button type="button" class="btn btn-secondary" (click)="onUserBlock(user)" data-toggle="modal" data-target="#blockUserModal">
+                              Block 
+                          </button>
                       </td>
                   </tr>
               </tbody>

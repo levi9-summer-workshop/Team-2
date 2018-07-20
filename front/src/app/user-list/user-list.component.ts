@@ -11,7 +11,7 @@ import { UserService } from '../users/user.service';
 export class UserListComponent implements OnInit {
 
   users$: Observable<User[]>
-  selectedUser: User = new User(null, null, null, null);
+  selectedUser: User = new User(null, null, null, null, false);
 
   constructor(private userService: UserService) { }
 
@@ -28,9 +28,23 @@ export class UserListComponent implements OnInit {
       .subscribe(
         () => {
           this.users$ = this.userService.getUsers();
-          this.selectedUser = new User(null, null, null, null);
+          this.selectedUser = new User(null, null, null, null, false);
         }
       );
   }
 
+  onUserBlock(user: User) {
+    this.userService.blockUser({
+      id: user.id,
+      username: user.username,
+      email: user.email,
+      password: user.password,
+      blocked: true
+    })
+      .subscribe(
+        () => {
+          this.users$ = this.userService.getUsers();
+        }
+      )
+  }
 }

@@ -21,7 +21,10 @@ export class UserService {
   }
 
   saveUser(user: User): Observable<any> {
-    console.log(user.email + " " + user.password)
     return this.httpClient.post(this.APIRegistration, user);
+  }
+
+  blockUser(user: User): Observable<any> {
+    return this.httpClient.put(this.APIUsers, user);
   }
 }
