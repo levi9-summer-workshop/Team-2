@@ -17,7 +17,7 @@
                         </div>
                         <div class="form-group">
                             <input type="password" class="form-control" name="password" id="password" placeholder="Password" ngModel required #password="ngModel"
-                                [ngClass]="{'is-invalid': error?.password || (password.invalid && (password.dirty || password.touched))}" minlength="6"
+                                [ngClass]="{'is-invalid': error?.password || (password.invalid && (password.dirty || password.touched))}" minlength="5"
                                 maxlength="30">
                             <div class="invalid-feedback" *ngIf="password.invalid && (password.dirty || password.touched)">Please enter a valid password</div>
                         </div>
