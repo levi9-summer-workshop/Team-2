@@ -1,11 +1,11 @@
 INSERT INTO role(type) VALUES ('ROLE_ADMIN');
 INSERT INTO role(type) VALUES ('ROLE_USER');
 
-INSERT INTO `user`(email,password,username,blocked) VALUES ('admin@example.com','admin','admin', false);
-INSERT INTO `user`(email,password,username,blocked) VALUES ('danila@example.com','danilino','danila', false);
-INSERT INTO `user`(email,password,username,blocked) VALUES ('viktorija@example.com','cokolino','viktorija', false);
-
-INSERT INTO user_roles(user_id,role_id)VALUES(1, 1);
-INSERT INTO user_roles(user_id,role_id)VALUES(1, 2);
-INSERT INTO user_roles(user_id,role_id)VALUES(2, 2);
-INSERT INTO user_roles(user_id,role_id)VALUES(3, 2);
+-- Check if admin already exists if not create new and limit to one
+INSERT INTO user (blocked, email, password, username)
+SELECT * FROM (SELECT false, 'admin@example.com', 'admin123', 'admin') AS tmp
+WHERE NOT EXISTS (
+SELECT username FROM user WHERE username='admin'
+) LIMIT 1;
+-- Ignore if role is already added to admin
+INSERT IGNORE INTO user_roles(user_id, role_id) VALUES(1, 1);
