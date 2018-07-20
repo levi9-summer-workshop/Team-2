@@ -27,6 +27,7 @@ export class LoginComponent implements OnInit {
         () => this.router.navigate(['/home']),
         (error) => {
           this.error = error;
+          form.reset();
           // console.error(error);
         }
       ); //Ended subscribe
