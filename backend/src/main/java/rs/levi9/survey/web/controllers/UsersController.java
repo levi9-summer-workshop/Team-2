@@ -42,10 +42,10 @@ public class UsersController {
     @PostMapping("/registration")
     public ResponseEntity registration(@RequestBody SurveyUser surveyUser) {
         if(surveyUserService.checkIfUserExists(surveyUser)) {
-            return new ResponseEntity(surveyUserService.save(surveyUser), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(surveyUserService.save(surveyUser), HttpStatus.OK);
         }
         else {
-            return new ResponseEntity(HttpStatus.OK);
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
     }
 }
