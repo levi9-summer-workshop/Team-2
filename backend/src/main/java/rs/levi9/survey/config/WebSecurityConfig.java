@@ -44,6 +44,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 // ignore options method sent by browser
                 .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/users/registration").permitAll()
                 // ignore the static files
                 .antMatchers(  "/", "/login", "/index.html", "/*.bundle.*", "/favicon.ico", "/assets/**").permitAll()
                 // authenticate all remaining URLS
