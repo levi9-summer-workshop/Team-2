@@ -28,6 +28,11 @@ public class UsersController {
         return surveyUserService.findAll();
     }
 
+    @PutMapping
+    public SurveyUser block(@RequestBody SurveyUser user) {
+        return surveyUserService.save(user);
+    }
+
     @RequestMapping(path = "{id}", method = RequestMethod.DELETE)
     public ResponseEntity delete(@PathVariable("id") Long id) {
         surveyUserService.delete(id);

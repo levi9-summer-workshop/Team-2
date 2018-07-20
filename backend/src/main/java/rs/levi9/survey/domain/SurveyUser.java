@@ -17,6 +17,9 @@ public class SurveyUser extends BaseEntity {
     @Column(nullable = false)
     private String password;
 
+    @Column()
+    private Boolean blocked = false;
+
     @ManyToMany
     @JoinTable(joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -44,6 +47,14 @@ public class SurveyUser extends BaseEntity {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Boolean getBlocked() {
+        return blocked;
+    }
+
+    public void setBlocked(Boolean blocked) {
+        this.blocked = blocked;
     }
 
     public Set<Role> getRoles() {
