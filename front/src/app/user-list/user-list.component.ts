@@ -47,4 +47,19 @@ export class UserListComponent implements OnInit {
         }
       )
   }
+
+  onUserUnblock(user: User) {
+    this.userService.blockUser({
+      id: user.id,
+      username: user.username,
+      email: user.email,
+      password: user.password,
+      blocked: false
+    })
+      .subscribe(
+        () => {
+          this.users$ = this.userService.getUsers();
+        }
+      )
+  }
 }
