@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, Form } from '@angular/forms';
 
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
 
   //Property error
   error: Error;
+  html: HTMLAllCollection;
 
   constructor(private authService: AuthService, private router: Router) { }
 
@@ -27,6 +28,7 @@ export class LoginComponent implements OnInit {
         () => this.router.navigate(['/home']),
         (error) => {
           this.error = error;
+          form.reset();
           // console.error(error);
         }
       ); //Ended subscribe
