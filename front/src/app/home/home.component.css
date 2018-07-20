@@ -1,6 +1,5 @@
 .my-container{
     background-color: #ECFAF7;
-    overflow: hidden;
  }
 
 .headline{
@@ -19,6 +18,7 @@
     padding-top: 20px;
     padding-bottom: 40px;
 }
+
 
 h1 {
     font-family: 'Lato', sans-serif;
