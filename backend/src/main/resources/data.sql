@@ -1,4 +1,3 @@
-
 INSERT INTO role(type) VALUES ('ROLE_ADMIN');
 INSERT INTO role(type) VALUES ('ROLE_USER');
 
