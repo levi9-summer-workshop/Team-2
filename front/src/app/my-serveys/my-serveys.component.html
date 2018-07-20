@@ -1,0 +1,71 @@
+<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="text-center align-middle">#</th>
+                            <th scope="col" class="text-center align-middle">Title</th>
+                            <th scope="col" class="text-center align-middle">Creator</th>
+                            <th scope="col" class="text-center align-middle">Status</th>
+                            <th scope="col" class="text-center align-middle">Date created</th>
+                            <th scope="col" class="text-center align-middle">Date closed</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor='let user of (users$ | async); let i = index'>
+                            <th scope="row" class="text-center align-middle">{{ i + 1 }}</th>
+                            <td class="text-center align-middle"></td>
+                            <td class="text-center align-middle"></td>
+                            <td class="text-center align-middle"></td>
+
+                            <td class="text-center align-middle">
+                                <button type="button" class="btn btn-danger btn-sm" (click)="onUserDelete(user)" data-toggle="modal" data-target="#deleteUserModal">
+                                    Delete
+                                </button>
+                            </td>
+
+                            <td class="text-center align-middle">
+                                
+                                    <button type="button" class="btn btn-primary btn-sm" (click)="onUserBlock(user)" data-toggle="modal" data-target="#blockUserModal"
+                                        [disabled]="user.blocked === true">
+                                        Edit
+                                    </button>
+                                
+                                <button type="button" class="btn btn-secondary btn-sm" (click)="onUserUnblock(user)" data-toggle="modal" data-target="#unblockUserModal"
+                                    [disabled]="user.blocked === false">
+                                    Close
+                                </button>
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Modal -->
+<div class="modal fade" id="deleteUserModal" tabindex="-1" role="dialog" aria-labelledby="deleteUserModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteUserModalLabel">Delete User</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Do you want to delete
+                    <i>{{selectedUser?.username}}</i>?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" id="delete-button" class="btn" data-dismiss="modal" (click)="onUserDeleteSubmit()">Submit</button>
+            </div>
+        </div>
+    </div>
+</div>
