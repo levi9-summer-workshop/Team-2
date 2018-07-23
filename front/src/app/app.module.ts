@@ -16,6 +16,9 @@ import { SharedComponent } from './shared/shared.component';
 import { ConfirmEqualValidatorDirective } from './shared/confirm-equal-validator.directive';
 import { UserListComponent } from './user-list/user-list.component';
 import { AuthService } from './login/auth.service';
+import { SurveyComponent } from './survey.component';
+import { SurveyEditorComponent } from './survey.editor.component';
+import { CreateComponent } from './create/create.component';
 
 
 @NgModule({
@@ -31,6 +34,9 @@ import { AuthService } from './login/auth.service';
     SharedComponent,
     ConfirmEqualValidatorDirective,
     UserListComponent,
+    SurveyComponent,
+    SurveyEditorComponent,
+    CreateComponent
 
   ],
   imports: [
