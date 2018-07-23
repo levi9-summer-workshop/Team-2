@@ -17,7 +17,7 @@ public class SurveyUser extends BaseEntity {
     @Column(nullable = false)
     private String password;
 
-    @Column()
+    @Column(nullable = false)
     private Boolean blocked = false;
 
     @ManyToMany

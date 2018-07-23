@@ -16,6 +16,7 @@ public class AuthenticatedUser {
         this.roles = roles;
     }
 
+
     public String getUsername() {
         return username;
     }
@@ -31,6 +32,5 @@ public class AuthenticatedUser {
     public void setRoles(List<String> roles) {
         this.roles = roles;
     }
-
 
 }

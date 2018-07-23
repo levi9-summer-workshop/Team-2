@@ -7,6 +7,7 @@ import { AuthService } from '../login/auth.service';
 @Injectable()
 export class UserService {
 
+  blocked: Boolean;
   APIRegistration = 'http://localhost:8080/registration';
   APIUsers = 'http://localhost:8080/users';
 
@@ -27,4 +28,6 @@ export class UserService {
   blockUser(user: User): Observable<any> {
     return this.httpClient.put(this.APIUsers, user, { headers: this.authService.getAuthHeaders() });
   }
+
+  
 }
