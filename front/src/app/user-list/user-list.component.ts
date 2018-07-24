@@ -19,7 +19,6 @@ export class UserListComponent implements OnInit {
     this.users$ = this.userService.getUsers();
   }
 
-
   onUserDelete(user: User) {
     this.selectedUser = user;
   }
