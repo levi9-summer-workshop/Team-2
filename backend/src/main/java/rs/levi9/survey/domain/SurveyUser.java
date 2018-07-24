@@ -2,6 +2,8 @@ package rs.levi9.survey.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -17,7 +19,7 @@ public class SurveyUser extends BaseEntity {
     @Column(nullable = false)
     private String password;
 
-    @Column()
+    @Column(nullable = false)
     private Boolean blocked = false;
 
     @ManyToMany
