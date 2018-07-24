@@ -19,6 +19,8 @@ import { AuthService } from './login/auth.service';
 import { SurveyComponent } from './survey.component';
 import { SurveyEditorComponent } from './survey.editor.component';
 import { CreateComponent } from './create/create.component';
+import { AuthGuard } from './auth-guard.service';
+
 
 
 @NgModule({
@@ -45,7 +47,7 @@ import { CreateComponent } from './create/create.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [UserService, AuthService],
+  providers: [UserService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

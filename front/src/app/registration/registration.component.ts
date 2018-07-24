@@ -4,6 +4,9 @@ import { Observable } from 'rxjs/Observable';
 import { User } from '../users/user.model';
 import { UserService } from '../users/user.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { AuthService } from '../login/auth.service';
+import { Router } from '../../../node_modules/@angular/router';
+import { LoginComponent } from '../login/login.component';
 
 
 @Component({
@@ -19,19 +22,18 @@ export class RegistrationComponent implements OnInit {
   selectedUser: User = { id: null, username: null, email: null, password: null, blocked: false };
   operation: string;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private authService: AuthService, private router: Router ) { }
 
   ngOnInit() {
     this.users$ = this.userService.getUsers();
   }
 
-  showLoginPage(){
-    window.open("http://localhost:4200/#/login");
-    window.close();
-  }
+  // showLoginPage(){
+  //   window.open("http://localhost:4200/#/login");
+  //   window.close();
+  // }
 
   onUserSubmit(form: NgForm) {
-
     this.userService.saveUser({
       id: this.operation === 'Add' ? null : this.selectedUser.id,
       username: form.value.username, 
@@ -41,6 +43,22 @@ export class RegistrationComponent implements OnInit {
       .subscribe(
         () => {
           this.users$ = this.userService.getUsers();
+          this.authService.login(form.value.username, form.value.pass)
+          .subscribe(
+            (authenitacedUser) => {
+              if (authenitacedUser) {
+                this.router.navigate(['/home']);
+              } else {
+                this.router.navigate(['/registration']);
+                console.log("User is blocked");
+              }
+            },
+            (error) => {
+              this.error = error;
+              form.reset();
+              // console.error(error);
+            }
+          ); //Ended subscribe
         },
         (httpErrorResponse: HttpErrorResponse) => {
           this.error = {username: null, email: null, password: null};
