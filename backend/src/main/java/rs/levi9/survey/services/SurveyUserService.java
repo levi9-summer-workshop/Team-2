@@ -15,9 +15,7 @@ import rs.levi9.survey.domain.SurveyUser;
 import rs.levi9.survey.repositories.SurveyUserRepository;
 
 import javax.transaction.Transactional;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Service that will communicating with repository
@@ -67,6 +65,23 @@ public class SurveyUserService implements UserDetailsService {
     }
 
     /**
+     *
+     * Set role to a user
+     *
+     * @param surveyUser
+     * @param id
+     * @param roleType
+     */
+    public void setRole(SurveyUser surveyUser, Long id, Role.RoleType roleType) {
+        Role role = new Role();
+        role.setId(id);
+        role.setType(roleType);
+        Set<Role> roles = new HashSet<>();
+        roles.add(role);
+        surveyUser.setRoles(roles);
+    }
+
+    /**
      * Get all users from repository
      *
      * @return
@@ -107,4 +122,6 @@ public class SurveyUserService implements UserDetailsService {
             return false;
         }
     }
+
+
 }
