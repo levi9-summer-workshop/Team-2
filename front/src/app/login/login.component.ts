@@ -22,9 +22,19 @@ export class LoginComponent implements OnInit {
   onLogin(form: NgForm) {
     const username = form.value.username;
     const password = form.value.password;
+
+    this.authService
+
     this.authService.login(username, password)
       .subscribe(
-        () => this.router.navigate(['/home']),
+        (authenitacedUser) => {
+          if (authenitacedUser) {
+            this.router.navigate(['/home']);
+          } else {
+            this.router.navigate(['/registration']);
+            console.log("User is blocked");
+          }
+        },
         (error) => {
           this.error = error;
           form.reset();
@@ -32,4 +42,6 @@ export class LoginComponent implements OnInit {
         }
       ); //Ended subscribe
   } //Ended method onLogin()
+
+
 } //Ended class LoginComponent()

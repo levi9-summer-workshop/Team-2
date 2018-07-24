@@ -12,4 +12,3 @@ SELECT username FROM user WHERE username='admin'
 INSERT IGNORE INTO user_roles(user_id, role_id) VALUES(1, 1);
 INSERT IGNORE INTO user_roles(user_id, role_id) VALUES(1, 2);
 
-
