@@ -5,6 +5,8 @@ import { RegistrationComponent } from './registration/registration.component';
 import { HomeComponent } from './home/home.component';
 import { MyServeysComponent } from './my-serveys/my-serveys.component';
 import { UserListComponent } from './user-list/user-list.component';
+import { SurveyEditorComponent } from './survey.editor.component';
+import { CreateComponent } from './create/create.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo:'/home', pathMatch: 'full' },
@@ -12,7 +14,8 @@ const appRoutes: Routes = [
   { path: 'registration', component: RegistrationComponent },
   { path: 'home', component: HomeComponent},
   { path: 'myserveys', component: MyServeysComponent},
-  { path: 'users', component: UserListComponent}
+  { path: 'users', component: UserListComponent},
+  { path: 'create', component: CreateComponent}
 ];
 
 @NgModule({
