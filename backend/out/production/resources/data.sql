@@ -10,5 +10,5 @@ SELECT username FROM user WHERE username='admin'
 
 -- Ignore if role is already added to admin
 INSERT IGNORE INTO user_roles(user_id, role_id) VALUES(1, 1);
-INSERT IGNORE INTO user_roles(user_id, role_id) VALUES(1, 2);
+
 
