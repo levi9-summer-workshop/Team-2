@@ -189,4 +189,8 @@ export class AppComponent {
       }
     ]
   };
+
+  onSurveySaved(survey) {
+    this.json = survey;
+  }
 }

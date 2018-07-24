@@ -20,6 +20,24 @@ widgets.prettycheckbox(Survey);
 
 Survey.JsonObject.metaData.addProperty("questionbase", "popupdescription:text");
 Survey.JsonObject.metaData.addProperty("page", "popupdescription:text");
+Survey.JsonObject.metaData.removeProperty("selectbase", "choicesByUrl");
+Survey.JsonObject.metaData.removeProperty("questionbase", "visibleIf");
+Survey.JsonObject.metaData.removeProperty("questionbase", "enableIf");
+Survey.JsonObject.metaData.removeProperty("questionbase", "startWithNewLine");
+Survey.JsonObject.metaData.removeProperty("selectbase", "choicesOrder");
+Survey.JsonObject.metaData.removeProperty("selectbase", "colCount");
+Survey.JsonObject.metaData.removeProperty("dropdown", "inputType");
+Survey.JsonObject.metaData.removeProperty("text", "inputType");
+Survey.JsonObject.metaData.removeProperty("selectbase", "hasOther");
+Survey.JsonObject.metaData.removeProperty("selectbase", "otherText");
+Survey.JsonObject.metaData.removeProperty("survey", "navigation");
+Survey.JsonObject.metaData.removeProperty("survey", "question");
+Survey.JsonObject.metaData.removeProperty("survey", "completedHtml");
+Survey.JsonObject.metaData.removeProperty("survey", "timer");
+Survey.JsonObject.metaData.removeProperty("survey", "loadingHtml");
+Survey.JsonObject.metaData.removeProperty("survey", "triggers");
+
+
 
 @Component({
   selector: "survey",
@@ -37,6 +55,7 @@ export class SurveyComponent {
       btn.className = "btn btn-info btn-xs";
       btn.innerHTML = "More Info";
       var question = options.question;
+      
       btn.onclick = function() {
         //showDescription(question);
         alert(options.question.popupdescription);
@@ -46,9 +65,11 @@ export class SurveyComponent {
       span.innerHTML = "  ";
       header.appendChild(span);
       header.appendChild(btn);
+
     });
     Survey.SurveyNG.render("surveyElement", { model: surveyModel });
   }
+  
 
 
   ngOnInit() {}

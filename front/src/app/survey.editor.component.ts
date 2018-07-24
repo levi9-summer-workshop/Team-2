@@ -39,6 +39,8 @@ SurveyEditor.SurveyPropertyModalEditor.registerCustomWidget(
   CkEditor_ModalEditor
 );
 
+
+
 @Component({
   selector: "survey-editor",
   template: `<div id="surveyEditorContainer" class="container"></div>`
@@ -48,27 +50,48 @@ export class SurveyEditorComponent {
   @Input() json: any;
   @Output() surveySaved: EventEmitter<Object> = new EventEmitter();
 
-  constructor() {
-    var editorOptions = {
-      questionTypes: ["text", "checkbox", "radiogroup", "dropdown"]
-  };
-    var editor = new SurveyEditor.SurveyEditor("editorElement", editorOptions);
-  }
-
   ngOnInit() {
     SurveyKo.JsonObject.metaData.addProperty(
       "questionbase",
       "popupdescription:text"
     );
     SurveyKo.JsonObject.metaData.addProperty("page", "popupdescription:text");
+    SurveyKo.JsonObject.metaData.removeProperty("selectbase", "choicesByUrl");
+    SurveyKo.JsonObject.metaData.removeProperty("questionbase", "visibleIf");
+    SurveyKo.JsonObject.metaData.removeProperty("questionbase", "enableIf");
+    SurveyKo.JsonObject.metaData.removeProperty("questionbase", "startWithNewLine");
+    SurveyKo.JsonObject.metaData.removeProperty("selectbase", "choicesOrder");
+    SurveyKo.JsonObject.metaData.removeProperty("selectbase", "colCount");
+    SurveyKo.JsonObject.metaData.removeProperty("dropdown", "inputType");
+    SurveyKo.JsonObject.metaData.removeProperty("text", "inputType");
+    SurveyKo.JsonObject.metaData.removeProperty("selectbase", "hasOther");
+    SurveyKo.JsonObject.metaData.removeProperty("selectbase", "otherText");
+    SurveyKo.JsonObject.metaData.removeProperty("survey", "navigation");
+    SurveyKo.JsonObject.metaData.removeProperty("survey", "question");
+    SurveyKo.JsonObject.metaData.removeProperty("survey", "completedHtml");
+    SurveyKo.JsonObject.metaData.removeProperty("survey", "timer");
+    SurveyKo.JsonObject.metaData.removeProperty("survey", "loadingHtml");
+    SurveyKo.JsonObject.metaData.removeProperty("survey", "triggers");
 
-    let editorOptions = { showEmbededSurveyTab: true, generateValidJSON: true };
+    
+    
+
+
+    let editorOptions = { showEmbededSurveyTab: false, showPagesToolbox: false, generateValidJSON: true,  questionTypes: ["text", "checkbox", "radiogroup"] };
     this.editor = new SurveyEditor.SurveyEditor(
       "surveyEditorContainer",
       editorOptions
     );
+
+    this.editor.showPropertyGrid = false;
+    this.editor.toolbox.removeItem("editor");
+    this.editor.toolbox.removeItem("nouislider");
+    this.editor.toolbox.removeItem("signaturepad");
+    this.editor.toolbox.removeItem("sortablelist");
+    this.editor.toolbox.removeItem("bootstrapslider");
     this.editor.text = JSON.stringify(this.json);
     this.editor.saveSurveyFunc = this.saveMySurvey;
+  
   }
 
   saveMySurvey = () => {
