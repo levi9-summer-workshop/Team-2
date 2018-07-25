@@ -16,10 +16,12 @@ import { SharedComponent } from './shared/shared.component';
 import { ConfirmEqualValidatorDirective } from './shared/confirm-equal-validator.directive';
 import { UserListComponent } from './user-list/user-list.component';
 import { AuthService } from './login/auth.service';
-import { SurveyComponent } from './survey.component';
-import { SurveyEditorComponent } from './survey.editor.component';
-import { CreateComponent } from './create/create.component';
+// import { SurveyComponent } from './survey.component';
+// import { SurveyEditorComponent } from './survey.editor.component';
 import { AuthGuard } from './auth-guard.service';
+import { ViewSurveyComponent } from './view-survey/view-survey.component';
+import { CreateSurveyComponent } from './create-survey/create-survey.component';
+import { ExampleSurveyComponent } from './example-survey/example-survey.component';
 
 
 
@@ -36,9 +38,9 @@ import { AuthGuard } from './auth-guard.service';
     SharedComponent,
     ConfirmEqualValidatorDirective,
     UserListComponent,
-    SurveyComponent,
-    SurveyEditorComponent,
-    CreateComponent
+    CreateSurveyComponent,
+    ViewSurveyComponent,
+    ExampleSurveyComponent
 
   ],
   imports: [

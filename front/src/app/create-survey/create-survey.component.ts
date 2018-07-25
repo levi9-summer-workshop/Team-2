@@ -19,14 +19,14 @@ widgets.autocomplete(SurveyKo);
 widgets.bootstrapslider(SurveyKo);
 
 var CkEditor_ModalEditor = {
-  afterRender: function(modalEditor, htmlElement) {
+  afterRender: function (modalEditor, htmlElement) {
     var editor = window["CKEDITOR"].replace(htmlElement);
-    editor.on("change", function() {
+    editor.on("change", function () {
       modalEditor.editingValue = editor.getData();
     });
     editor.setData(modalEditor.editingValue);
   },
-  destroy: function(modalEditor, htmlElement) {
+  destroy: function (modalEditor, htmlElement) {
     var instance = window["CKEDITOR"].instances[htmlElement.id];
     if (instance) {
       instance.removeAllListeners();
@@ -39,13 +39,11 @@ SurveyEditor.SurveyPropertyModalEditor.registerCustomWidget(
   CkEditor_ModalEditor
 );
 
-
-
 @Component({
   selector: "survey-editor",
   template: `<div id="surveyEditorContainer" class="container"></div>`
 })
-export class SurveyEditorComponent {
+export class CreateSurveyComponent {
   editor: SurveyEditor.SurveyEditor;
   @Input() json: any;
   @Output() surveySaved: EventEmitter<Object> = new EventEmitter();
@@ -73,11 +71,8 @@ export class SurveyEditorComponent {
     SurveyKo.JsonObject.metaData.removeProperty("survey", "loadingHtml");
     SurveyKo.JsonObject.metaData.removeProperty("survey", "triggers");
 
-    
-    
 
-
-    let editorOptions = { showEmbededSurveyTab: false, showPagesToolbox: false, generateValidJSON: true,  questionTypes: ["text", "checkbox", "radiogroup"] };
+    let editorOptions = { showEmbededSurveyTab: false, showPagesToolbox: false, generateValidJSON: true, questionTypes: ["text", "checkbox", "radiogroup"] };
     this.editor = new SurveyEditor.SurveyEditor(
       "surveyEditorContainer",
       editorOptions
@@ -91,11 +86,12 @@ export class SurveyEditorComponent {
     this.editor.toolbox.removeItem("bootstrapslider");
     this.editor.text = JSON.stringify(this.json);
     this.editor.saveSurveyFunc = this.saveMySurvey;
-  
+
   }
 
   saveMySurvey = () => {
     console.log(JSON.stringify(this.editor.text));
     this.surveySaved.emit(JSON.parse(this.editor.text));
   };
+
 }

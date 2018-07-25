@@ -4,6 +4,7 @@ import * as widgets from "surveyjs-widgets";
 
 import "inputmask/dist/inputmask/phone-codes/phone.js";
 
+
 widgets.icheck(Survey);
 widgets.select2(Survey);
 widgets.inputmask(Survey);
@@ -37,13 +38,12 @@ Survey.JsonObject.metaData.removeProperty("survey", "timer");
 Survey.JsonObject.metaData.removeProperty("survey", "loadingHtml");
 Survey.JsonObject.metaData.removeProperty("survey", "triggers");
 
-
-
 @Component({
-  selector: "survey",
-  template: `<div class="survey-container contentcontainer codecontainer"><div id="surveyElement"></div></div>`
+  selector: 'survey',
+  template: '<div class="survey-container contentcontainer codecontainer container bootstrap-iso"><div id="surveyElement"></div></div>',
+  styleUrls: ['./view-survey.component.css']
 })
-export class SurveyComponent {
+export class ViewSurveyComponent {
   @Input()
   set json(value: object) {
     const surveyModel = new Survey.Model(value);
@@ -69,9 +69,6 @@ export class SurveyComponent {
     });
     Survey.SurveyNG.render("surveyElement", { model: surveyModel });
   }
-  
-
-
-  ngOnInit() {}
-  
+  ngOnInit() {    
+  }
 }
