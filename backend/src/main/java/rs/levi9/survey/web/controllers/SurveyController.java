@@ -3,9 +3,13 @@ package rs.levi9.survey.web.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import rs.levi9.survey.domain.Survey;
+
 import rs.levi9.survey.services.SurveyServices;
 
 import java.util.List;
+
+import rs.levi9.survey.services.SurveyService;
+
 
 @RestController
 @RequestMapping("/survey")
@@ -17,15 +21,9 @@ public class SurveyController {
     @Autowired
     public SurveyController(SurveyServices surveyServices) {
         this.surveyServices = surveyServices;
-    }
 
     @PostMapping
     public Survey save(@RequestBody Survey survey) {
         return surveyServices.save(survey);
-    }
-
-    @RequestMapping
-    public List<Survey> findAll(){
-        return surveyServices.findAll();
     }
 }

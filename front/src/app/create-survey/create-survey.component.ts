@@ -5,6 +5,7 @@ import * as widgets from "surveyjs-widgets";
 
 import "inputmask/dist/inputmask/phone-codes/phone.js";
 import { SurveyService } from "../survey/survey.service";
+
 import { Survey } from "../survey/survey.model";
 
 widgets.icheck(SurveyKo);
@@ -102,6 +103,5 @@ export class CreateSurveyComponent {
     // this.surveySaved.emit(JSON.parse(this.editor.text));
   };
 
-  
 }
 

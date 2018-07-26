@@ -1,14 +1,16 @@
 package rs.levi9.survey.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
+import javax.persistence.*;
+import java.util.Date;
+import java.util.List;
 
 @Entity
-@Table(name = "survey_table")
-public class Survey extends BaseEntity{
+public class Survey extends BaseEntity {
 
-    @Column
+    @Column(nullable = false)
     private String title;
 
     public String getTitle() {
