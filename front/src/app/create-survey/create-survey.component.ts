@@ -97,7 +97,6 @@ export class CreateSurveyComponent {
     let title = (JSON.parse(this.editor.text)).title;
     console.log(title);
     const survey = new Survey(title);
-    debugger;
     console.log(survey);
     this.surveyService.saveSurvey(survey).subscribe();
     // this.surveySaved.emit(JSON.parse(this.editor.text));
@@ -105,3 +104,4 @@ export class CreateSurveyComponent {
 
   
 }
+
