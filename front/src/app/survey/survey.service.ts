@@ -7,12 +7,12 @@ import { Survey } from './survey.model';
 @Injectable()
 export class SurveyService {
 
- APISurvey = "http://localhost:8080/survey"
+  APISurvey = "http://localhost:8080/survey"
 
- constructor(private httpClient: HttpClient, private authService: AuthService) { }
+  constructor(private httpClient: HttpClient, private authService: AuthService) { }
 
- saveSurvey(survey: String): Observable<any> {
-   return this.httpClient.post(this.APISurvey, survey,  { headers: this.authService.getAuthHeaders() } );
- }
+  saveSurvey(survey: Survey): Observable<any> {
+    return this.httpClient.post(this.APISurvey, survey,  { headers: this.authService.getAuthHeaders() } );
+  }
 
 }

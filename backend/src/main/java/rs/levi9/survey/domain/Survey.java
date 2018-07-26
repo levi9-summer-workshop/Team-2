@@ -13,10 +13,6 @@ public class Survey extends BaseEntity {
     @Column(nullable = false)
     private String title;
 
-    @Column
-    private String creator;
-
-
     public String getTitle() {
         return title;
     }
@@ -24,13 +20,4 @@ public class Survey extends BaseEntity {
     public void setTitle(String title) {
         this.title = title;
     }
-
-    public String getCreator() {
-        return creator;
-    }
-
-    public void setCreator(String creator) {
-        this.creator = creator;
-    }
-
 }

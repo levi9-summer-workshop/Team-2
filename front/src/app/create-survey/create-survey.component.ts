@@ -6,6 +6,8 @@ import * as widgets from "surveyjs-widgets";
 import "inputmask/dist/inputmask/phone-codes/phone.js";
 import { SurveyService } from "../survey/survey.service";
 
+import { Survey } from "../survey/survey.model";
+
 widgets.icheck(SurveyKo);
 widgets.select2(SurveyKo);
 widgets.inputmask(SurveyKo);
@@ -92,9 +94,14 @@ export class CreateSurveyComponent {
 
   }
 
-  saveMySurvey = () => {
-    console.log(JSON.stringify(this.editor.text));
-    this.surveyService.saveSurvey(JSON.parse(this.editor.text)).subscribe();
-    this.surveySaved.emit(JSON.parse(this.editor.text));
+  saveMySurvey = () => {    
+    let title = (JSON.parse(this.editor.text)).title;
+    console.log(title);
+    const survey = new Survey(title);
+    console.log(survey);
+    this.surveyService.saveSurvey(survey).subscribe();
+    // this.surveySaved.emit(JSON.parse(this.editor.text));
   };
+
 }
+
