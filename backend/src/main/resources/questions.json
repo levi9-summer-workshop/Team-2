@@ -1,0 +1,33 @@
+{
+  "pages": [
+    {
+      "name": "page1",
+      "elements": [
+        {
+          "type": "checkbox",
+          "name": "question1",
+          "choices": [
+            "item1",
+            "item2",
+            "item3"
+          ]
+        },
+        {
+          "type": "radiogroup",
+          "name": "question2",
+          "choices": [
+            "item1",
+            "item2",
+            "item3"
+          ]
+        },
+        {
+          "type": "text",
+          "name": "q1",
+          "isRequired": true,
+          "placeholder": "dfdfg"
+        }
+      ]
+    }
+  ]
+}

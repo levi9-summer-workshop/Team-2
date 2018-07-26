@@ -20,6 +20,6 @@ public interface SurveyUserRepository extends JpaRepository<SurveyUser, Long> {
      * @param username
      * @return
      */
-    @Query(value = "SELECT blocked from user WHERE username=:username", nativeQuery = true)
+    @Query(value = "SELECT blocked from user where username=:username", nativeQuery=true)
     String getBlockedInformation(@Param("username") String username);
 }
