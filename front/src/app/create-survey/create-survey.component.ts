@@ -7,6 +7,7 @@ import "inputmask/dist/inputmask/phone-codes/phone.js";
 import { SurveyService } from "../survey/survey.service";
 
 import { Survey } from "../survey/survey.model";
+import { Question } from "../survey/question.model";
 
 widgets.icheck(SurveyKo);
 widgets.select2(SurveyKo);
@@ -95,12 +96,14 @@ export class CreateSurveyComponent {
   }
 
   saveMySurvey = () => {    
-    let title = (JSON.parse(this.editor.text)).title;
-    console.log(title);
-    const survey = new Survey(title);
-    console.log(survey);
+    console.log(JSON.parse(this.editor.text).pages[0].elements[0].name);
+    let title = JSON.parse(this.editor.text).title;
+    let showTitle = JSON.parse(this.editor.text).showTitle;
+    let question = JSON.parse(this.editor.text).pages[0].elements[0].name;
+    const survey = new Survey(title, showTitle);
+    const questionName = new Question(question);
     this.surveyService.saveSurvey(survey).subscribe();
-    // this.surveySaved.emit(JSON.parse(this.editor.text));
+    this.surveyService.saveQuestion(questionName).subscribe();
   };
 
 }

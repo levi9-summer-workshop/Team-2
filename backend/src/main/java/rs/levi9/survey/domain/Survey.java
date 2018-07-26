@@ -1,17 +1,16 @@
 package rs.levi9.survey.domain;
 
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
-
 import javax.persistence.*;
-import java.util.Date;
-import java.util.List;
 
 @Entity
+@Table(name = "survey")
 public class Survey extends BaseEntity {
 
     @Column(nullable = false)
     private String title;
+
+    @Column
+    private String showTitle = "true";
 
     public String getTitle() {
         return title;
@@ -19,5 +18,13 @@ public class Survey extends BaseEntity {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getShowTitle() {
+        return showTitle;
+    }
+
+    public void setShowTitle(String showTitle) {
+        this.showTitle = showTitle;
     }
 }

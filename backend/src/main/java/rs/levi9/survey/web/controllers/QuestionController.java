@@ -23,5 +23,8 @@ public class QuestionController {
         this.questionService = questionService;
     }
 
-
+    @PostMapping
+    public Question save(@RequestBody Question question) {
+        return questionService.save(question);
+    }
 }

@@ -3,25 +3,23 @@ package rs.levi9.survey.domain;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name = "question")
 public class Question extends BaseEntity {
 
     @Column(nullable = false)
     private String name;
 
-    @Column(nullable = false)
+
     private String type;
 
-    @Column(nullable = false)
+
     private Boolean isRequired;
 
-    @Column(nullable = false)
+
     private String placeholder;
 
     @Cascade(CascadeType.ALL)

@@ -8,6 +8,7 @@ import rs.levi9.survey.repositories.QuestionRepository;
 import javax.transaction.Transactional;
 import java.util.List;
 
+@Transactional
 @Service
 public class QuestionService {
     private QuestionRepository questionRepository;
@@ -25,12 +26,12 @@ public class QuestionService {
         return questionRepository.findOne(questionId);
     }
 
-    @Transactional
+
     public Question save(Question question) {
         return questionRepository.save(question);
     }
 
-    @Transactional
+
     public void delete(Long questionId) {
         questionRepository.delete(questionId);
     }
