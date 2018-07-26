@@ -1,5 +1,7 @@
 package rs.levi9.survey.domain;
 
+import org.hibernate.validator.constraints.Length;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -10,12 +12,14 @@ import java.util.Set;
 @Table(name = "user")
 public class SurveyUser extends BaseEntity {
 
+    @Length(min = 5)
     @Column(nullable = false)
     private String username;
 
     @Column(nullable = false)
     private String email;
 
+    @Length(min = 5)
     @Column(nullable = false)
     private String password;
 

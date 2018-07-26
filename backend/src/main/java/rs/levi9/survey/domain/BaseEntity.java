@@ -9,9 +9,6 @@ public abstract class BaseEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    public BaseEntity() {
-    }
-
     public Long getId() {
         return id;
     }
