@@ -17,8 +17,6 @@ export class UserService {
     return this.httpClient.get<User[]>(this.APIUsers, { headers: this.authService.getAuthHeaders() });
   }
 
-
-
   deleteUser(userId: number){
     return this.httpClient.delete(this.APIUsers + '/' + (userId), { headers: this.authService.getAuthHeaders() });
   }
@@ -31,7 +29,4 @@ export class UserService {
     return this.httpClient.put(this.APIUsers, user, { headers: this.authService.getAuthHeaders() });
   }
 
-  
-
-  
 }

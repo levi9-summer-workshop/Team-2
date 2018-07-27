@@ -10,6 +10,9 @@ import java.util.List;
 @Table(name = "question")
 public class Question extends BaseEntity {
 
+    @Column(name = "survey_id")
+    private Long surveyId;
+
     @Column
     private String name;
 
@@ -24,6 +27,11 @@ public class Question extends BaseEntity {
 
     @Column
     private String title;
+
+    @Cascade(CascadeType.ALL)
+    @OneToMany
+    @JoinColumn(name = "question_id")
+    private List<Choice> choices;
 
     @Cascade(CascadeType.ALL)
     @OneToMany
@@ -76,5 +84,21 @@ public class Question extends BaseEntity {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public List<Choice> getChoices() {
+        return choices;
+    }
+
+    public void setChoices(List<Choice> choices) {
+        this.choices = choices;
+    }
+
+    public Long getSurveyId() {
+        return surveyId;
+    }
+
+    public void setSurveyId(Long surveyId) {
+        this.surveyId = surveyId;
     }
 }

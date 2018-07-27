@@ -8,6 +8,7 @@ import { SurveyService } from "../survey/survey.service";
 
 import { Survey } from "../survey/survey.model";
 import { Question } from "../survey/question.model";
+import { Choices } from "../survey/choice.model";
 
 widgets.icheck(SurveyKo);
 widgets.select2(SurveyKo);
@@ -96,32 +97,70 @@ export class CreateSurveyComponent {
   }
 
   saveMySurvey = () => {    
-    let i = 0;
     
+    this.saveSurvey();
+    this.saveQuestions();
     console.log(JSON.parse(this.editor.text));
-    //console.log(JSON.parse(this.editor.text).pages[0].elements[0].name);
-    let title = JSON.parse(this.editor.text).title;
-    let showTitle = JSON.parse(this.editor.text).showTitle;
-    //let question = JSON.parse(this.editor.text).pages[0].elements[0].name;
-    const survey = new Survey(title, showTitle);
-    while(i < JSON.parse(this.editor.text).pages[0].elements.length) {
-      let questionName = JSON.parse(this.editor.text).pages[0].elements[i].name;
-      let questionTitle = JSON.parse(this.editor.text).pages[0].elements[i].title;
-      let questionIsRequired = JSON.parse(this.editor.text).pages[0].elements[i].isRequired;
-      let placeHolder = JSON.parse(this.editor.text).pages[0].elements[i].placeHolder;
-      let type = JSON.parse(this.editor.text).pages[0].elements[i].type;
-
-      const question = new Question(questionName, questionTitle, questionIsRequired, 
-      placeHolder, type);      
-
-      this.surveyService.saveQuestion(question).subscribe();
-
-      i++;
-    }
-
-    this.surveyService.saveSurvey(survey).subscribe();
-    
   };
 
+  saveSurvey() {
+    
+    let title = JSON.parse(this.editor.text).title;
+    let showTitle = JSON.parse(this.editor.text).showTitle;
+
+    const survey = new Survey(title, showTitle)
+
+    this.surveyService.saveSurvey(survey).subscribe();
+  }
+
+  saveQuestions() {
+    let i = 0;
+    let j = 0;
+
+    while(i < JSON.parse(this.editor.text).pages[0].elements.length) {
+
+    let questionName = JSON.parse(this.editor.text).pages[0].elements[i].name;
+    let questionTitle = JSON.parse(this.editor.text).pages[0].elements[i].title;
+    let questionIsRequired = JSON.parse(this.editor.text).pages[0].elements[i].isRequired;
+    let placeHolder = JSON.parse(this.editor.text).pages[0].elements[i].placeHolder;
+    let type = JSON.parse(this.editor.text).pages[0].elements[i].type;
+    let choices = JSON.parse(this.editor.text).pages[0].elements[i].choices;
+
+    if(this.checkIfChoiceExists(choices) == true) {
+      while(j < choices.length) {
+        
+        if(choices[j] != null) {
+          const choice = new Choices(JSON.parse(this.editor.text).pages[0].elements[i].choices[j]); 
+          this.surveyService.saveChoices(choice).subscribe();
+        } else {
+          //Do nothing
+        }
+
+        j++;
+      }
+      const question = new Question(questionName, questionTitle, questionIsRequired, 
+        placeHolder, type); 
+
+        this.surveyService.saveQuestion(question).subscribe();
+      j = 0;
+
+    } else {
+      const question = new Question(questionName, questionTitle, questionIsRequired, 
+      placeHolder, type); 
+      this.surveyService.saveQuestion(question).subscribe();
+    }
+
+    i++;
+    }
+  }
+
+  checkIfChoiceExists(choice: string): Boolean {
+
+    if(choice){
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
 
