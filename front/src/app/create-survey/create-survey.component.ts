@@ -8,7 +8,13 @@ import { SurveyService } from "../survey/survey.service";
 
 import { Survey } from "../survey/survey.model";
 import { Question } from "../survey/question.model";
+
 import { Choices } from "../survey/choice.model";
+
+import { User } from "../users/user.model";
+import { UserService } from "../users/user.service";
+import { AuthService } from "../login/auth.service";
+
 
 widgets.icheck(SurveyKo);
 widgets.select2(SurveyKo);
@@ -53,7 +59,7 @@ export class CreateSurveyComponent {
   @Input() json: any;
   @Output() surveySaved: EventEmitter<Object> = new EventEmitter();
 
-  constructor(public surveyService: SurveyService) { }
+  constructor(public surveyService: SurveyService, public authService: AuthService) { }
 
   ngOnInit() {
     SurveyKo.JsonObject.metaData.addProperty(
@@ -97,6 +103,11 @@ export class CreateSurveyComponent {
   }
 
   saveMySurvey = () => {    
+
+
+    
+    let i = 0;
+
     
     this.saveSurvey();
     this.saveQuestions();
@@ -108,6 +119,7 @@ export class CreateSurveyComponent {
     let title = JSON.parse(this.editor.text).title;
     let showTitle = JSON.parse(this.editor.text).showTitle;
 
+
     const survey = new Survey(title, showTitle)
 
     this.surveyService.saveSurvey(survey).subscribe();
@@ -116,6 +128,13 @@ export class CreateSurveyComponent {
   saveQuestions() {
     let i = 0;
     let j = 0;
+
+
+    let creator = this.authService.getUsername() ;
+    console.log(creator);
+    let creationDate = Date.now();
+    let expirationDate = Date.now();
+    const survey = new Survey(title, showTitle, creator, creationDate, expirationDate);
 
     while(i < JSON.parse(this.editor.text).pages[0].elements.length) {
 

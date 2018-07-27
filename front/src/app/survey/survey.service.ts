@@ -23,7 +23,12 @@ export class SurveyService {
     return this.httpClient.post(this.APIQuestion, question, { headers: this.authService.getAuthHeaders() } );
   }
 
+
   saveChoices(choices: Choices): Observable<any> {
     return this.httpClient.post(this.APIChoices, choices, { headers: this.authService.getAuthHeaders() } );
+
+  getSurveys(): Observable<Survey[]> {
+    return this.httpClient.get<Survey[]>(this.APISurvey, { headers: this.authService.getAuthHeaders() });
+
   }
 }
