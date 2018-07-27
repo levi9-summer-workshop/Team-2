@@ -1,9 +1,17 @@
 package rs.levi9.survey.domain;
 
+
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
+import javax.persistence.*;
+
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.Date;
+
 import java.util.List;
 
 @Entity
@@ -16,6 +24,12 @@ public class Survey extends BaseEntity {
     @Column
     private String showTitle = "true";
 
+
+    @Cascade(CascadeType.ALL)
+    @OneToMany
+    @JoinColumn(name = "survey_id")
+    private List<Question> questions;
+
     @Column
     private String creator;
 
@@ -26,6 +40,7 @@ public class Survey extends BaseEntity {
     @Column(name = "expiration_date")
     @Temporal(TemporalType.DATE)
     private Date expirationDate;
+
 
     public String getTitle() {
         return title;
@@ -79,5 +94,13 @@ public class Survey extends BaseEntity {
 
     public void setShowTitle(String showTitle) {
         this.showTitle = showTitle;
+    }
+
+    public List<Question> getQuestions() {
+        return questions;
+    }
+
+    public void setQuestions(List<Question> questions) {
+        this.questions = questions;
     }
 }
