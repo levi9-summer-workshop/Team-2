@@ -96,14 +96,31 @@ export class CreateSurveyComponent {
   }
 
   saveMySurvey = () => {    
-    console.log(JSON.parse(this.editor.text).pages[0].elements[0].name);
+    let i = 0;
+    
+    console.log(JSON.parse(this.editor.text));
+    //console.log(JSON.parse(this.editor.text).pages[0].elements[0].name);
     let title = JSON.parse(this.editor.text).title;
     let showTitle = JSON.parse(this.editor.text).showTitle;
-    let question = JSON.parse(this.editor.text).pages[0].elements[0].name;
+    //let question = JSON.parse(this.editor.text).pages[0].elements[0].name;
     const survey = new Survey(title, showTitle);
-    const questionName = new Question(question);
+    while(i < JSON.parse(this.editor.text).pages[0].elements.length) {
+      let questionName = JSON.parse(this.editor.text).pages[0].elements[i].name;
+      let questionTitle = JSON.parse(this.editor.text).pages[0].elements[i].title;
+      let questionIsRequired = JSON.parse(this.editor.text).pages[0].elements[i].isRequired;
+      let placeHolder = JSON.parse(this.editor.text).pages[0].elements[i].placeHolder;
+      let type = JSON.parse(this.editor.text).pages[0].elements[i].type;
+
+      const question = new Question(questionName, questionTitle, questionIsRequired, 
+      placeHolder, type);      
+
+      this.surveyService.saveQuestion(question).subscribe();
+
+      i++;
+    }
+
     this.surveyService.saveSurvey(survey).subscribe();
-    this.surveyService.saveQuestion(questionName).subscribe();
+    
   };
 
 }

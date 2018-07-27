@@ -10,17 +10,20 @@ import java.util.List;
 @Table(name = "question")
 public class Question extends BaseEntity {
 
-    @Column(nullable = false)
+    @Column
     private String name;
 
-
+    @Column
     private String type;
 
+    @Column
+    private String isRequired = "false";
 
-    private Boolean isRequired;
+    @Column
+    private String placeHolder;
 
-
-    private String placeholder;
+    @Column
+    private String title;
 
     @Cascade(CascadeType.ALL)
     @OneToMany
@@ -43,19 +46,35 @@ public class Question extends BaseEntity {
         this.type = type;
     }
 
-    public Boolean getRequired() {
+    public String getRequired() {
         return isRequired;
     }
 
-    public void setRequired(Boolean required) {
+    public void setRequired(String required) {
         isRequired = required;
     }
 
-    public String getPlaceholder() {
-        return placeholder;
+    public String getIsRequired() {
+        return isRequired;
     }
 
-    public void setPlaceholder(String placeholder) {
-        this.placeholder = placeholder;
+    public void setIsRequired(String isRequired) {
+        this.isRequired = isRequired;
+    }
+
+    public String getPlaceHolder() {
+        return placeHolder;
+    }
+
+    public void setPlaceHolder(String placeHolder) {
+        this.placeHolder = placeHolder;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

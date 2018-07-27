@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Table(name = "survey")
 public class Survey extends BaseEntity {
 
-    @Column(nullable = false)
+    @Column
     private String title;
 
     @Column
