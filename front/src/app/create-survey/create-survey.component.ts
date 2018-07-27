@@ -8,6 +8,9 @@ import { SurveyService } from "../survey/survey.service";
 
 import { Survey } from "../survey/survey.model";
 import { Question } from "../survey/question.model";
+import { User } from "../users/user.model";
+import { UserService } from "../users/user.service";
+import { AuthService } from "../login/auth.service";
 
 widgets.icheck(SurveyKo);
 widgets.select2(SurveyKo);
@@ -52,7 +55,7 @@ export class CreateSurveyComponent {
   @Input() json: any;
   @Output() surveySaved: EventEmitter<Object> = new EventEmitter();
 
-  constructor(public surveyService: SurveyService) { }
+  constructor(public surveyService: SurveyService, public authService: AuthService) { }
 
   ngOnInit() {
     SurveyKo.JsonObject.metaData.addProperty(
@@ -96,14 +99,19 @@ export class CreateSurveyComponent {
   }
 
   saveMySurvey = () => {    
+    
     let i = 0;
     
     console.log(JSON.parse(this.editor.text));
     //console.log(JSON.parse(this.editor.text).pages[0].elements[0].name);
     let title = JSON.parse(this.editor.text).title;
     let showTitle = JSON.parse(this.editor.text).showTitle;
+    let creator = this.authService.getUsername() ;
+    console.log(creator);
+    let creationDate = Date.now();
+    let expirationDate = Date.now();
     //let question = JSON.parse(this.editor.text).pages[0].elements[0].name;
-    const survey = new Survey(title, showTitle);
+    const survey = new Survey(title, showTitle, creator, creationDate, expirationDate);
     while(i < JSON.parse(this.editor.text).pages[0].elements.length) {
       let questionName = JSON.parse(this.editor.text).pages[0].elements[i].name;
       let questionTitle = JSON.parse(this.editor.text).pages[0].elements[i].title;
