@@ -4,14 +4,17 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Table(name = "question")
-public class Question extends BaseEntity {
+public class Question extends BaseEntity implements Serializable {
 
-    @Column(name = "survey_id")
-    private Long surveyId;
+    @ManyToOne
+    @JoinColumn(name = "survey_id")
+    private Survey survey;
 
     @Column
     private String name;
@@ -28,15 +31,27 @@ public class Question extends BaseEntity {
     @Column
     private String title;
 
-    @Cascade(CascadeType.ALL)
-    @OneToMany
-    @JoinColumn(name = "question_id")
+    @OneToMany(mappedBy = "question")
     private List<Choice> choices;
 
     @Cascade(CascadeType.ALL)
     @OneToMany
     @JoinColumn(name = "question_id")
     private List<Answer> answers;
+
+    public Question() {
+    }
+
+    public Question(Survey survey, String name, String type, String isRequired, String placeHolder, String title, List<Choice> choices, List<Answer> answers) {
+        this.survey = survey;
+        this.name = name;
+        this.type = type;
+        this.isRequired = isRequired;
+        this.placeHolder = placeHolder;
+        this.title = title;
+        this.choices = choices;
+        this.answers = answers;
+    }
 
     public String getName() {
         return name;
@@ -94,11 +109,19 @@ public class Question extends BaseEntity {
         this.choices = choices;
     }
 
-    public Long getSurveyId() {
-        return surveyId;
+    public Survey getSurvey() {
+        return survey;
     }
 
-    public void setSurveyId(Long surveyId) {
-        this.surveyId = surveyId;
+    public void setSurvey(Survey survey) {
+        this.survey = survey;
+    }
+
+    public List<Answer> getAnswers() {
+        return answers;
+    }
+
+    public void setAnswers(List<Answer> answers) {
+        this.answers = answers;
     }
 }

@@ -25,5 +25,11 @@ export class SurveyService {
 
   saveChoices(choices: Choices): Observable<any> {
     return this.httpClient.post(this.APIChoices, choices, { headers: this.authService.getAuthHeaders() } );
+<<<<<<< Updated upstream
+=======
+  }
+  getSurveys(): Observable<Survey[]> {
+    return this.httpClient.get<Survey[]>(this.APISurvey, { headers: this.authService.getAuthHeaders() });
+>>>>>>> Stashed changes
   }
 }

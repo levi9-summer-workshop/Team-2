@@ -97,18 +97,28 @@ export class CreateSurveyComponent {
   }
 
   saveMySurvey = () => {    
+<<<<<<< Updated upstream
     
+=======
+
+>>>>>>> Stashed changes
     this.saveSurvey();
     this.saveQuestions();
-    console.log(JSON.parse(this.editor.text));
   };
 
   saveSurvey() {
     
     let title = JSON.parse(this.editor.text).title;
     let showTitle = JSON.parse(this.editor.text).showTitle;
+    let creator = this.authService.getUsername() ;
+    let creationDate = Date.now();
+    let expirationDate = Date.now();
 
+<<<<<<< Updated upstream
     const survey = new Survey(title, showTitle)
+=======
+    const survey = new Survey(title, showTitle, creator, creationDate, expirationDate);
+>>>>>>> Stashed changes
 
     this.surveyService.saveSurvey(survey).subscribe();
   }
