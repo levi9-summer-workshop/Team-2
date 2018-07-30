@@ -1,9 +1,7 @@
 package rs.levi9.survey.domain;
 
 import javax.persistence.*;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -21,6 +19,11 @@ public class SurveyUser extends BaseEntity {
 
     @Column(nullable = false)
     private Boolean blocked = false;
+
+
+    @OneToMany
+    @JoinColumn(name = "user_id")
+    private List<Survey> surveys;
 
     @ManyToMany
     @JoinTable(joinColumns = @JoinColumn(name = "user_id"),

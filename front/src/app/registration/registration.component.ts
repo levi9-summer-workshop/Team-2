@@ -18,7 +18,7 @@ export class RegistrationComponent implements OnInit {
   
   users$: Observable<User[]>;
   @ViewChild('f') addUserForm: NgForm;
-  error: {username: string, email: string, password: string};
+  error: {username: string, email: string, password: string, blocked: boolean};
   selectedUser: User = { id: null, username: null, email: null, password: null, blocked: false };
   operation: string;
 
@@ -61,7 +61,7 @@ export class RegistrationComponent implements OnInit {
           ); //Ended subscribe
         },
         (httpErrorResponse: HttpErrorResponse) => {
-          this.error = {username: null, email: null, password: null};
+          this.error = {username: null, email: null, password: null, blocked: null};
           httpErrorResponse.error.exceptions.forEach(element => {
             this.errorHandler(element);
           });
