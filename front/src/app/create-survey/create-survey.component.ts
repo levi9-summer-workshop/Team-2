@@ -9,6 +9,8 @@ import { SurveyService } from "../survey/survey.service";
 import { Survey } from "../survey/survey.model";
 import { Question } from "../survey/question.model";
 import { Choices } from "../survey/choice.model";
+import { AuthService } from "../login/auth.service";
+import { MyServeysComponent } from "../my-serveys/my-serveys.component";
 
 widgets.icheck(SurveyKo);
 widgets.select2(SurveyKo);
@@ -53,7 +55,7 @@ export class CreateSurveyComponent {
   @Input() json: any;
   @Output() surveySaved: EventEmitter<Object> = new EventEmitter();
 
-  constructor(public surveyService: SurveyService) { }
+  constructor(public surveyService: SurveyService, public authService: AuthService, public mySurveys: MyServeysComponent) { }
 
   ngOnInit() {
     SurveyKo.JsonObject.metaData.addProperty(
@@ -97,11 +99,7 @@ export class CreateSurveyComponent {
   }
 
   saveMySurvey = () => {    
-<<<<<<< Updated upstream
-    
-=======
 
->>>>>>> Stashed changes
     this.saveSurvey();
     this.saveQuestions();
   };
@@ -113,12 +111,10 @@ export class CreateSurveyComponent {
     let creator = this.authService.getUsername() ;
     let creationDate = Date.now();
     let expirationDate = Date.now();
+    let id = this.mySurveys.getId();
 
-<<<<<<< Updated upstream
-    const survey = new Survey(title, showTitle)
-=======
-    const survey = new Survey(title, showTitle, creator, creationDate, expirationDate);
->>>>>>> Stashed changes
+
+    const survey = new Survey(id, title, showTitle, creator, creationDate, expirationDate);
 
     this.surveyService.saveSurvey(survey).subscribe();
   }

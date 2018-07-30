@@ -50,7 +50,7 @@ import { SurveyService } from './survey/survey.service';
     FormsModule,
     HttpClientModule
   ],
-  providers: [UserService, AuthService, AuthGuard, SurveyService],
+  providers: [UserService, AuthService, AuthGuard, SurveyService, MyServeysComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

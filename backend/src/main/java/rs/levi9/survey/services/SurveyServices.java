@@ -27,4 +27,8 @@ public class SurveyServices {
     public List<Survey> findAll(){
        return this.surveyRepository.findAll();
     }
+
+    public void delete(Long id) {
+        surveyRepository.delete(id);
+    }
 }
