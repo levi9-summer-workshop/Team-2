@@ -1,4 +1,3 @@
-import { User, AuthService } from "../login/auth.service";
 
 export class Survey {
     public title: string;

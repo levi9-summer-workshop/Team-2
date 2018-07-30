@@ -104,74 +104,65 @@ export class CreateSurveyComponent {
 
   saveMySurvey = () => {    
 
-
-    
-    let i = 0;
-
-    
     this.saveSurvey();
     this.saveQuestions();
-    console.log(JSON.parse(this.editor.text));
   };
-
+ 
   saveSurvey() {
     
     let title = JSON.parse(this.editor.text).title;
     let showTitle = JSON.parse(this.editor.text).showTitle;
-
-
-    const survey = new Survey(title, showTitle)
-
+    let creator = this.authService.getUsername() ;
+    let creationDate = Date.now();
+    let expirationDate = Date.now();
+ 
+ 
+    const survey = new Survey(title, showTitle, creator, creationDate, expirationDate);
+ 
     this.surveyService.saveSurvey(survey).subscribe();
   }
 
   saveQuestions() {
     let i = 0;
     let j = 0;
-
-
-    let creator = this.authService.getUsername() ;
-    console.log(creator);
-    let creationDate = Date.now();
-    let expirationDate = Date.now();
-    const survey = new Survey(title, showTitle, creator, creationDate, expirationDate);
-
+ 
     while(i < JSON.parse(this.editor.text).pages[0].elements.length) {
-
+ 
     let questionName = JSON.parse(this.editor.text).pages[0].elements[i].name;
     let questionTitle = JSON.parse(this.editor.text).pages[0].elements[i].title;
     let questionIsRequired = JSON.parse(this.editor.text).pages[0].elements[i].isRequired;
     let placeHolder = JSON.parse(this.editor.text).pages[0].elements[i].placeHolder;
     let type = JSON.parse(this.editor.text).pages[0].elements[i].type;
     let choices = JSON.parse(this.editor.text).pages[0].elements[i].choices;
-
+ 
     if(this.checkIfChoiceExists(choices) == true) {
       while(j < choices.length) {
         
         if(choices[j] != null) {
-          const choice = new Choices(JSON.parse(this.editor.text).pages[0].elements[i].choices[j]); 
+          const choice = new Choices(JSON.parse(this.editor.text).pages[0].elements[i].choices[j]);
           this.surveyService.saveChoices(choice).subscribe();
         } else {
           //Do nothing
         }
-
+ 
         j++;
       }
-      const question = new Question(questionName, questionTitle, questionIsRequired, 
-        placeHolder, type); 
-
+      const question = new Question(questionName, questionTitle, questionIsRequired,
+        placeHolder, type);
+ 
         this.surveyService.saveQuestion(question).subscribe();
       j = 0;
-
+ 
     } else {
-      const question = new Question(questionName, questionTitle, questionIsRequired, 
-      placeHolder, type); 
+      const question = new Question(questionName, questionTitle, questionIsRequired,
+      placeHolder, type);
       this.surveyService.saveQuestion(question).subscribe();
     }
-
+ 
     i++;
     }
   }
+  
 
   checkIfChoiceExists(choice: string): Boolean {
 

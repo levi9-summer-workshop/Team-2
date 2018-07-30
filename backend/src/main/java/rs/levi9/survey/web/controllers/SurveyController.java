@@ -7,6 +7,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import rs.levi9.survey.domain.Survey;
 
+import rs.levi9.survey.domain.SurveyUser;
 import rs.levi9.survey.services.SurveyServices;
 import rs.levi9.survey.services.SurveyUserService;
 
@@ -42,4 +43,6 @@ public class SurveyController {
 
         return new ResponseEntity<>(surveys, HttpStatus.OK);
     }
+
+
 }

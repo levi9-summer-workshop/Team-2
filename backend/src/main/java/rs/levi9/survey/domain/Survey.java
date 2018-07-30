@@ -46,13 +46,32 @@ public class Survey extends BaseEntity {
         return title;
     }
 
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
-    @OneToMany
-    @JoinColumn(name = "survey_id")
-    private List<Question> questions;
-
     public List<Question> getQuestions() {
         return questions;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getShowTitle() {
+        return showTitle;
+    }
+
+    public void setShowTitle(String showTitle) {
+        this.showTitle = showTitle;
+    }
+
+    public void setQuestions(List<Question> questions) {
+        this.questions = questions;
+    }
+
+    public String getCreator() {
+        return creator;
+    }
+
+    public void setCreator(String creator) {
+        this.creator = creator;
     }
 
     public Date getCreationDate() {
@@ -69,38 +88,5 @@ public class Survey extends BaseEntity {
 
     public void setExpirationDate(Date expirationDate) {
         this.expirationDate = expirationDate;
-    }
-
-    public String getCreator() {
-        return creator;
-    }
-
-    public void setCreator(String creator) {
-        this.creator = creator;
-    }
-
-
-    public void setQuestions(List<Question> questions) {
-        this.questions = questions;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getShowTitle() {
-        return showTitle;
-    }
-
-    public void setShowTitle(String showTitle) {
-        this.showTitle = showTitle;
-    }
-
-    public List<Question> getQuestions() {
-        return questions;
-    }
-
-    public void setQuestions(List<Question> questions) {
-        this.questions = questions;
     }
 }

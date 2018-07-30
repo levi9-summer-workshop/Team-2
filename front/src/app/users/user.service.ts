@@ -10,8 +10,13 @@ export class UserService {
   blocked: Boolean;
   APIRegistration = 'http://localhost:8080/registration';
   APIUsers = 'http://localhost:8080/users';
+  APIUser = 'http://localhost:8080/user'
 
   constructor(private httpClient: HttpClient, private authService: AuthService) { }
+
+  getUser(username:String): Observable<User>{
+    return this.httpClient.get<User>(this.APIUser, { headers: this.authService.getAuthHeaders() });
+  }
 
   getUsers(): Observable<User[]> {
     return this.httpClient.get<User[]>(this.APIUsers, { headers: this.authService.getAuthHeaders() });

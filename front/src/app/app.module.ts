@@ -23,6 +23,7 @@ import { ViewSurveyComponent } from './view-survey/view-survey.component';
 import { CreateSurveyComponent } from './create-survey/create-survey.component';
 import { ExampleSurveyComponent } from './example-survey/example-survey.component';
 import { SurveyService } from './survey/survey.service';
+import { EmailService } from './email.service';
 
 
 
@@ -50,7 +51,7 @@ import { SurveyService } from './survey/survey.service';
     FormsModule,
     HttpClientModule
   ],
-  providers: [UserService, AuthService, AuthGuard, SurveyService],
+  providers: [UserService, AuthService, AuthGuard, SurveyService, EmailService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
