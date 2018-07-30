@@ -123,5 +123,9 @@ public class SurveyUserService implements UserDetailsService {
         }
     }
 
+    public SurveyUser findByEmail (String email){
+        return surveyUserRepository.findByEmail(email);
+    }
+
 
 }

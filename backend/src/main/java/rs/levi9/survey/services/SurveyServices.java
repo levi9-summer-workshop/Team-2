@@ -24,10 +24,13 @@ public class SurveyServices {
         return surveyRepository.save(survey);
     }
 
-    public List<Survey> findAll(){
+    public List<Survey> findAll() {
        return this.surveyRepository.findAll();
     }
-
+  
+    public Survey findOne(Long id) {
+        return surveyRepository.findOne(id);
+  
     public void delete(Long id) {
         surveyRepository.delete(id);
     }

@@ -18,16 +18,21 @@ export class SurveyService {
 
 
   saveSurvey(survey: Survey): Observable<any> {
-    return this.httpClient.post(this.APISurvey, survey,  { headers: this.authService.getAuthHeaders() } );
+    return this.httpClient.post(this.APISurvey, survey, { headers: this.authService.getAuthHeaders() });
   }
 
   saveQuestion(question: Question): Observable<any> {
-    return this.httpClient.post(this.APIQuestion, question, { headers: this.authService.getAuthHeaders() } );
+    return this.httpClient.post(this.APIQuestion, question, { headers: this.authService.getAuthHeaders() });
   }
 
 
   saveChoices(choices: Choices): Observable<any> {
-    return this.httpClient.post(this.APIChoices, choices, { headers: this.authService.getAuthHeaders() } );
+    return this.httpClient.post(this.APIChoices, choices, { headers: this.authService.getAuthHeaders() });
+  }
+
+  getSurveys(): Observable<Survey[]> {
+    return this.httpClient.get<Survey[]>(this.APISurvey, { headers: this.authService.getAuthHeaders() });
+
   }
   getSurveys(): Observable<Survey[]> {
     return this.httpClient.get<Survey[]>(this.APISurvey, { headers: this.authService.getAuthHeaders() });

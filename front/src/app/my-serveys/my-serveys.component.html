@@ -17,12 +17,12 @@
                     </thead>
                     <tbody>
                         <tr *ngFor='let survey of (surveys$ | async); let i = index'>
+
                             <th scope="row" class="text-center align-middle">{{ i + 1 }}</th>
                             <td class="text-center align-middle">{{ survey.title }}</td>
                             <td class="text-center align-middle">{{ survey.creator }}</td>
                             <td class="text-center align-middle">{{ survey.creationDate }}</td>
                             <td class="text-center align-middle">{{ survey.expirationDate }}</td>
-
                             <td class="text-center align-middle">
                                 <button type="button" class="btn btn-danger btn-sm" (click)="onSurveyDelete(survey)" data-toggle="modal" data-target="#deleteSurveyModal">
                                     Delete
@@ -36,7 +36,6 @@
                                     Close
                                 </button>
                             </td>
-
                         </tr>
                     </tbody>
                 </table>

@@ -9,6 +9,9 @@ import rs.levi9.survey.domain.Survey;
 
 import rs.levi9.survey.domain.SurveyUser;
 import rs.levi9.survey.services.SurveyServices;
+import rs.levi9.survey.services.SurveyUserService;
+
+import java.util.List;
 
 import java.util.List;
 
@@ -18,20 +21,29 @@ import java.util.List;
 public class SurveyController {
 
     private SurveyServices surveyServices;
+    private SurveyUserService surveyUserService;
 
     @Autowired
-    public SurveyController(SurveyServices surveyServices) {
+    public SurveyController(SurveyServices surveyServices, SurveyUserService surveyUserService) {
         this.surveyServices = surveyServices;
+        this.surveyUserService = surveyUserService;
     }
 
     @PostMapping
-    public Survey save(@RequestBody Survey survey){
+    public Survey save(@RequestBody Survey survey) {
         return surveyServices.save(survey);
     }
 
-    @RequestMapping(method = RequestMethod.GET)
-    public List<Survey> findAll() {
-        return surveyServices.findAll();
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+    @GetMapping
+    public ResponseEntity<List<Survey>> findAll() {
+        List<Survey> surveys = surveyServices.findAll();
+        for(int i = 0; i < surveys.size(); i++) {
+            Survey survey = surveys.get(i);
+            surveys.set(i, survey);
+        }
+
+        return new ResponseEntity<>(surveys, HttpStatus.OK);
     }
 
     @PreAuthorize("hasRole('ROLE_ADMIN')")

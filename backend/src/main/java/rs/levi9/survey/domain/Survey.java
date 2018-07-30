@@ -1,11 +1,15 @@
 package rs.levi9.survey.domain;
 
 
+
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.Cascade;
+
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -19,6 +23,10 @@ public class Survey extends BaseEntity implements Serializable {
 
     @Column
     private String showTitle = "true";
+
+    @Cascade(CascadeType.ALL)
+    @OneToMany
+    @JoinColumn(name = "survey_id")
 
     @Column
     @OneToMany(mappedBy = "survey")
@@ -50,6 +58,9 @@ public class Survey extends BaseEntity implements Serializable {
     public String getTitle() {
         return title;
     }
+  
+    public List<Question> getQuestions() {
+        return questions;
 
     public Date getCreationDate() {
         return creationDate;
@@ -87,11 +98,31 @@ public class Survey extends BaseEntity implements Serializable {
         this.showTitle = showTitle;
     }
 
-    public List<Question> getQuestions() {
-        return questions;
-    }
-
     public void setQuestions(List<Question> questions) {
         this.questions = questions;
+    }
+
+    public String getCreator() {
+        return creator;
+    }
+
+    public void setCreator(String creator) {
+        this.creator = creator;
+    }
+
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public Date getExpirationDate() {
+        return expirationDate;
+    }
+
+    public void setExpirationDate(Date expirationDate) {
+        this.expirationDate = expirationDate;
     }
 }
