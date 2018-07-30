@@ -24,7 +24,7 @@ public class SurveyUser extends BaseEntity {
 
     @Column(nullable = false)
     private Boolean blocked = false;
-
+  
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     @OneToMany
     @JoinColumn(name = "user_id")

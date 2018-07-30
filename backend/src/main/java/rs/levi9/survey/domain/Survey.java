@@ -10,13 +10,13 @@ import javax.persistence.*;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
-
 import java.util.List;
 
 @Entity
 @Table(name = "survey")
-public class Survey extends BaseEntity {
+public class Survey extends BaseEntity implements Serializable {
 
     @Column
     private String title;
@@ -24,10 +24,12 @@ public class Survey extends BaseEntity {
     @Column
     private String showTitle = "true";
 
-
     @Cascade(CascadeType.ALL)
     @OneToMany
     @JoinColumn(name = "survey_id")
+
+    @Column
+    @OneToMany(mappedBy = "survey")
     private List<Question> questions;
 
     @Column
@@ -41,13 +43,47 @@ public class Survey extends BaseEntity {
     @Temporal(TemporalType.DATE)
     private Date expirationDate;
 
+    public Survey() {
+    }
+
+    public Survey(String title, String showTitle, List<Question> questions, String creator, Date creationDate, Date expirationDate) {
+        this.title = title;
+        this.showTitle = showTitle;
+        this.questions = questions;
+        this.creator = creator;
+        this.creationDate = creationDate;
+        this.expirationDate = expirationDate;
+    }
 
     public String getTitle() {
         return title;
     }
-
+  
     public List<Question> getQuestions() {
         return questions;
+
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public Date getExpirationDate() {
+        return expirationDate;
+    }
+
+    public void setExpirationDate(Date expirationDate) {
+        this.expirationDate = expirationDate;
+    }
+
+    public String getCreator() {
+        return creator;
+    }
+
+    public void setCreator(String creator) {
+        this.creator = creator;
     }
 
     public void setTitle(String title) {

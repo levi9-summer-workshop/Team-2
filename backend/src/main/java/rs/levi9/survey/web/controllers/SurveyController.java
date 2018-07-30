@@ -13,6 +13,8 @@ import rs.levi9.survey.services.SurveyUserService;
 
 import java.util.List;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/survey")
 @CrossOrigin(origins = "http://localhost:4200")
@@ -44,5 +46,10 @@ public class SurveyController {
         return new ResponseEntity<>(surveys, HttpStatus.OK);
     }
 
-
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @RequestMapping(path = "{id}", method = RequestMethod.DELETE)
+    public ResponseEntity delete(@PathVariable("id") Long id) {
+        surveyServices.delete(id);
+        return new ResponseEntity(HttpStatus.OK);
+    }
 }

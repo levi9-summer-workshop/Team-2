@@ -10,6 +10,8 @@ import { Survey } from "../survey/survey.model";
 import { Question } from "../survey/question.model";
 
 import { Choices } from "../survey/choice.model";
+import { AuthService } from "../login/auth.service";
+import { MyServeysComponent } from "../my-serveys/my-serveys.component";
 
 import { User } from "../users/user.model";
 import { UserService } from "../users/user.service";
@@ -59,7 +61,9 @@ export class CreateSurveyComponent {
   @Input() json: any;
   @Output() surveySaved: EventEmitter<Object> = new EventEmitter();
 
-  constructor(public surveyService: SurveyService, public authService: AuthService) { }
+
+  constructor(public surveyService: SurveyService, public authService: AuthService, public mySurveys: MyServeysComponent) { }
+
 
   ngOnInit() {
     SurveyKo.JsonObject.metaData.addProperty(
@@ -115,10 +119,10 @@ export class CreateSurveyComponent {
     let creator = this.authService.getUsername() ;
     let creationDate = Date.now();
     let expirationDate = Date.now();
- 
- 
-    const survey = new Survey(title, showTitle, creator, creationDate, expirationDate);
- 
+    let id = this.mySurveys.getId();
+    
+    const survey = new Survey(id, title, showTitle, creator, creationDate, expirationDate);
+    
     this.surveyService.saveSurvey(survey).subscribe();
   }
 

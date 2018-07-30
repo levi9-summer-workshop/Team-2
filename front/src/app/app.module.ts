@@ -51,7 +51,9 @@ import { EmailService } from './email.service';
     FormsModule,
     HttpClientModule
   ],
-  providers: [UserService, AuthService, AuthGuard, SurveyService, EmailService],
+  
+  providers: [UserService, AuthService, AuthGuard, SurveyService, EmailService, MyServeysComponent],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
