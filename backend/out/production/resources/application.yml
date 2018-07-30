@@ -2,7 +2,7 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create-drop
-    show-sql: true
+
   datasource:
     username: root
     password: root

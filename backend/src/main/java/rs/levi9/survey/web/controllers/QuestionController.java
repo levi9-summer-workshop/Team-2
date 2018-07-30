@@ -11,6 +11,7 @@ import rs.levi9.survey.domain.Survey;
 import rs.levi9.survey.services.QuestionService;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 @RestController
 @RequestMapping("/question")
@@ -28,5 +29,11 @@ public class QuestionController {
     public Question save(@RequestBody Question question) {
 
         return questionService.save(question);
+    }
+
+    @GetMapping
+    public List<Question> getAll() {
+
+        return questionService.findAll();
     }
 }

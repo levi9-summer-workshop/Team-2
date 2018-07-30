@@ -12,9 +12,9 @@ import java.util.List;
 @Table(name = "question")
 public class Question extends BaseEntity implements Serializable {
 
-    @ManyToOne
-    @JoinColumn(name = "survey_id")
-    private Survey survey;
+  //  @ManyToOne
+ //   @JoinColumn(name = "survey_id")
+    //private Survey survey;
 
     @Column
     private String name;
@@ -42,16 +42,7 @@ public class Question extends BaseEntity implements Serializable {
     public Question() {
     }
 
-    public Question(Survey survey, String name, String type, String isRequired, String placeHolder, String title, List<Choice> choices, List<Answer> answers) {
-        this.survey = survey;
-        this.name = name;
-        this.type = type;
-        this.isRequired = isRequired;
-        this.placeHolder = placeHolder;
-        this.title = title;
-        this.choices = choices;
-        this.answers = answers;
-    }
+
 
     public String getName() {
         return name;
@@ -107,14 +98,6 @@ public class Question extends BaseEntity implements Serializable {
 
     public void setChoices(List<Choice> choices) {
         this.choices = choices;
-    }
-
-    public Survey getSurvey() {
-        return survey;
-    }
-
-    public void setSurvey(Survey survey) {
-        this.survey = survey;
     }
 
     public List<Answer> getAnswers() {

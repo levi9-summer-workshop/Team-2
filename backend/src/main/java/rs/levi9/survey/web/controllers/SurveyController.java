@@ -6,6 +6,8 @@ import rs.levi9.survey.domain.Survey;
 
 import rs.levi9.survey.services.SurveyServices;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/survey")
 @CrossOrigin(origins = "http://localhost:4200")
@@ -20,6 +22,12 @@ public class SurveyController {
 
     @PostMapping
     public Survey save(@RequestBody Survey survey){
+
         return surveyServices.save(survey);
+    }
+
+    @GetMapping
+    public List<Survey> getAll() {
+        return surveyServices.findAll();
     }
 }

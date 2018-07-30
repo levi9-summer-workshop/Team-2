@@ -1,18 +1,13 @@
 package rs.levi9.survey.domain;
 
-<<<<<<< Updated upstream
-
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
-import javax.persistence.*;
-=======
 import javax.persistence.*;
 
 import java.io.Serializable;
 import java.util.Date;
 
->>>>>>> Stashed changes
 import java.util.List;
 
 @Entity
@@ -25,19 +20,9 @@ public class Survey extends BaseEntity implements Serializable {
     @Column
     private String showTitle = "true";
 
-<<<<<<< Updated upstream
     @Cascade(CascadeType.ALL)
     @OneToMany
     @JoinColumn(name = "survey_id")
-    private List<Question> questions;
-
-    public String getTitle() {
-        return title;
-    }
-
-=======
-    @Column
-    @OneToMany(mappedBy = "survey")
     private List<Question> questions;
 
     @Column
@@ -91,7 +76,6 @@ public class Survey extends BaseEntity implements Serializable {
         this.creator = creator;
     }
 
->>>>>>> Stashed changes
     public void setTitle(String title) {
         this.title = title;
     }
