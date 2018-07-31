@@ -6,6 +6,7 @@ import rs.levi9.survey.domain.Choice;
 import rs.levi9.survey.repositories.ChoiceRepository;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @Transactional
 @Service
@@ -20,5 +21,9 @@ public class ChoicesService {
 
     public Choice save(Choice choice) {
         return choiceRepository.save(choice);
+    }
+
+    public List<Choice> findAll() {
+        return choiceRepository.findAll();
     }
 }

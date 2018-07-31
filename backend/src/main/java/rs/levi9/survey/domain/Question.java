@@ -4,17 +4,12 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Table(name = "question")
 public class Question extends BaseEntity implements Serializable {
-
-    @ManyToOne
-    @JoinColumn(name = "survey_id")
-    private Survey survey;
 
     @Column
     private String name;
@@ -31,7 +26,8 @@ public class Question extends BaseEntity implements Serializable {
     @Column
     private String title;
 
-    @OneToMany(mappedBy = "question")
+    @OneToMany
+    @Cascade(CascadeType.ALL)
     private List<Choice> choices;
 
     @Cascade(CascadeType.ALL)
@@ -40,17 +36,6 @@ public class Question extends BaseEntity implements Serializable {
     private List<Answer> answers;
 
     public Question() {
-    }
-
-    public Question(Survey survey, String name, String type, String isRequired, String placeHolder, String title, List<Choice> choices, List<Answer> answers) {
-        this.survey = survey;
-        this.name = name;
-        this.type = type;
-        this.isRequired = isRequired;
-        this.placeHolder = placeHolder;
-        this.title = title;
-        this.choices = choices;
-        this.answers = answers;
     }
 
     public String getName() {
@@ -109,19 +94,4 @@ public class Question extends BaseEntity implements Serializable {
         this.choices = choices;
     }
 
-    public Survey getSurvey() {
-        return survey;
-    }
-
-    public void setSurvey(Survey survey) {
-        this.survey = survey;
-    }
-
-    public List<Answer> getAnswers() {
-        return answers;
-    }
-
-    public void setAnswers(List<Answer> answers) {
-        this.answers = answers;
-    }
 }

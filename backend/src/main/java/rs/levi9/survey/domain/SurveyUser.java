@@ -4,14 +4,16 @@ import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.io.Serializable;
+
 import java.util.ArrayList;
 import java.util.HashSet;
+
 import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name = "user")
-public class SurveyUser extends BaseEntity {
+public class SurveyUser extends BaseEntity implements Serializable {
 
     @Column(nullable = false)
     private String username;
@@ -24,7 +26,7 @@ public class SurveyUser extends BaseEntity {
 
     @Column(nullable = false)
     private Boolean blocked = false;
-  
+
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     @OneToMany
     @JoinColumn(name = "user_id")
@@ -81,5 +83,13 @@ public class SurveyUser extends BaseEntity {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
+    }
+
+    public List<Survey> getSurveys() {
+        return surveys;
+    }
+
+    public void setSurveys(List<Survey> surveys) {
+        this.surveys = surveys;
     }
 }

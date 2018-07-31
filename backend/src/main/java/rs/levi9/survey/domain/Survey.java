@@ -1,7 +1,5 @@
 package rs.levi9.survey.domain;
 
-
-
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
@@ -27,9 +25,6 @@ public class Survey extends BaseEntity implements Serializable {
     @Cascade(CascadeType.ALL)
     @OneToMany
     @JoinColumn(name = "survey_id")
-
-    @Column
-    @OneToMany(mappedBy = "survey")
     private List<Question> questions;
 
     @Column
@@ -125,4 +120,5 @@ public class Survey extends BaseEntity implements Serializable {
     public void setExpirationDate(Date expirationDate) {
         this.expirationDate = expirationDate;
     }
+
 }

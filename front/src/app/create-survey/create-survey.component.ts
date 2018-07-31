@@ -11,11 +11,14 @@ import { Question } from "../survey/question.model";
 
 import { Choices } from "../survey/choice.model";
 import { AuthService } from "../login/auth.service";
+
+
 import { MyServeysComponent } from "../my-serveys/my-serveys.component";
 
 import { User } from "../users/user.model";
 import { UserService } from "../users/user.service";
 import { AuthService } from "../login/auth.service";
+
 
 
 widgets.icheck(SurveyKo);
@@ -61,8 +64,8 @@ export class CreateSurveyComponent {
   @Input() json: any;
   @Output() surveySaved: EventEmitter<Object> = new EventEmitter();
 
-
   constructor(public surveyService: SurveyService, public authService: AuthService, public mySurveys: MyServeysComponent) { }
+
 
 
   ngOnInit() {
@@ -109,27 +112,30 @@ export class CreateSurveyComponent {
   saveMySurvey = () => {    
 
     this.saveSurvey();
-    this.saveQuestions();
   };
  
   saveSurvey() {
-    
+
     let title = JSON.parse(this.editor.text).title;
     let showTitle = JSON.parse(this.editor.text).showTitle;
     let creator = this.authService.getUsername() ;
     let creationDate = Date.now();
     let expirationDate = Date.now();
+    let question = [];
+    question = this.saveQuestions();
+
     let id = this.mySurveys.getId();
     
-    const survey = new Survey(id, title, showTitle, creator, creationDate, expirationDate);
+    const survey = new Survey(id, title, showTitle, creator, creationDate, expirationDate, question);
     
     this.surveyService.saveSurvey(survey).subscribe();
   }
 
-  saveQuestions() {
+  saveQuestions(): Question[] {
+    let questions = [];
     let i = 0;
     let j = 0;
- 
+    let temp = [];
     while(i < JSON.parse(this.editor.text).pages[0].elements.length) {
  
     let questionName = JSON.parse(this.editor.text).pages[0].elements[i].name;
@@ -140,6 +146,16 @@ export class CreateSurveyComponent {
     let choices = JSON.parse(this.editor.text).pages[0].elements[i].choices;
  
     if(this.checkIfChoiceExists(choices) == true) {
+
+
+      temp = this.insertChoices(i, choices);
+
+      questions[0] = new Question(questionName, questionTitle, questionIsRequired, placeHolder, type, temp);
+      
+    } else {
+      questions[i] = new Question(questionName, questionTitle, questionIsRequired, 
+      placeHolder, type, choices); 
+
       while(j < choices.length) {
         
         if(choices[j] != null) {
@@ -161,10 +177,31 @@ export class CreateSurveyComponent {
       const question = new Question(questionName, questionTitle, questionIsRequired,
       placeHolder, type);
       this.surveyService.saveQuestion(question).subscribe();
+
     }
  
     i++;
     }
+
+    return questions;
+  }
+
+  insertChoices(counter: number, choices: string): Choices[] {
+    let choice = [];
+    let j = 0;
+
+    while(j < choices.length) {
+
+      if(choices[j] != null) {
+
+        choice[j] = new Choices(JSON.parse(this.editor.text).pages[0].elements[counter].choices[j]); 
+
+      } 
+
+      j++;
+    }
+
+    return choice;
   }
   
 

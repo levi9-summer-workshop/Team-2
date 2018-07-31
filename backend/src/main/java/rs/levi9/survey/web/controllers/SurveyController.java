@@ -15,6 +15,8 @@ import java.util.List;
 
 import java.util.List;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/survey")
 @CrossOrigin(origins = "http://localhost:4200")
@@ -30,8 +32,14 @@ public class SurveyController {
     }
 
     @PostMapping
-    public Survey save(@RequestBody Survey survey) {
+    public Survey save(@RequestBody Survey survey){
+
         return surveyServices.save(survey);
+    }
+
+    @GetMapping
+    public List<Survey> getAll() {
+        return surveyServices.findAll();
     }
 
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
