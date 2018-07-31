@@ -31,7 +31,8 @@ public class Question extends BaseEntity implements Serializable {
     @Column
     private String title;
 
-    @OneToMany(mappedBy = "question")
+    @OneToMany
+    @Cascade(CascadeType.ALL)
     private List<Choice> choices;
 
     @Cascade(CascadeType.ALL)
@@ -41,8 +42,6 @@ public class Question extends BaseEntity implements Serializable {
 
     public Question() {
     }
-
-
 
     public String getName() {
         return name;
