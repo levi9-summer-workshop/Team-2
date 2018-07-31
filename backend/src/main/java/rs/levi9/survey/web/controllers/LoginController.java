@@ -39,10 +39,9 @@ public class LoginController {
 
         if(surveyUserService.isBlocked(user)) {
 
-            return user;
-        } else {
             return null;
+        } else {
+            return user;
         }
     }
 }
-

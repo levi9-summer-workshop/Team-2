@@ -47,4 +47,6 @@ public class RegistrationController {
             return new ResponseEntity(HttpStatus.BAD_REQUEST);
         }
     }
+
+
 }

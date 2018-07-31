@@ -17,6 +17,9 @@ import { ConfirmEqualValidatorDirective } from './shared/confirm-equal-validator
 import { UserListComponent } from './user-list/user-list.component';
 import { AuthService } from './login/auth.service';
 import { AuthGuard } from './auth-guard.service';
+import { EmailService } from './email.service';
+import { CreateSurveyComponent } from './create-survey/create-survey.component';
+import { SurveyService } from './survey/survey.service';
 
 
 @NgModule({
@@ -32,7 +35,8 @@ import { AuthGuard } from './auth-guard.service';
     SharedComponent,
     ConfirmEqualValidatorDirective,
     UserListComponent,
-
+    CreateSurveyComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -40,7 +44,7 @@ import { AuthGuard } from './auth-guard.service';
     FormsModule,
     HttpClientModule
   ],
-  providers: [UserService, AuthService, AuthGuard],
+  providers: [UserService, AuthService, AuthGuard, EmailService, SurveyService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

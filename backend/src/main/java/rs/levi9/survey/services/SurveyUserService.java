@@ -17,12 +17,9 @@ import rs.levi9.survey.repositories.SurveyUserRepository;
 import javax.transaction.Transactional;
 import java.util.*;
 
-/**
- * Service that will communicating with repository
- */
 
-@Transactional
 @Service
+@Transactional
 public class SurveyUserService implements UserDetailsService {
 
     private SurveyUserRepository surveyUserRepository;
@@ -54,19 +51,11 @@ public class SurveyUserService implements UserDetailsService {
         return authorities;
     }
 
-    /**
-     * Save user in repository
-     *
-     * @param surveyUser
-     * @return
-     */
     public SurveyUser save(SurveyUser surveyUser) {
         return surveyUserRepository.save(surveyUser);
     }
 
     /**
-     *
-     * Set role to a user
      *
      * @param surveyUser
      * @param id
@@ -81,19 +70,10 @@ public class SurveyUserService implements UserDetailsService {
         surveyUser.setRoles(roles);
     }
 
-    /**
-     * Get all users from repository
-     *
-     * @return
-     */
     public List<SurveyUser> findAll() {
         return surveyUserRepository.findAll();
     }
 
-    /**
-     * Delete user by id from repository
-     * @param id
-     */
     public void delete(Long id) {
         surveyUserRepository.delete(id);
     }
@@ -111,17 +91,19 @@ public class SurveyUserService implements UserDetailsService {
      * @return
      */
     public Boolean isBlocked(AuthenticatedUser user) {
-
-        System.out.println(SecurityContextHolder.getContext().getAuthentication().toString());
-
-        SurveyUser surveyUser = new SurveyUser();
-        surveyUser.setUsername(user.getUsername());
-        if(surveyUserRepository.getBlockedInformation(surveyUser.getUsername()).equals("false")) {
+        SurveyUser surveyUser = surveyUserRepository.findByUsername(user.getUsername());
+        if(surveyUser != null && surveyUser.getBlocked()) {
             return true;
-        } else {
-            return false;
         }
+
+        return false;
     }
 
+    public SurveyUser findByEmail (String email){
+        return surveyUserRepository.findByEmail(email);
+    }
 
+    public  SurveyUser findByUsername (String username) {
+        return surveyUserRepository.findByUsername(username);
+    }
 }

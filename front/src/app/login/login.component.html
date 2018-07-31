@@ -1,40 +1,40 @@
 <link href="https://fonts.googleapis.com/css?family=Alegreya+Sans+SC:100" rel="stylesheet">
 <div class="container">
-    <div class="row">
-        <div class="col">
-            <div class="registration-form">
-                <div class="form-title">
-                    <h1>log in</h1>
-                    <br>
-                </div>
-                <div class="form-container text-center">
-                    <form role="form" #f="ngForm" (ngSubmit)="onLogin(f)">
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="username" id="username" placeholder="Username" ngModel required #username="ngModel"
-                                [ngClass]="{'is-invalid': error?.username || (username.invalid && (username.dirty || username.touched))}"
-                                minlength="5" maxlength="20">
-                            <div class="invalid-feedback" *ngIf="username.invalid && (username.dirty || username.touched)">Please enter a valid username</div>
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="form-control" name="password" id="password" placeholder="Password" ngModel required #password="ngModel"
-                                [ngClass]="{'is-invalid': error?.password || (password.invalid && (password.dirty || password.touched))}"
-                                minlength="5" maxlength="30">
-                            <div class="invalid-feedback" *ngIf="password.invalid && (password.dirty || password.touched)">Please enter a valid password</div>
-                        </div>
-                        <button type="submit" class="btn btn-sm" [disabled]="!f.valid">Submit</button>
-                        <br>
-                        <br>
-                        <small>
-                            <div class="alert alert-danger" *ngIf="error">
-                                Invalid username or password!
-                            </div>
-                        </small>
-                        <small id="account-exists" class="form-text text-muted">Don't have an account?
-                            <a href="http://localhost:4200/#/registration">Register here</a>
-                        </small>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+   <div class="row">
+       <div class="col">
+           <div class="registration-form">
+               <div class="form-title">
+                   <h1>log in</h1>
+                   <br>
+               </div>
+               <div class="form-container text-center">
+                   <form role="form" #f="ngForm" (ngSubmit)="onLogin(f)">
+                       <div class="form-group">
+                           <input type="text" class="form-control" name="username" id="username" placeholder="Username" ngModel required #username="ngModel"
+                               [ngClass]="{'is-invalid': error?.username || (username.invalid && (username.dirty || username.touched))}"
+                               minlength="5" maxlength="20">
+                           <div class="invalid-feedback" *ngIf="username.invalid && (username.dirty || username.touched)">Please enter a valid username</div>
+                       </div>
+                       <div class="form-group">
+                           <input type="password" class="form-control" name="password" id="password" placeholder="Password" ngModel required #password="ngModel"
+                               [ngClass]="{'is-invalid': error?.password || (password.invalid && (password.dirty || password.touched))}"
+                               minlength="5" maxlength="30">
+                           <div class="invalid-feedback" *ngIf="password.invalid && (password.dirty || password.touched)">Please enter a valid password</div>
+                       </div>
+                       <button type="submit" class="btn btn-sm" [disabled]="!f.valid">Submit</button>
+                       <br>
+                       <br>
+                       <small>
+                           <div class="alert alert-danger" *ngIf="error">
+                               Invalid username or password!
+                           </div>
+                       </small>
+                       <small id="account-exists" class="form-text text-muted">Don't have an account?
+                           <a href="http://localhost:4200/#/registration">Register here</a>
+                       </small>
+                   </form>
+               </div>
+           </div>
+       </div>
+   </div>
 </div>
