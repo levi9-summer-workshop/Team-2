@@ -1,4 +1,4 @@
-import { Question } from "../../../node_modules/survey-angular";
+import { Question } from "../survey/question.model";
 
 export class Survey {
     public title: string;

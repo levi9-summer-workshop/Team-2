@@ -1,9 +1,8 @@
 export class Choices {
-    public id: number;
     public choices: string;
 
-    constructor(choices: string, id: number) {
-        this.id = id;
+    constructor(choices: string) {
+       
         this.choices = choices;
     }
 }

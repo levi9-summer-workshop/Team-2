@@ -112,6 +112,7 @@ export class CreateSurveyComponent {
     question = this.saveQuestions();
 
     const survey = new Survey(title, showTitle, creator, creationDate, expirationDate, question);
+
     this.surveyService.saveSurvey(survey).subscribe();
   }
 
@@ -119,10 +120,10 @@ export class CreateSurveyComponent {
     let questions = [];
     let i = 0;
     let j = 0;
+    let temp = [];
 
     while(i < JSON.parse(this.editor.text).pages[0].elements.length) {
 
-    let id = JSON.parse(this.editor.text).pages[0].elements[i].id;
     let questionName = JSON.parse(this.editor.text).pages[0].elements[i].name;
     let questionTitle = JSON.parse(this.editor.text).pages[0].elements[i].title;
     let questionIsRequired = JSON.parse(this.editor.text).pages[0].elements[i].isRequired;
@@ -131,28 +132,38 @@ export class CreateSurveyComponent {
     let choices = JSON.parse(this.editor.text).pages[0].elements[i].choices;
 
     if(this.checkIfChoiceExists(choices) == true) {
-      while(j < choices.length) {
-        
-        if(choices[j] != null) {
-          const choice = new Choices(id, JSON.parse(this.editor.text).pages[0].elements[i].choices[j]); 
-          this.surveyService.saveChoices(choice).subscribe();
-        } else {
-          //Do nothing
-        }
 
-        j++;
-      }
-        questions[j] = new Question(questionName, questionTitle, questionIsRequired, 
-        placeHolder, type); 
+      temp = this.insertChoices(i, choices);
 
+      questions[0] = new Question(questionName, questionTitle, questionIsRequired, placeHolder, type, temp);
+      
     } else {
-      questions[j] = new Question(questionName, questionTitle, questionIsRequired, 
-      placeHolder, type); 
+      questions[i] = new Question(questionName, questionTitle, questionIsRequired, 
+      placeHolder, type, choices); 
     }
 
     i++;
     }
+
     return questions;
+  }
+
+  insertChoices(counter: number, choices: string): Choices[] {
+    let choice = [];
+    let j = 0;
+
+    while(j < choices.length) {
+
+      if(choices[j] != null) {
+
+        choice[j] = new Choices(JSON.parse(this.editor.text).pages[0].elements[counter].choices[j]); 
+
+      } 
+
+      j++;
+    }
+
+    return choice;
   }
 
   checkIfChoiceExists(choice: string): Boolean {

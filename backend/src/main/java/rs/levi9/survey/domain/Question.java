@@ -4,17 +4,12 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Table(name = "question")
 public class Question extends BaseEntity implements Serializable {
-
-  //  @ManyToOne
- //   @JoinColumn(name = "survey_id")
-    //private Survey survey;
 
     @Column
     private String name;
@@ -99,11 +94,4 @@ public class Question extends BaseEntity implements Serializable {
         this.choices = choices;
     }
 
-    public List<Answer> getAnswers() {
-        return answers;
-    }
-
-    public void setAnswers(List<Answer> answers) {
-        this.answers = answers;
-    }
 }
