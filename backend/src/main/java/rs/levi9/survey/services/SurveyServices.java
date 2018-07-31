@@ -49,4 +49,10 @@ public class SurveyServices {
     public List<Survey> findAllPrivateSurveys() {
         return surveyRepository.findAllSurveysBySurveyPrivacy(SurveyPrivacy.PrivacyType.PRIVATE);
     }
+
+
+    public void setSurveyPrivacy(Long id, SurveyPrivacy.PrivacyType privacyType) {
+        Survey survey = findOne(id);
+        SurveyPrivacy surveyPrivacy = new SurveyPrivacy(privacyType);
+    }
 }

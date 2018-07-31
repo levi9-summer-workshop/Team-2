@@ -4,6 +4,7 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -14,6 +15,10 @@ public class Survey extends BaseEntity implements Serializable {
 
     @Column
     private String title;
+
+    @Column
+    @Size(max = 250)
+    private String description;
 
     @OneToMany
     @JoinColumn(name = "survey_id")
@@ -79,5 +84,13 @@ public class Survey extends BaseEntity implements Serializable {
 
     public void setSurveyPrivacy(SurveyPrivacy surveyPrivacy) {
         this.surveyPrivacy = surveyPrivacy;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
