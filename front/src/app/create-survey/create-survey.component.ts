@@ -8,8 +8,18 @@ import { SurveyService } from "../survey/survey.service";
 
 import { Survey } from "../survey/survey.model";
 import { Question } from "../survey/question.model";
+
 import { Choices } from "../survey/choice.model";
 import { AuthService } from "../login/auth.service";
+
+
+import { MyServeysComponent } from "../my-serveys/my-serveys.component";
+
+import { User } from "../users/user.model";
+import { UserService } from "../users/user.service";
+import { AuthService } from "../login/auth.service";
+
+
 
 widgets.icheck(SurveyKo);
 widgets.select2(SurveyKo);
@@ -54,7 +64,9 @@ export class CreateSurveyComponent {
   @Input() json: any;
   @Output() surveySaved: EventEmitter<Object> = new EventEmitter();
 
-  constructor(public surveyService: SurveyService, public authService: AuthService) { }
+  constructor(public surveyService: SurveyService, public authService: AuthService, public mySurveys: MyServeysComponent) { }
+
+
 
   ngOnInit() {
     SurveyKo.JsonObject.metaData.addProperty(
@@ -98,9 +110,10 @@ export class CreateSurveyComponent {
   }
 
   saveMySurvey = () => {    
+
     this.saveSurvey();
   };
-
+ 
   saveSurvey() {
 
     let title = JSON.parse(this.editor.text).title;
@@ -111,8 +124,10 @@ export class CreateSurveyComponent {
     let question = [];
     question = this.saveQuestions();
 
-    const survey = new Survey(title, showTitle, creator, creationDate, expirationDate, question);
-
+    let id = this.mySurveys.getId();
+    
+    const survey = new Survey(id, title, showTitle, creator, creationDate, expirationDate, question);
+    
     this.surveyService.saveSurvey(survey).subscribe();
   }
 
@@ -121,17 +136,17 @@ export class CreateSurveyComponent {
     let i = 0;
     let j = 0;
     let temp = [];
-
     while(i < JSON.parse(this.editor.text).pages[0].elements.length) {
-
+ 
     let questionName = JSON.parse(this.editor.text).pages[0].elements[i].name;
     let questionTitle = JSON.parse(this.editor.text).pages[0].elements[i].title;
     let questionIsRequired = JSON.parse(this.editor.text).pages[0].elements[i].isRequired;
     let placeHolder = JSON.parse(this.editor.text).pages[0].elements[i].placeHolder;
     let type = JSON.parse(this.editor.text).pages[0].elements[i].type;
     let choices = JSON.parse(this.editor.text).pages[0].elements[i].choices;
-
+ 
     if(this.checkIfChoiceExists(choices) == true) {
+
 
       temp = this.insertChoices(i, choices);
 
@@ -140,8 +155,31 @@ export class CreateSurveyComponent {
     } else {
       questions[i] = new Question(questionName, questionTitle, questionIsRequired, 
       placeHolder, type, choices); 
-    }
 
+      while(j < choices.length) {
+        
+        if(choices[j] != null) {
+          const choice = new Choices(JSON.parse(this.editor.text).pages[0].elements[i].choices[j]);
+          this.surveyService.saveChoices(choice).subscribe();
+        } else {
+          //Do nothing
+        }
+ 
+        j++;
+      }
+      const question = new Question(questionName, questionTitle, questionIsRequired,
+        placeHolder, type);
+ 
+        this.surveyService.saveQuestion(question).subscribe();
+      j = 0;
+ 
+    } else {
+      const question = new Question(questionName, questionTitle, questionIsRequired,
+      placeHolder, type);
+      this.surveyService.saveQuestion(question).subscribe();
+
+    }
+ 
     i++;
     }
 
@@ -165,6 +203,7 @@ export class CreateSurveyComponent {
 
     return choice;
   }
+  
 
   checkIfChoiceExists(choice: string): Boolean {
 

@@ -1,12 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm, FormGroup, FormControl } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { User } from '../users/user.model';
 import { UserService } from '../users/user.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AuthService } from '../login/auth.service';
 import { Router } from '../../../node_modules/@angular/router';
-import { LoginComponent } from '../login/login.component';
+import { EmailService } from '../email.service';
 
 
 @Component({
@@ -22,7 +22,11 @@ export class RegistrationComponent implements OnInit {
   selectedUser: User = { id: null, username: null, email: null, password: null, blocked: false };
   operation: string;
 
-  constructor(private userService: UserService, private authService: AuthService, private router: Router ) { }
+  notification: string;
+
+  constructor(private userService: UserService, private authService: AuthService, private router: Router, private emailServce: EmailService) { }
+
+  
 
   ngOnInit() {
     this.users$ = this.userService.getUsers();
@@ -34,23 +38,19 @@ export class RegistrationComponent implements OnInit {
   // }
 
   onUserSubmit(form: NgForm) {
-    this.userService.saveUser({
-      id: this.operation === 'Add' ? null : this.selectedUser.id,
-      username: form.value.username, 
-      email: form.value.email, 
-      password: form.value.pass,
-      blocked: false})
+    let userToSave = new User(this.operation === 'Add' ? null : this.selectedUser.id, form.value.username, form.value.email, form.value.pass, false);
+    this.userService.saveUser(userToSave)
       .subscribe(
         () => {
-          this.users$ = this.userService.getUsers();
           this.authService.login(form.value.username, form.value.pass)
           .subscribe(
-            (authenitacedUser) => {
-              if (authenitacedUser) {
+            (authenticatedUser) => {
+              if (authenticatedUser) {
+                this.emailServce.sendRegistrationEmail(userToSave).subscribe(),
+                (error) => this.error = error;
                 this.router.navigate(['/home']);
               } else {
                 this.router.navigate(['/registration']);
-                console.log("User is blocked");
               }
             },
             (error) => {

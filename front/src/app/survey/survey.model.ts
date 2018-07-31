@@ -1,6 +1,9 @@
+
 import { Question } from "../survey/question.model";
 
+
 export class Survey {
+    public id: number;
     public title: string;
     public showTitle: string;
     public creator: string;
@@ -8,8 +11,8 @@ export class Survey {
     public expirationDate: number;
     public questions: Question[] = [];
  
-    constructor(title: string, showTitle: string, creator: string,
-    creationDate: number, expirationDate: number, questions: Question[]) {
+    constructor(id: number, title: string, showTitle: string, creator: string, creationDate: number, expirationDate: number, questions: Question[]) {
+        this.id = id;
         this.title = title;
         this.showTitle = showTitle;
         this.creator = creator;

@@ -4,6 +4,10 @@ import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.io.Serializable;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+
 import java.util.List;
 import java.util.Set;
 
@@ -32,6 +36,14 @@ public class SurveyUser extends BaseEntity implements Serializable {
     @JoinTable(joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
+
+    public List<Survey> getSurveys() {
+        return surveys;
+    }
+
+    public void setSurveys(List<Survey> surveys) {
+        this.surveys = surveys;
+    }
 
     public String getUsername() {
         return username;
