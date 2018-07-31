@@ -15,7 +15,6 @@ import java.util.List;
  */
 
 @RestController
-@RequestMapping("/users")
 @CrossOrigin(origins = "http://localhost:4200")
 public class UsersController {
 
@@ -30,8 +29,9 @@ public class UsersController {
      * Only admin is allowed to see all users
      * @return - value of all users
      */
+
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(path = "/users", method = RequestMethod.GET)
     public List<SurveyUser> findAll() {
         return surveyUserService.findAll();
     }
@@ -41,7 +41,7 @@ public class UsersController {
      * Insert value of blocked user
      */
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @PutMapping
+    @PutMapping(path = "/users")
     public SurveyUser block(@RequestBody SurveyUser user) {
         return surveyUserService.save(user);
     }
@@ -52,9 +52,17 @@ public class UsersController {
      * @return - delete selected user
      */
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @RequestMapping(path = "{id}", method = RequestMethod.DELETE)
+    @RequestMapping(path = "/users/{id}", method = RequestMethod.DELETE)
     public ResponseEntity delete(@PathVariable("id") Long id) {
         surveyUserService.delete(id);
         return new ResponseEntity(HttpStatus.OK);
     }
+
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+    @RequestMapping(path = "/user")
+    public SurveyUser findByEmail(SurveyUser surveyUser){
+        return surveyUserService.findByEmail(surveyUser.getEmail());
+    }
+
+
 }

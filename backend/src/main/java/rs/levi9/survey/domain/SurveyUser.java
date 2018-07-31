@@ -1,9 +1,12 @@
 package rs.levi9.survey.domain;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -21,11 +24,35 @@ public class SurveyUser extends BaseEntity {
 
     @Column(nullable = false)
     private Boolean blocked = false;
+  
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    @OneToMany
+    @JoinColumn(name = "user_id")
+    private List<Survey> surveys;
 
     @ManyToMany
     @JoinTable(joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
+
+    public SurveyUser() {}
+
+    public SurveyUser(String username, String email, String password, Boolean blocked, List<Survey> surveys, Set<Role> roles) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.blocked = blocked;
+        this.surveys = surveys;
+        this.roles = roles;
+    }
+
+    public List<Survey> getSurveys() {
+        return surveys;
+    }
+
+    public void setSurveys(List<Survey> surveys) {
+        this.surveys = surveys;
+    }
 
     public String getUsername() {
         return username;
