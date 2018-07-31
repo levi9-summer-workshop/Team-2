@@ -17,6 +17,7 @@ import { ConfirmEqualValidatorDirective } from './shared/confirm-equal-validator
 import { UserListComponent } from './user-list/user-list.component';
 import { AuthService } from './login/auth.service';
 import { AuthGuard } from './auth-guard.service';
+import { EmailService } from './email.service';
 
 
 @NgModule({
@@ -40,7 +41,7 @@ import { AuthGuard } from './auth-guard.service';
     FormsModule,
     HttpClientModule
   ],
-  providers: [UserService, AuthService, AuthGuard],
+  providers: [UserService, AuthService, AuthGuard, EmailService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

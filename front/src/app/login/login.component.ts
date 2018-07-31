@@ -40,5 +40,4 @@ export class LoginComponent implements OnInit {
       ); //Ended subscribe
   } //Ended method onLogin()
 
-
 } //Ended class LoginComponent()
