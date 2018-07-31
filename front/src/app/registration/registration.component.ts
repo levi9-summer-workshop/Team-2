@@ -5,7 +5,7 @@ import { User } from '../users/user.model';
 import { UserService } from '../users/user.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AuthService } from '../login/auth.service';
-import { Router } from '../../../node_modules/@angular/router';
+import { Router } from '@angular/router';
 import { EmailService } from '../email.service';
 
 

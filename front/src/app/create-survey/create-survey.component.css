@@ -1,0 +1,14 @@
+.insertTitle {
+    margin:0px auto; 
+    display:block;
+    text-align: center;
+}
+
+.row {
+    width: 100%;
+    align-items: center;
+}
+
+.dropdown {
+    display: inline;
+}
