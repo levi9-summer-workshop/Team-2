@@ -47,6 +47,16 @@ public class SurveyController {
         return new ResponseEntity(HttpStatus.OK);
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+    @RequestMapping(path = "/public")
+    public ResponseEntity findAllPublicSurveys() {
+        List<Survey> publicSurveys = surveyServices.findAllPublicSurveys();
+        if(publicSurveys == null){
+            return new ResponseEntity(HttpStatus.NO_CONTENT);
+        }else {
+            return new ResponseEntity(publicSurveys, HttpStatus.OK);
+        }
+    }
 
 
 }

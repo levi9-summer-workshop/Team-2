@@ -27,6 +27,10 @@ public class Survey extends BaseEntity implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date expirationDate;
 
+    @ManyToOne
+    @JoinColumn(name = "survey_privacy")
+    private SurveyPrivacy surveyPrivacy;
+
     public Survey() {
     }
 
@@ -67,6 +71,13 @@ public class Survey extends BaseEntity implements Serializable {
 
     public void setExpirationDate(Date expirationDate) {
         this.expirationDate = expirationDate;
+    }
 
+    public SurveyPrivacy getSurveyPrivacy() {
+        return surveyPrivacy;
+    }
+
+    public void setSurveyPrivacy(SurveyPrivacy surveyPrivacy) {
+        this.surveyPrivacy = surveyPrivacy;
     }
 }

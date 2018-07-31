@@ -20,6 +20,6 @@ public class Email extends BaseEntity implements Serializable {
     }
 
     public enum EmailType {
-        REGISTRATION, SURVEY_ANSWERED
+        REGISTRATION, SURVEY_ANSWERED, INVITATION
     }
 }
