@@ -1,10 +1,7 @@
 package rs.levi9.survey.web.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import rs.levi9.survey.domain.Question;
 import rs.levi9.survey.services.QuestionService;
 
@@ -20,6 +17,11 @@ public class QuestionController {
     @Autowired
     public QuestionController(QuestionService questionService) {
         this.questionService = questionService;
+    }
+
+    @PostMapping
+    public Question save(@RequestBody Question question) {
+        return questionService.save(question);
     }
 
     @GetMapping

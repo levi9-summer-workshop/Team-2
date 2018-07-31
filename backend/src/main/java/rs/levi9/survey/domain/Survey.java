@@ -15,6 +15,7 @@ public class Survey extends BaseEntity implements Serializable {
     @Column
     private String title;
 
+    @Cascade(CascadeType.ALL)
     @OneToMany
     @JoinColumn(name = "survey_id")
     private List<Question> questions;

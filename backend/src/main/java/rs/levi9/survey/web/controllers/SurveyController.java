@@ -20,12 +20,10 @@ import java.util.List;
 public class SurveyController {
 
     private SurveyServices surveyServices;
-    private SurveyUserService surveyUserService;
 
     @Autowired
-    public SurveyController(SurveyServices surveyServices, SurveyUserService surveyUserService) {
+    public SurveyController(SurveyServices surveyServices) {
         this.surveyServices = surveyServices;
-        this.surveyUserService = surveyUserService;
     }
 
     @PostMapping
