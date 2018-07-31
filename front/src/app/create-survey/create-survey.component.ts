@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Observable } from '../../../node_modules/rxjs';
-
 import { SurveyService } from '../survey/survey.service';
 import { Question } from '../survey/question.model';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-create-survey',
@@ -15,6 +15,7 @@ export class CreateSurveyComponent implements OnInit {
   public multipleAnswers = [];
   public multipleAlowed : boolean;
   public singleAllowed: boolean;
+  public textAllowed: boolean;
   public addChoice: boolean;
   public i = 0;
 
@@ -39,10 +40,28 @@ export class CreateSurveyComponent implements OnInit {
     this.i++;
   }
 
-  deleteChoice() {
-  
-    this.multipleAnswers.pop();
-    this.i--;
+deleteChoice() {
+  this.multipleAnswers.pop();
+  this.i--;
+}
+
+  checkTypeOfQuestion() {
+    var e = document.getElementById("inputGroupSelect01") as HTMLSelectElement;
+    var choice = e.options[e.selectedIndex].value;
+    console.log(choice);
+    if(choice == "single") {
+      this.addSingleAllowed();
+      var singleButton = document.getElementById("addSingle") as HTMLButtonElement;
+      singleButton.hidden = false;
+    }
+    else if(choice == "multiple"){
+      this.addMultipleAlowed();
+      var button = document.getElementById("addMultiple") as HTMLButtonElement;
+      button.hidden = false;
+    }
+    else {
+      this.addTextAllowed();
+    }
   }
 
   addSingleAllowed() {
@@ -56,9 +75,21 @@ export class CreateSurveyComponent implements OnInit {
     return this.multipleAlowed = true; 
   }
 
+  addTextAllowed() {
+    this.singleAllowed = false;
+    this.multipleAlowed = false;
+    return this.textAllowed = true;
+  }
+
   resetData() {
     this.singleAllowed = false;
     this.multipleAlowed = false;
+    this.textAllowed = false;
+    var buttonMultiple = document.getElementById("addMultiple") as HTMLButtonElement;
+    buttonMultiple.hidden = true;
+    var buttonSingle = document.getElementById("addSingle") as HTMLButtonElement;
+    buttonSingle.hidden = true;
+    
   }
 
   onAddQuestionSubmit(){
