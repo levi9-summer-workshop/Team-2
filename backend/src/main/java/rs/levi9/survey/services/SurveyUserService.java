@@ -91,17 +91,15 @@ public class SurveyUserService implements UserDetailsService {
      * @return
      */
     public Boolean isBlocked(AuthenticatedUser user) {
-
-        System.out.println(SecurityContextHolder.getContext().getAuthentication().toString());
-
-        SurveyUser surveyUser = new SurveyUser();
-        surveyUser.setUsername(user.getUsername());
-        if(surveyUserRepository.getBlockedInformation(surveyUser.getUsername()).equals("false")) {
+        SurveyUser surveyUser = surveyUserRepository.findByUsername(user.getUsername());
+        if(surveyUser != null && surveyUser.getBlocked()) {
             return true;
-        } else {
-            return false;
         }
+
+        return false;
     }
 
-
+    public SurveyUser findByEmail (String email){
+        return surveyUserRepository.findByEmail(email);
+    }
 }

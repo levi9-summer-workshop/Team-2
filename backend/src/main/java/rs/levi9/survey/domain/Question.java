@@ -3,61 +3,69 @@ package rs.levi9.survey.domain;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.validation.constraints.Size;
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
-public class Question extends BaseEntity{
 
-    //connect survey id with question id
-    @Column(name = "survey_id")
-    private Long surveyId;
+@Entity
+@Table(name = "question")
+public class Question extends BaseEntity implements Serializable {
 
-    //list of answers/choices
-    //connect with question id
+    @Column
+    private String type;
+
+    @Column
+    private Boolean isRequired = false;
+
+    @Column
+    private String title;
+
     @Cascade(CascadeType.ALL)
     @OneToMany
     @JoinColumn(name = "question_id")
-    private List<Choices> choices;
+    private List<Choice> choices;
 
-    @Size(max=240)
-    @Column(name = "question_value")
-    private String QuestionValue;
-
-    @Column(name = "question_comment")
-    private String questionComment;
-
-    public Long getSurveyId() {
-        return surveyId;
+    public Question() {
     }
 
-    public void setSurveyId(Long surveyId) {
-        this.surveyId = surveyId;
-    }
-
-    public List<Choices> getChoices() {
-        return choices;
-    }
-
-    public void setChoices(List<Choices> choices) {
+    public Question(String type, Boolean isRequired, String title, List<Choice> choices) {
+        this.type = type;
+        this.isRequired = isRequired;
+        this.title = title;
         this.choices = choices;
     }
 
-    public String getQuestionValue() {
-        return QuestionValue;
+    public String getType() {
+        return type;
     }
 
-    public void setQuestionValue(String questionValue) {
-        QuestionValue = questionValue;
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public String getQuestionComment() {
-        return questionComment;
+    public Boolean getRequired() {
+        return isRequired;
     }
 
-    public void setQuestionComment(String questionComment) {
-        this.questionComment = questionComment;
+    public void setRequired(Boolean required) {
+        isRequired = required;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public List<Choice> getChoices() {
+        return choices;
+    }
+
+    public void setChoices(List<Choice> choices) {
+        this.choices = choices;
+
     }
 }

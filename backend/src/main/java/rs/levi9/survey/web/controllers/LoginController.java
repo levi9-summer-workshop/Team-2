@@ -38,7 +38,6 @@ public class LoginController {
         AuthenticatedUser user = new AuthenticatedUser(authentication.getName(), roles);
 
         if(surveyUserService.isBlocked(user)) {
-
             return user;
         } else {
             return null;
