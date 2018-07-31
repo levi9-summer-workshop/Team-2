@@ -26,4 +26,14 @@ public class AnswerService {
     public List<Answer> findAll() {
         return answerRepository.findAll();
     }
+
+    public List<Answer> findAllBySurveyId(Long id) {
+        return answerRepository.findAllBySurveyId(id);
+    }
+
+    public List<Answer> findAllByUserId(Long id) {
+        return answerRepository.findAllByUserId(id);
+    }
+
+
 }

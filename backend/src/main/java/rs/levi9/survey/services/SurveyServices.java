@@ -7,6 +7,7 @@ import rs.levi9.survey.domain.Survey;
 import rs.levi9.survey.repositories.SurveyRepository;
 
 import javax.transaction.Transactional;
+import java.util.Date;
 import java.util.List;
 
 @Transactional
@@ -35,4 +36,9 @@ public class SurveyServices {
     public void delete(Long id) {
         surveyRepository.delete(id);
     }
+
+    public List<Survey> findAllByCreationDate (Date date){
+        return surveyRepository.findAllByCreationDate(date);
+    }
+
 }
