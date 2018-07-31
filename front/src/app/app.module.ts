@@ -18,6 +18,8 @@ import { UserListComponent } from './user-list/user-list.component';
 import { AuthService } from './login/auth.service';
 import { AuthGuard } from './auth-guard.service';
 import { EmailService } from './email.service';
+import { CreateSurveyComponent } from './create-survey/create-survey.component';
+import { SurveyService } from './survey/survey.service';
 
 
 @NgModule({
@@ -33,7 +35,8 @@ import { EmailService } from './email.service';
     SharedComponent,
     ConfirmEqualValidatorDirective,
     UserListComponent,
-
+    CreateSurveyComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -41,7 +44,7 @@ import { EmailService } from './email.service';
     FormsModule,
     HttpClientModule
   ],
-  providers: [UserService, AuthService, AuthGuard, EmailService],
+  providers: [UserService, AuthService, AuthGuard, EmailService, SurveyService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
