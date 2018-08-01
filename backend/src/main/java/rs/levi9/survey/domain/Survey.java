@@ -31,6 +31,11 @@ public class Survey extends BaseEntity implements Serializable {
     @JoinColumn(name = "survey_privacy")
     private SurveyPrivacy surveyPrivacy;
 
+    @ManyToOne
+    @JoinColumn(name = "survey_status")
+    private SurveyStatus surveyStatus;
+
+
     public Survey() {
     }
 
