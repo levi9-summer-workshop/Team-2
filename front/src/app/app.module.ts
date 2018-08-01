@@ -21,6 +21,7 @@ import { EmailService } from './email.service';
 import { CreateSurveyComponent } from './create-survey/create-survey.component';
 import { SurveyService } from './survey/survey.service';
 import { FillSurveyComponent } from './fill-survey/fill-survey.component';
+import { ChooseSurveyComponent } from './choose-survey/choose-survey.component';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { FillSurveyComponent } from './fill-survey/fill-survey.component';
     UserListComponent,
     CreateSurveyComponent,
     FillSurveyComponent,
+    ChooseSurveyComponent,
     
   ],
   imports: [
