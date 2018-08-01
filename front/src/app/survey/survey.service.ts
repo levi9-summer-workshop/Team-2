@@ -4,11 +4,13 @@ import { AuthService } from '../login/auth.service';
 import { Survey } from './survey.model';
 import { Observable } from '../../../node_modules/rxjs';
 import { Question } from './question.model';
+import { Choice } from './choice.model';
 
 @Injectable()
 export class SurveyService {
 
   APIQuestion = 'http://localhost:8080/question';
+  APIChoice = 'http://localhost:8080/choices';
 
   constructor(private httpClient: HttpClient, private authService: AuthService) {
 
@@ -20,5 +22,9 @@ export class SurveyService {
 
    saveQuestion(question: Question): Observable<any> {
     return this.httpClient.post(this.APIQuestion, question, { headers: this.authService.getAuthHeaders() });
+  }
+
+  saveChoice(choice: Choice) : Observable<any> {
+    return this.httpClient.post(this.APIChoice, choice, { headers: this.authService.getAuthHeaders()  });
   }
 }
