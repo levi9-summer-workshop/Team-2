@@ -17,4 +17,8 @@ export class SurveyService {
    getQuestions(): Observable<Question[]> {
      return this.httpClient.get<Question[]>(this.APIQuestion, { headers: this.authService.getAuthHeaders() });
    }
+
+   saveQuestion(question: Question): Observable<any> {
+    return this.httpClient.post(this.APIQuestion, question, { headers: this.authService.getAuthHeaders() });
+  }
 }
