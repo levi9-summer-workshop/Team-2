@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { SurveyService } from '../survey/survey.service';
 import { Survey } from '../survey/survey.model';
-import { Observable } from '../../../node_modules/rxjs';
 
 
 @Component({
@@ -17,7 +16,7 @@ export class FillSurveyComponent implements OnInit {
 
   ngOnInit() {
     this.survey = new Survey();
-    this.getSurvey(1);
+    this.getSurvey(this.surveyService.surveysId);
   }
 
   getSurvey(id : number){

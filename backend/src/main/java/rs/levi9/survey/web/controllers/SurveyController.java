@@ -39,10 +39,6 @@ public class SurveyController {
         return new ResponseEntity<>(surveys, HttpStatus.OK);
     }
 
-<<<<<<< Updated upstream
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @RequestMapping(path = "{id}", method = RequestMethod.DELETE)
-=======
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @RequestMapping(path = "/{id}", method = RequestMethod.GET)
     public ResponseEntity findOne(@PathVariable("id") Long id) { Survey survey = surveyServices.findOne(id);
@@ -55,7 +51,6 @@ public class SurveyController {
 
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
->>>>>>> Stashed changes
     public ResponseEntity delete(@PathVariable("id") Long id) {
         surveyServices.delete(id);
         return new ResponseEntity(HttpStatus.OK);

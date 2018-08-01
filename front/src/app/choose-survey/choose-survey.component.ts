@@ -20,7 +20,7 @@ export class ChooseSurveyComponent implements OnInit {
     this.surveys$ = this.surveyService.getSurveys();
   }
 
-  onSurveyChoose(id: number) {
-    this.surveyId = id;
+  onSurveyChoose(value: number) {
+    this.surveyService.id = value;
   }
 }

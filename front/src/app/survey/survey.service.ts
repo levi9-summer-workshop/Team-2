@@ -10,6 +10,16 @@ export class SurveyService {
   APISurvey = 'http://localhost:8080/survey';
   APIQuestion = 'http://localhost:8080/question';
 
+  id: number;
+
+  set surveysId(value: number) {
+     this.id = value;
+  }
+
+  get surveysId(): number {
+    return this.id;
+  }
+
   constructor(private httpClient: HttpClient, private authService: AuthService) {
 
   }
