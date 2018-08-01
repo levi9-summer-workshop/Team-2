@@ -9,6 +9,6 @@ import java.util.List;
 @Repository
 public interface ChoiceRepository extends JpaRepository<Choice, Long> {
 
-    List<Choice> findAllByChoice (List<Choice> choice);
+    Choice findChoiceByText (String text);
 
 }

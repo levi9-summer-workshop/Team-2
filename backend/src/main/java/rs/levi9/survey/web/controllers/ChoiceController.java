@@ -9,6 +9,7 @@ import rs.levi9.survey.domain.Choice;
 import rs.levi9.survey.services.ChoiceService;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping("choices")
@@ -39,9 +40,18 @@ public class ChoiceController {
         System.err.println(choices);
         if(!choices.isEmpty()){
             for (Choice choice : choices) {
-                Long result = choice.getResult();
-                choice.setResult(result++);
-                choiceService.save(choice);
+                Choice choice1;
+                try {
+                    String text1 = choice.getText();
+                    choice1 = choiceService.findChoiceByText(text1);
+                }catch(NoSuchElementException e){
+                    e.printStackTrace();
+                    return new ResponseEntity(HttpStatus.NOT_FOUND);
+                }
+                Long result1 = choice1.getResult();
+                result1++;
+                choice1.setResult(result1);
+                choiceService.save(choice1);
             }
         }else{
             return new ResponseEntity(HttpStatus.NO_CONTENT);

@@ -10,7 +10,7 @@ import java.io.Serializable;
 public class Choice extends BaseEntity implements Serializable {
 
     @Column(nullable = false)
-    private String choice;
+    private String text;
 
     private Long result = 0L;
 
@@ -18,9 +18,17 @@ public class Choice extends BaseEntity implements Serializable {
 
     }
 
-    public Choice(String choice, Long result) {
-        this.choice = choice;
+    public Choice(String text, Long result) {
+        this.text = text;
         this.result = result;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
 
     public Long getResult() {
@@ -30,17 +38,4 @@ public class Choice extends BaseEntity implements Serializable {
     public void setResult(Long result) {
         this.result = result;
     }
-
-    public Choice(String choice) {
-        this.choice = choice;
-    }
-
-    public String getChoice() {
-        return choice;
-    }
-
-    public void setChoice(String choice) {
-        this.choice = choice;
-    }
-
 }

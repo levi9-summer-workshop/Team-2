@@ -23,10 +23,6 @@ public class ChoiceService {
         return choiceRepository.findAll();
     }
 
-    public List<Choice> findAllByChoice (List<Choice> choices){
-        return choiceRepository.findAllByChoice(choices);
-    }
-
     public Choice findOne(Long id) {
         return choiceRepository.findOne(id);
     }
@@ -39,5 +35,8 @@ public class ChoiceService {
         return choiceRepository.save(choice);
     }
 
+    public Choice findChoiceByText(String text) {
+        return choiceRepository.findChoiceByText(text);
+    }
 
 }
