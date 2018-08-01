@@ -1,10 +1,16 @@
 package rs.levi9.survey.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.Future;
 import javax.validation.constraints.Size;
+import javax.validation.executable.ExecutableType;
+import javax.validation.executable.ValidateOnExecution;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -25,7 +31,8 @@ public class Survey extends BaseEntity implements Serializable {
     @JoinColumn(name = "survey_id")
     private List<Question> questions;
 
-    @Column(name = "creation_date", updatable = false)
+    @Column(name = "creation_date", updatable = false, nullable = false)
+    @JsonIgnore
     @Temporal(TemporalType.DATE)
     private Date creationDate;
 

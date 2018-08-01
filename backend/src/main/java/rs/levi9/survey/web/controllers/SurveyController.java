@@ -10,6 +10,9 @@ import rs.levi9.survey.domain.SurveyPrivacy;
 import rs.levi9.survey.domain.SurveyStatus;
 import rs.levi9.survey.services.SurveyServices;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -26,6 +29,8 @@ public class SurveyController {
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
     @PostMapping
     public Survey save(@RequestBody Survey survey) {
+        Date date = new Date();
+        survey.setCreationDate(date);
         return surveyServices.save(survey);
     }
 
