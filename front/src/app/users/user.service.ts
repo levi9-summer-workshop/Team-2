@@ -14,11 +14,8 @@ export class UserService {
   constructor(private httpClient: HttpClient, private authService: AuthService) { }
 
   getUsers(): Observable<User[]> {
-    console.log("here")
     return this.httpClient.get<User[]>(this.APIUsers, { headers: this.authService.getAuthHeaders() });
   }
-
-
 
   deleteUser(userId: number){
     return this.httpClient.delete(this.APIUsers + '/' + (userId), { headers: this.authService.getAuthHeaders() });
@@ -31,8 +28,4 @@ export class UserService {
   blockUser(user: User): Observable<any> {
     return this.httpClient.put(this.APIUsers, user, { headers: this.authService.getAuthHeaders() });
   }
-
-  
-
-  
 }
