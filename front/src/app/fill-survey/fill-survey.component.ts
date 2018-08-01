@@ -12,7 +12,6 @@ import { Observable } from '../../../node_modules/rxjs';
 export class FillSurveyComponent implements OnInit {
 
   survey: Survey;
-  questionRadio = "radio";
 
   constructor(private surveyService: SurveyService) { }
 

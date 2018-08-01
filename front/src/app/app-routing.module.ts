@@ -7,6 +7,7 @@ import { MyServeysComponent } from './my-serveys/my-serveys.component';
 import { UserListComponent } from './user-list/user-list.component';
 import { AuthGuard } from './auth-guard.service';
 import { CreateSurveyComponent } from './create-survey/create-survey.component';
+import { FillSurveyComponent } from './fill-survey/fill-survey.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo:'/home', pathMatch: 'full' },
@@ -15,6 +16,7 @@ const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'myserveys', component: MyServeysComponent},
   { path: 'create-survey', component: CreateSurveyComponent},
+  { path: 'fill-survey', component: FillSurveyComponent},
   { path: 'users', component: UserListComponent, canActivate: [AuthGuard], data: { expectedRole: 'admin'} }
 ];
 
