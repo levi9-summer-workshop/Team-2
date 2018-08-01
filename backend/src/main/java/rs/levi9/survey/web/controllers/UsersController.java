@@ -64,5 +64,13 @@ public class UsersController {
         return surveyUserService.findByEmail(surveyUser.getEmail());
     }
 
+    @PutMapping(path = "/user/update")
+    public ResponseEntity update(SurveyUser surveyUser) {
+        if(!surveyUserService.checkIfUserExists(surveyUser)){
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        }else {
+            return new ResponseEntity(surveyUserService.save(surveyUser), HttpStatus.OK);
+        }
+    }
 
 }

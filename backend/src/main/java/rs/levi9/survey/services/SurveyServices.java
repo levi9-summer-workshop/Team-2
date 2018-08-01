@@ -51,6 +51,11 @@ public class SurveyServices {
         return surveyRepository.findAllSurveysBySurveyPrivacy(SurveyPrivacy.PrivacyType.PRIVATE);
     }
 
+    public void setSurveyPrivacy(Long id, SurveyPrivacy.PrivacyType privacyType) {
+        Survey survey = findOne(id);
+        SurveyPrivacy surveyPrivacy = new SurveyPrivacy(privacyType);
+    }
+
     public List<Survey> findAllByTitleIsContaining (String title) {
         return surveyRepository.findAllByTitleIsContaining(title);
     }
@@ -58,7 +63,5 @@ public class SurveyServices {
     public List<Survey> findAllPublicSurveysBySurveyStatus (SurveyStatus.StatusType statusType){
       return surveyRepository.findAllBySurveyStatusAndSurveyPrivacy(statusType, SurveyPrivacy.PrivacyType.PUBLIC);
     }
-
-
 
 }
