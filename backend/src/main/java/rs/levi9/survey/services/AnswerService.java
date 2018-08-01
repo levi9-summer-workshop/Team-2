@@ -3,6 +3,7 @@ package rs.levi9.survey.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import rs.levi9.survey.domain.Answer;
+import rs.levi9.survey.domain.Choice;
 import rs.levi9.survey.repositories.AnswerRepository;
 
 import javax.transaction.Transactional;
@@ -35,5 +36,7 @@ public class AnswerService {
         return answerRepository.findAllByUserId(id);
     }
 
-
+    public List<Answer> findAllByChoiceEquals(Choice choice){
+        return answerRepository.findAllByChoiceEquals(choice);
+    }
 }

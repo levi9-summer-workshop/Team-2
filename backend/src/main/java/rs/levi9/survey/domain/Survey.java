@@ -20,6 +20,7 @@ public class Survey extends BaseEntity implements Serializable {
     @Size(max = 250)
     private String description;
 
+    @Cascade(CascadeType.ALL)
     @OneToMany
     @JoinColumn(name = "survey_id")
     private List<Question> questions;
@@ -35,6 +36,11 @@ public class Survey extends BaseEntity implements Serializable {
     @ManyToOne
     @JoinColumn(name = "survey_privacy")
     private SurveyPrivacy surveyPrivacy;
+
+    @ManyToOne
+    @JoinColumn(name = "survey_status")
+    private SurveyStatus surveyStatus;
+
 
     public Survey() {
     }
