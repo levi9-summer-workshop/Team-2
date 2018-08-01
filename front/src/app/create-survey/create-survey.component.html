@@ -1,53 +1,10 @@
-<!--RADIOBUTTON form-->
-<form>
 
-	<div class="form-group" style="text-align: center;"> 
-		<label class="control-label col" *ngFor='let question of (questions$ | async); let i = index'>{{ question.title }}
-		<div class="radio">
-		  <label>
-			<input type="radio">
-			Pizza
-		  </label>
-		</div>
-		<div class="radio">
-		  <label>
-			<input type="radio">
-			Hamburgers
-		  </label>
-    </div>
-    <button class="btn btn-primary " name="submit" type="submit">Vote</button>
-  </label>
-	</div>		
-</form>
-
-<!-- CHECKBOX form -->
-<form>
-  <div class="form-group" style="text-align: center;">
-    <label class="control-label col" *ngFor='let question of (questions$ | async); let i = index'>
-      {{ question.title }}
-
-      <div class="row">
-        <div class="checkbox col">
-          <label>
-            <input type="checkbox">Pizza</label>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="checkbox col">
-          <label>
-            <input type="checkbox">Hamburgers</label>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col">
-          <button class="btn btn-primary " name="submit" type="submit">Vote</button>
-        </div>
-      </div>
-    </label>
+  <div class="headline text-center">
+    <h1>Creating survey</h1>
   </div>
-</form>
+
+  <!-- <button type="button" class="btn btn-success">Save survey</button> -->
+
 
   <div class="container text-center shadow p-3 mb-5 rounded">
     <br>
@@ -68,7 +25,8 @@
 <button type="button" class="btn btn-success">Save this survey</button>
 </div>
   </div>
-</div>
+
+
 
 <!--Add Question modal-->
 <div class="modal fade bd-example-modal-lg" id="addQuestionModal" tabindex="-1" role="dialog" aria-labelledby="addQuestionModalLabel"
@@ -108,14 +66,7 @@
         </ng-container>
       </ng-container>
       <button type="button" class="btn btn-info" (click)="addMoreChoices()" hidden="true" id="addMultiple">Add more choices</button>
-      
       <ng-container *ngIf="singleAllowed">
-        <button class="btn btn-secondary" (click)="addMoreChoices()">Add more choices</button>
-        <button class="btn btn-danger" (click)="deleteChoice()">Delete choice</button>
-        <ng-container *ngFor="let i of multipleAnswers; let index = i">
-          <input type="text">
-        </ng-container>
-
         <ng-container *ngFor="let i of multipleAnswers; let index = i" (deleteEvent)="deleteEventHandler($event)">
           <div class="choices">
             <div class="input-group mb-3">
@@ -136,7 +87,6 @@
             </div>
           </div>
         </div>
-
       </ng-container>
       <button type="button" class="btn btn-info" (click)="addMoreChoices()" hidden="true" id="addSingle">Add more choices</button>
       <div class="modal-footer">
@@ -145,3 +95,54 @@
       </div>
     </div>
   </div>
+</div>
+
+<!--RADIOBUTTON form-->
+<form>
+	<div class="form-group" style="text-align: center;"> 
+		<label class="control-label col" *ngFor='let question of (questions$ | async); let i = index'>{{ question.title }}
+		<div class="radio">
+		  <label>
+			<input type="radio" name="pizza">
+			Pizza
+		  </label>
+		</div>
+		<div class="radio">
+		  <label>
+			<input type="radio" name="ham">
+			Hamburgers
+		  </label>
+    </div>
+    <button class="btn btn-primary " name="submit" type="submit">Vote</button>
+  </label>
+	</div>		
+</form>
+
+<!-- CHECKBOX form -->
+<form>
+  <div class="form-group" style="text-align: center;">
+    <label class="control-label col" *ngFor='let question of (questions$ | async); let i = index'>
+      {{ question.title }}
+
+      <div class="row">
+        <div class="checkbox col">
+          <label>
+            <input type="checkbox">Pizza</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="checkbox col">
+          <label>
+            <input type="checkbox">Hamburgers</label>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <button class="btn btn-primary " name="submit" type="submit">Vote</button>
+        </div>
+      </div>
+    </label>
+  </div>
+</form>
