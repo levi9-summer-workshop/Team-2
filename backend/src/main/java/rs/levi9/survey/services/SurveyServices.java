@@ -4,9 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 import rs.levi9.survey.domain.Survey;
+import rs.levi9.survey.domain.SurveyPrivacy;
 import rs.levi9.survey.repositories.SurveyRepository;
 
 import javax.transaction.Transactional;
+import java.util.Date;
 import java.util.List;
 
 @Transactional
@@ -34,5 +36,17 @@ public class SurveyServices {
   
     public void delete(Long id) {
         surveyRepository.delete(id);
+    }
+
+    public List<Survey> findAllByCreationDate (Date date){
+        return surveyRepository.findAllByCreationDate(date);
+    }
+
+    public List<Survey> findAllPublicSurveys() {
+        return surveyRepository.findAllSurveysBySurveyPrivacy(SurveyPrivacy.PrivacyType.PUBLIC);
+    }
+
+    public List<Survey> findAllPrivateSurveys() {
+        return surveyRepository.findAllSurveysBySurveyPrivacy(SurveyPrivacy.PrivacyType.PRIVATE);
     }
 }

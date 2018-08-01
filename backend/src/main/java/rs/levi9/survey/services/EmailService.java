@@ -33,6 +33,12 @@ public class EmailService {
             case SURVEY_ANSWERED:
                 helper.setSubject("Survey Answered");
                 helper.setText("Thank you for answering a Survey!");
+                break;
+            case INVITATION:
+                helper.setSubject("Invitation to a survey");
+                helper.setText("Hi! You are invated to a #surveylink. ");
+                break;
+
         }
         emailSender.send(message);
     }
