@@ -7,6 +7,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import rs.levi9.survey.domain.Survey;
 
+import rs.levi9.survey.domain.SurveyStatus;
 import rs.levi9.survey.domain.SurveyUser;
 import rs.levi9.survey.services.SurveyServices;
 import rs.levi9.survey.services.SurveyUserService;
@@ -56,5 +57,25 @@ public class SurveyController {
         }
     }
 
+    @PreAuthorize(("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')"))
+    @RequestMapping(path = "/public/open")
+    public ResponseEntity findAllPublicAndOpenSurveys() {
+        List<Survey> publicOpenSurveys = surveyServices.findAllPublicSurveysBySurveyStatus(SurveyStatus.StatusType.OPEN);
+        if (publicOpenSurveys == null) {
+            return new ResponseEntity(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity(publicOpenSurveys, HttpStatus.OK);
+        }
+    }
 
-}
+        @PreAuthorize(("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')"))
+        @RequestMapping(path = "/public/close")
+        public ResponseEntity findAllPublicAndCloseSurveys() {
+            List<Survey> publicCloseSurveys = surveyServices.findAllPublicSurveysBySurveyStatus(SurveyStatus.StatusType.CLOSE);
+            if (publicCloseSurveys == null) {
+                return new ResponseEntity(HttpStatus.NO_CONTENT);
+            } else {
+                return new ResponseEntity(publicCloseSurveys, HttpStatus.OK);
+            }
+        }
+    }

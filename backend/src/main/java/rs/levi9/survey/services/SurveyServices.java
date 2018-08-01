@@ -59,6 +59,4 @@ public class SurveyServices {
       return surveyRepository.findAllBySurveyStatusAndSurveyPrivacy(statusType, SurveyPrivacy.PrivacyType.PUBLIC);
     }
 
-
-
 }
