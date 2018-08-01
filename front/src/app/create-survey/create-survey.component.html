@@ -16,6 +16,12 @@
           </div>
           <input type="text" class="form-control" placeholder="Title" aria-label="title" aria-describedby="nameSurvey">
         </div>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="datepick">Expires</span>
+            </div>
+            <input type="date" class="form-control"  aria-label="datepick" aria-describedby="datepick">
+          </div>
         <button type="button" class="btn btn-info" (click)="onAddQuestion(question)" data-toggle="modal" data-target="#addQuestionModal">Add question</button>
         <br>
       </div>
