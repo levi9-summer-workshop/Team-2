@@ -17,6 +17,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/survey")
+@CrossOrigin(origins = "http://localhost:4200")
 public class SurveyController {
 
     private SurveyServices surveyServices;
@@ -39,6 +40,16 @@ public class SurveyController {
     public ResponseEntity<List<Survey>> findAll() {
         List<Survey> surveys = surveyServices.findAll();
         return new ResponseEntity<>(surveys, HttpStatus.OK);
+    }
+
+    @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
+    @RequestMapping(path = "/{id}", method = RequestMethod.GET)
+    public ResponseEntity findOne(@PathVariable("id") Long id) { Survey survey = surveyServices.findOne(id);
+
+        if(survey == null) {
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity(survey, HttpStatus.OK);
     }
 
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")

@@ -22,8 +22,6 @@ export class CreateSurveyComponent implements OnInit {
   constructor(private surveyService: SurveyService) { }
 
   ngOnInit() {
-  
-    this.questions$ = this.surveyService.getQuestions();
 
     this.multipleAnswers= [];
     while(this.i < 2) {

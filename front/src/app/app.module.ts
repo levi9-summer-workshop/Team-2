@@ -20,7 +20,12 @@ import { AuthGuard } from './auth-guard.service';
 import { EmailService } from './email.service';
 import { CreateSurveyComponent } from './create-survey/create-survey.component';
 import { SurveyService } from './survey/survey.service';
+
+import { FillSurveyComponent } from './fill-survey/fill-survey.component';
+import { ChooseSurveyComponent } from './choose-survey/choose-survey.component';
+
 import { AllSurveysComponent } from './all-surveys/all-surveys.component';
+
 
 
 @NgModule({
@@ -37,7 +42,12 @@ import { AllSurveysComponent } from './all-surveys/all-surveys.component';
     ConfirmEqualValidatorDirective,
     UserListComponent,
     CreateSurveyComponent,
+
+    FillSurveyComponent,
+    ChooseSurveyComponent,
+
     AllSurveysComponent,
+
     
   ],
   imports: [
