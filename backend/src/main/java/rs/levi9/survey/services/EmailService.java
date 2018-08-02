@@ -27,9 +27,9 @@ public class EmailService {
         helper.setTo(surveyUser.getEmail());
         switch(emailType){
             case REGISTRATION:
-                 helper.setSubject("Registration");
-                 helper.setText("Hi " + surveyUser.getUsername() + "!\nYou have registered to our OnlineSurvey application!\nThank you for being awesome!");
-            break;
+                helper.setSubject("Registration");
+                helper.setText("Hi " + surveyUser.getUsername() + "!\nYou have registered to our OnlineSurvey application!\nThank you for being awesome!");
+                break;
             case SURVEY_ANSWERED:
                 helper.setSubject("Survey Answered");
                 helper.setText("Thank you for answering a Survey!");

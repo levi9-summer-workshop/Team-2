@@ -10,7 +10,8 @@
                             <th scope="col" class="text-center align-middle">Title</th>
                             <th scope="col" class="text-center align-middle">Status</th>
                             <th scope="col" class="text-center align-middle">Privacy</th>
-                            <th scope="col" class="text-center align-middle">Date closed</th>
+                            <th scope="col" class="text-center align-middle">Date expires</th>
+                            <th scope="col" class="text-center align-middle">View results</th>
                             <th scope="col" class="text-center align-middle">Delete</th>
                         </tr>
                     </thead>
@@ -23,19 +24,14 @@
                             <td class="text-center align-middle">{{ survey.expirationDate }}</td>
 
                             <td class="text-center align-middle">
+                                <button type="submit" class="btn btn-primary btn-sm" (click)="onSurveyChoose(i+1)" routerLink="/results">View results</button>
+                            </td>
+                            <td class="text-center align-middle">
                                 <button type="button" class="btn btn-danger btn-sm" (click)="onSurveyDelete(survey)">
                                     Delete
                                 </button>
                             </td>
-<!-- 
-                            <td class="text-center align-middle">
-
-                            </td>
-
-                            <td class="text-center align-middle">
-
-                            </td> -->
-
+                      
                         </tr>
                     </tbody>
                 </table>

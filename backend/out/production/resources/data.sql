@@ -30,5 +30,3 @@ INSERT INTO question(is_required, title, type, survey_id) VALUES (true ,'title',
 
 INSERT INTO choices(text, result, question_id) VALUES ('choice1', '65', '1');
 INSERT INTO choices(text, result, question_id) VALUES ('choice2', '35', '1');
-
-

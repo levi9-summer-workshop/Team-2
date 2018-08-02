@@ -25,6 +25,7 @@ import { FillSurveyComponent } from './fill-survey/fill-survey.component';
 import { ChooseSurveyComponent } from './choose-survey/choose-survey.component';
 
 import { AllSurveysComponent } from './all-surveys/all-surveys.component';
+import { ResultsComponent } from './results/results.component';
 
 
 
@@ -45,6 +46,7 @@ import { AllSurveysComponent } from './all-surveys/all-surveys.component';
     FillSurveyComponent,
     ChooseSurveyComponent,
     AllSurveysComponent,
+    ResultsComponent,
   ],
   imports: [
     BrowserModule,

@@ -16,12 +16,17 @@ export class MyServeysComponent implements OnInit {
   surveyId: number;
   survey:Survey;
 
+
   constructor(public surveyService: SurveyService, public authService: AuthService) { }
 
   ngOnInit() {
   
     this.mySurveys$ = this.surveyService.getUsersSurveys();
-    console.log(this.mySurveys$);
+   
+  }
+
+  onSurveyChoose(value: number) {
+    this.surveyService.id = value;
   }
 
   ifEmptyArraySurveys() {
