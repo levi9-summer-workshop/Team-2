@@ -14,7 +14,8 @@ export class MyServeysComponent implements OnInit {
   mySurveys$: Observable<Survey[]>;
   selectedSurvey: Survey = new Survey(null, null, null, null, null, null, null, null);
   surveyId: number;
-  survey: Survey;
+  survey:Survey;
+
 
   constructor(public surveyService: SurveyService, public authService: AuthService) { }
 
