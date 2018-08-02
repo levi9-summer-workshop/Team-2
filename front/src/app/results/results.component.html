@@ -1,0 +1,26 @@
+<div class="my-container">
+  <div class="container">
+    <div class="headline">
+      <h1>Survey Results</h1>
+      <div class="headline-subtext">
+        <p>These are the results of "{{survey.title}}" survey.</p>
+      </div>
+    </div>
+
+    <form>
+      <div class="form-group">
+        <ng-container *ngFor='let question of survey.questions; let i = index'>
+          <p>
+            <strong>{{i+1}}. {{ question.title }} </strong>
+          </p>
+          <ng-container *ngFor='let choices of question.choices; let i = index'>
+            <div class="col">
+              <p> {{i+1}}. {{ choices.text }} has been chosen {{ choices.result }} times.</p>
+            </div>
+          </ng-container>
+          <hr>
+        </ng-container>
+      </div>
+    </form>
+  </div>
+</div>

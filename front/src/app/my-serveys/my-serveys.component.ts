@@ -23,6 +23,10 @@ export class MyServeysComponent implements OnInit {
     console.log(this.mySurveys$);
   }
 
+  onSurveyChoose(value: number) {
+    this.surveyService.id = value;
+  }
+
   ifEmptyArraySurveys() {
     if (this.mySurveys$.isEmpty() ) {
       return true;

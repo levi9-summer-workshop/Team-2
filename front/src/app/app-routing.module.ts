@@ -12,6 +12,7 @@ import { FillSurveyComponent } from './fill-survey/fill-survey.component';
 import { ChooseSurveyComponent } from './choose-survey/choose-survey.component';
 
 import { AllSurveysComponent } from './all-surveys/all-surveys.component';
+import { ResultsComponent } from './results/results.component';
 
 
 const appRoutes: Routes = [
@@ -25,7 +26,8 @@ const appRoutes: Routes = [
   { path: 'fill-survey', component: FillSurveyComponent },
   { path: 'users', component: UserListComponent, canActivate: [AuthGuard], data: { expectedRole: 'admin'} },
   { path: 'users', component: UserListComponent, canActivate: [AuthGuard], data: { expectedRole: 'admin'} },
-  { path: 'public', component: AllSurveysComponent}
+  { path: 'public', component: AllSurveysComponent},
+  { path: 'results', component: ResultsComponent}
 ];
 
 @NgModule({
