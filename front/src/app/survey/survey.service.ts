@@ -4,6 +4,7 @@ import { AuthService } from '../login/auth.service';
 import { Question } from '../question/question.model';
 import { Survey } from './survey.model';
 import { Observable } from 'rxjs/Observable';
+import { Choice } from '../Choice/choice.model';
 
 @Injectable()
 export class SurveyService {
@@ -21,6 +22,7 @@ export class SurveyService {
   APISurvey = 'http://localhost:8080/survey';
   APIQuestion = 'http://localhost:8080/question';
   APIPublicSurveys = this.APISurvey + '/public';
+  APIAnswer = 'http://localhost:8080/choices';
   
 
   constructor(private httpClient: HttpClient, private authService: AuthService) {
@@ -54,5 +56,9 @@ export class SurveyService {
 
   deleteSurvey(surveyId: number){
     return this.httpClient.delete(this.APISurvey + '/' + (surveyId), { headers: this.authService.getAuthHeaders() });
+  }
+
+  saveAnswer(answer): Observable<any> {
+  return this.httpClient.post(this.APIAnswer, {headers: this.authService.getAuthHeaders()});
   }
 }

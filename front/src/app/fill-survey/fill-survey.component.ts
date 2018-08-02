@@ -1,6 +1,10 @@
 import { Survey } from "../survey/survey.model";
 import { SurveyService } from "../survey/survey.service";
 import { OnInit, Component } from "../../../node_modules/@angular/core";
+import { Choice } from "../Choice/choice.model";
+import { NgForm } from "@angular/forms";
+import { Observable } from 'rxjs/Observable';
+import { AuthService } from "../login/auth.service";
 
 
 @Component({
@@ -10,9 +14,11 @@ import { OnInit, Component } from "../../../node_modules/@angular/core";
 })
 export class FillSurveyComponent implements OnInit {
 
+  choices$: Observable<Choice[]>
   survey: Survey;
+  selectedAnswer: Choice = { text: null };
 
-  constructor(private surveyService: SurveyService) { }
+  constructor(private surveyService: SurveyService, public authService: AuthService) { }
 
   ngOnInit() {
     this.survey = new Survey(null, null, null, null, null, null, null, null);
@@ -27,4 +33,26 @@ export class FillSurveyComponent implements OnInit {
       }
     );
   }
+
+/*  onAnswerSubmit(form: NgForm) {
+      let answer = new Choice(form.value.text);
+      console.log(answer)
+      this.surveyService.saveAnswer(answer)
+        .subscribe()
+        )
+              
+    }
+
+  submitFilledSurvey(survey : Survey){
+    this.surveyService.saveAnswer(survey).subscribe((data) =>{
+      survey = data;
+     
+    },
+       (error) => {
+         console.log(error),
+      () =>{
+      
+      } 
+    })
+  }*/
 }

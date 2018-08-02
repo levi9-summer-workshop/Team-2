@@ -25,8 +25,8 @@ INSERT INTO survey(creation_date, description, expiration_date, title, survey_pr
 INSERT INTO survey(creation_date, description, expiration_date, title, survey_privacy, survey_status, user_id) VALUES ('2018-08-08', 'description', '2018-08-09', 'title', '1', '1', '2');
 
 
-INSERT INTO question(is_required, title, type, survey_id) VALUES (true ,'title', 'singlechoice', '1');
-INSERT INTO question(is_required, title, type, survey_id) VALUES (true ,'title', 'singlechoice', '1');
+INSERT INTO question(is_required, title, type, survey_id) VALUES (true ,'title', 'checkbox', '1');
+INSERT INTO question(is_required, title, type, survey_id) VALUES (true ,'title', 'checkbox', '1');
 
 INSERT INTO choices(text, result, question_id) VALUES ('choice1', '65', '1');
 INSERT INTO choices(text, result, question_id) VALUES ('choice2', '35', '1');
