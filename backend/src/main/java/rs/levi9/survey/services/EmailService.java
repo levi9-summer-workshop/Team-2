@@ -9,7 +9,6 @@ import rs.levi9.survey.domain.SurveyUser;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
-import java.net.URL;
 
 @Service
 public class EmailService {
@@ -28,9 +27,9 @@ public class EmailService {
         helper.setTo(surveyUser.getEmail());
         switch(emailType){
             case REGISTRATION:
-                 helper.setSubject("Registration");
-                 helper.setText("Hi " + surveyUser.getUsername() + "!\nYou have registered to our OnlineSurvey application!\nThank you for being awesome!");
-            break;
+                helper.setSubject("Registration");
+                helper.setText("Hi " + surveyUser.getUsername() + "!\nYou have registered to our OnlineSurvey application!\nThank you for being awesome!");
+                break;
             case SURVEY_ANSWERED:
                 helper.setSubject("Survey Answered");
                 helper.setText("Thank you for answering a Survey!");
