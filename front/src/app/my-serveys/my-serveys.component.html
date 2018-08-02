@@ -8,18 +8,19 @@
                         <tr>
                             <th scope="col" class="text-center align-middle">#</th>
                             <th scope="col" class="text-center align-middle">Title</th>
-                            <th scope="col" class="text-center align-middle">Creator</th>
                             <th scope="col" class="text-center align-middle">Status</th>
                             <th scope="col" class="text-center align-middle">Date created</th>
                             <th scope="col" class="text-center align-middle">Date closed</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor='let user of (users$ | async); let i = index'>
+                        <tr *ngFor='let survey of (surveys$ | async); let i = index'>
                             <th scope="row" class="text-center align-middle">{{ i + 1 }}</th>
-                            <td class="text-center align-middle"></td>
-                            <td class="text-center align-middle"></td>
-                            <td class="text-center align-middle"></td>
+                            <td class="text-center align-middle">{{survey.}}</td>
+                            <td class="text-center align-middle">{{survey.surveyStatus}}</td>
+                            <td class="text-center align-middle">{{survey.surveyCreatetionDate}}</td>
+                            <td class="text-center align-middle">{{survey.surveyExpiretionDate}}</td>
+                            <td class="text-center align-middle">{{survey.surveyStatus.surveyStatusType}}</td>
 
                             <td class="text-center align-middle">
                                 <button type="button" class="btn btn-danger btn-sm" (click)="onUserDelete(user)" data-toggle="modal" data-target="#deleteUserModal">
@@ -28,15 +29,16 @@
                             </td>
 
                             <td class="text-center align-middle">
-                                
-                                    <button type="button" class="btn btn-primary btn-sm" (click)="onUserBlock(user)" data-toggle="modal" data-target="#blockUserModal"
-                                        [disabled]="user.blocked === true">
-                                        Edit
-                                    </button>
-                                
+                                <button type="button" class="btn btn-primary btn-sm" (click)="onUserBlock(user)" data-toggle="modal" data-target="#blockUserModal"
+                                    [disabled]="user.blocked === true">
+                                    View results
+                                </button>
+                            </td>
+
+                            <td class="text-center align-middle">
                                 <button type="button" class="btn btn-secondary btn-sm" (click)="onUserUnblock(user)" data-toggle="modal" data-target="#unblockUserModal"
                                     [disabled]="user.blocked === false">
-                                    Close
+                                    {{!surveyprivacy}}
                                 </button>
                             </td>
 

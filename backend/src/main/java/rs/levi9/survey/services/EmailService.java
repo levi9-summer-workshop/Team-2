@@ -9,6 +9,7 @@ import rs.levi9.survey.domain.SurveyUser;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import java.net.URL;
 
 @Service
 public class EmailService {
@@ -36,7 +37,7 @@ public class EmailService {
                 break;
             case INVITATION:
                 helper.setSubject("Invitation to a survey");
-                helper.setText("Hi! You are invated to a #surveylink. ");
+                helper.setText("Hi! You have been invited to answer a survey!");
                 break;
 
         }

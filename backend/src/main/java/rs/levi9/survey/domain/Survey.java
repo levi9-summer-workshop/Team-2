@@ -40,23 +40,25 @@ public class Survey extends BaseEntity implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date expirationDate;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "survey_privacy")
-    private SurveyPrivacy surveyPrivacy;
+    private SurveyPrivacy surveyPrivacy = new SurveyPrivacy(SurveyPrivacy.PrivacyType.PUBLIC);
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "survey_status")
-    private SurveyStatus surveyStatus;
-
+    private SurveyStatus surveyStatus = new SurveyStatus(SurveyStatus.StatusType.OPEN);
 
     public Survey() {
     }
 
-    public Survey(String title, List<Question> questions, Date creationDate, Date expirationDate) {
+    public Survey(String title, String description, List<Question> questions, Date creationDate, Date expirationDate, SurveyPrivacy surveyPrivacy, SurveyStatus surveyStatus) {
         this.title = title;
+        this.description = description;
         this.questions = questions;
         this.creationDate = creationDate;
         this.expirationDate = expirationDate;
+        this.surveyPrivacy = surveyPrivacy;
+        this.surveyStatus = surveyStatus;
     }
 
     public String getTitle() {
@@ -65,6 +67,14 @@ public class Survey extends BaseEntity implements Serializable {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public List<Question> getQuestions() {
@@ -99,11 +109,11 @@ public class Survey extends BaseEntity implements Serializable {
         this.surveyPrivacy = surveyPrivacy;
     }
 
-    public String getDescription() {
-        return description;
+    public SurveyStatus getSurveyStatus() {
+        return surveyStatus;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setSurveyStatus(SurveyStatus surveyStatus) {
+        this.surveyStatus = surveyStatus;
     }
 }

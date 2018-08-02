@@ -17,6 +17,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/survey")
+@CrossOrigin(origins = "http://localhost:4200")
 public class SurveyController {
 
     private SurveyServices surveyServices;

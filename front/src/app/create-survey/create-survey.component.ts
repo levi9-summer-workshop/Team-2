@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { Observable } from '../../../node_modules/rxjs';
+import { Observable } from 'rxjs';
 import { SurveyService } from '../survey/survey.service';
-import { Question } from '../survey/question.model';
+import { Question } from '../question/question.model';
 import { CommonModule } from '@angular/common';
 
 @Component({

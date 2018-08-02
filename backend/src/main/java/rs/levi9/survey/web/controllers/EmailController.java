@@ -45,4 +45,16 @@ public class EmailController {
         }
         return new ResponseEntity("Message sent!", HttpStatus.OK);
     }
+
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+    @PostMapping("/email/invitation")
+    public ResponseEntity sendSurveyInvitationEmail(@RequestBody SurveyUser surveyUser) {
+        try {
+            emailService.sendEmail(surveyUser,Email.EmailType.SURVEY_ANSWERED);
+        } catch (MessagingException e) {
+            System.err.println(e.getMessage());
+            return new ResponseEntity(HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity("Message sent!", HttpStatus.OK);
+    }
 }
