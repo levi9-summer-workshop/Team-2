@@ -28,7 +28,7 @@ INSERT INTO survey(creation_date, description, expiration_date, title, survey_pr
 INSERT INTO question(is_required, title, type, survey_id) VALUES (true ,'title', 'singlechoice', '1');
 INSERT INTO question(is_required, title, type, survey_id) VALUES (true ,'title', 'singlechoice', '1');
 
-INSERT INTO choices(text, result, question_id) VALUES ('choice1', '0', '1');
-INSERT INTO choices(text, result, question_id) VALUES ('choice2', '0', '1');
+INSERT INTO choices(text, result, question_id) VALUES ('choice1', '65', '1');
+INSERT INTO choices(text, result, question_id) VALUES ('choice2', '35', '1');
 
 

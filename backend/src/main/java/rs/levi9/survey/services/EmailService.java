@@ -9,7 +9,6 @@ import rs.levi9.survey.domain.SurveyUser;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
-import java.net.URL;
 
 @Service
 public class EmailService {
