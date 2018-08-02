@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../login/auth.service';
 import { Question } from '../question/question.model';
-import { Observable } from '../../../node_modules/rxjs';
 import { Survey } from './survey.model';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class SurveyService {
@@ -39,8 +39,9 @@ export class SurveyService {
     return this.httpClient.get<Survey[]>(this.APIPublicSurveys,  { headers: this.authService.getAuthHeaders() } );
    }
 
-   getUsersSurveys(id: number): Observable<Survey[]> {
-     return this.httpClient.get<Survey[]>(this.APISurvey + 'user/' + id, { headers: this.authService.getAuthHeaders() } )
+   getUsersSurveys(): Observable<Survey[]> {
+    
+     return this.httpClient.get<Survey[]>(this.APISurvey + '/user/id', { headers: this.authService.getAuthHeaders() } )
    }
 
   getSurveys(): Observable<Survey[]> {

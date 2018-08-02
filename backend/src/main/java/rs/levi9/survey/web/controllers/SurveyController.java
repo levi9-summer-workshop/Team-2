@@ -5,10 +5,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import rs.levi9.survey.domain.Survey;
-import rs.levi9.survey.domain.SurveyPrivacy;
-import rs.levi9.survey.domain.SurveyStatus;
+import rs.levi9.survey.domain.*;
 import rs.levi9.survey.services.SurveyServices;
+import rs.levi9.survey.services.SurveyUserService;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -21,10 +20,12 @@ import java.util.List;
 public class SurveyController {
 
     private SurveyServices surveyServices;
+    private SurveyUserService surveyUserService;
 
     @Autowired
-    public SurveyController(SurveyServices surveyServices) {
+    public SurveyController(SurveyServices surveyServices, SurveyUserService surveyUserService) {
         this.surveyServices = surveyServices;
+        this.surveyUserService = surveyUserService;
     }
 
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
@@ -116,11 +117,9 @@ public class SurveyController {
     }
 
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
-    @RequestMapping(path = "/user/{id}")
-    public List<Survey> findAllBySurveyUserId(@PathVariable("id") Long id) {
-        return surveyServices.findAllBySurveyUserId(id);
+    @RequestMapping(path = "/user/id")
+    public List<Survey> findAllBySurveyUser() {
+        SurveyUser surveyUser = surveyUserService.getLoggedInSurveyUser();
+        return surveyServices.findAllBySurveyUserId(surveyUser.getId());
     }
-
-
-
-    }
+}

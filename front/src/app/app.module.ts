@@ -42,13 +42,9 @@ import { AllSurveysComponent } from './all-surveys/all-surveys.component';
     ConfirmEqualValidatorDirective,
     UserListComponent,
     CreateSurveyComponent,
-
     FillSurveyComponent,
     ChooseSurveyComponent,
-
     AllSurveysComponent,
-
-    
   ],
   imports: [
     BrowserModule,

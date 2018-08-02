@@ -15,7 +15,7 @@ export class FillSurveyComponent implements OnInit {
   constructor(private surveyService: SurveyService) { }
 
   ngOnInit() {
-    // this.survey = new Survey();
+    this.survey = new Survey(null, null, null, null, null, null, null, null);
     this.getSurvey(this.surveyService.surveysId);
   }
 

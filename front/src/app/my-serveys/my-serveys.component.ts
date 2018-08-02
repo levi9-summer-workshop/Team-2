@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SurveyService } from '../survey/survey.service';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 import { AuthService } from '../login/auth.service';
 import { Survey } from '../survey/survey.model';
 
@@ -12,19 +12,15 @@ import { Survey } from '../survey/survey.model';
 export class MyServeysComponent implements OnInit {
 
   mySurveys$: Observable<Survey[]>;
-  currentUser: string;
-  selectedSurvey: Survey;
+  selectedSurvey: Survey = new Survey(null, null, null, null, null, null, null, null);
   surveyId: number;
 
   constructor(public surveyService: SurveyService, public authService: AuthService) { }
 
   ngOnInit() {
   
-    this.mySurveys$ = this.surveyService.getUsersSurveys(this.surveyId);
+    this.mySurveys$ = this.surveyService.getUsersSurveys();
     console.log(this.mySurveys$);
-    this.currentUser = this.authService.getUsername();
-    console.log(this.currentUser);
-
   }
 
   ifEmptyArraySurveys() {

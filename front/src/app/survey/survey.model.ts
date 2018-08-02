@@ -13,7 +13,7 @@ export class Survey {
     public surveyStatus: SurveyStatus;
     public surveyExpireDate: Date;
 
-    constructor (surveyTitle:string, surveyDescription: string, surveyUser: User, surveyQuestions: Question[], surveyExpireDate?: Date, surveyPrivacy?: SurveyPrivacy, surveyStatus?: SurveyStatus,  id?: number) {
+    constructor (surveyTitle:string, surveyDescription: string, surveyQuestions: Question[], surveyExpireDate?: Date, surveyPrivacy?: SurveyPrivacy, surveyStatus?: SurveyStatus,  id?: number, surveyUser?: User) {
         this.id = id;
         this.surveyUser = surveyUser;
         this.surveyTitle = surveyTitle;
