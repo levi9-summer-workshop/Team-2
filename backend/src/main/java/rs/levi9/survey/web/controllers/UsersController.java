@@ -59,7 +59,7 @@ public class UsersController {
     }
 
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
-    @RequestMapping(path = "/user")
+    @RequestMapping(path = "/user/email")
     public SurveyUser findByEmail(SurveyUser surveyUser){
         return surveyUserService.findByEmail(surveyUser.getEmail());
     }

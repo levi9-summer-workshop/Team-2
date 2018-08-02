@@ -4,7 +4,7 @@ import {
  HttpHeaders
 } from '@angular/common/http';
 import { Router } from '@angular/router';
-import 'rxjs';
+import 'rxjs/Rx';
 export interface User {
  username: string;
  roles: string[];
@@ -51,7 +51,6 @@ export class AuthService {
      return this.user.roles.includes('ROLE_ADMIN');
    }
  }
-
  
 
  logout() {

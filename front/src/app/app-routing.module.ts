@@ -12,9 +12,9 @@ const appRoutes: Routes = [
   { path: '', redirectTo:'/home', pathMatch: 'full' },
   { path: 'login', component: LoginComponent},
   { path: 'registration', component: RegistrationComponent },
-  { path: 'home', component: HomeComponent },
-  { path: 'myserveys', component: MyServeysComponent},
-  { path: 'create-survey', component: CreateSurveyComponent},
+  { path: 'home', component: HomeComponent},
+  { path: 'myserveys', component: MyServeysComponent, canActivate: [AuthGuard], data: { expectedRole: 'user'} },
+  { path: 'create-survey', component: CreateSurveyComponent, canActivate: [AuthGuard], data: { expectedRole: 'user'} },
   { path: 'users', component: UserListComponent, canActivate: [AuthGuard], data: { expectedRole: 'admin'} }
 ];
 

@@ -22,6 +22,10 @@ public class Survey extends BaseEntity implements Serializable {
     @Column
     private String title;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private SurveyUser surveyUser;
+
     @Column
     @Size(max = 250)
     private String description;

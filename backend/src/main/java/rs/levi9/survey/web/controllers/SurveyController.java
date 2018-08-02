@@ -93,14 +93,24 @@ public class SurveyController {
         }
     }
 
-        @PreAuthorize(("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')"))
-        @RequestMapping(path = "/public/close")
-        public ResponseEntity findAllPublicAndCloseSurveys() {
-            List<Survey> publicCloseSurveys = surveyServices.findAllPublicSurveysBySurveyStatus(SurveyStatus.StatusType.CLOSE);
-            if (publicCloseSurveys == null) {
+
+    @PreAuthorize(("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')"))
+    @RequestMapping(path = "/public/close")
+    public ResponseEntity findAllPublicAndCloseSurveys() {
+        List<Survey> publicCloseSurveys = surveyServices.findAllPublicSurveysBySurveyStatus(SurveyStatus.StatusType.CLOSE);
+        if (publicCloseSurveys == null) {
                 return new ResponseEntity(HttpStatus.NO_CONTENT);
-            } else {
+        } else {
                 return new ResponseEntity(publicCloseSurveys, HttpStatus.OK);
-            }
         }
+    }
+
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+    @RequestMapping(path = "/user/{id}")
+    public List<Survey> findAllBySurveyUserId(@PathVariable("id") Long id) {
+        return surveyServices.findAllBySurveyUserId(id);
+    }
+
+
+
     }

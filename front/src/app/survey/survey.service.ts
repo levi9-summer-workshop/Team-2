@@ -12,8 +12,10 @@ export class SurveyService {
   APISurvey = 'http://localhost:8080/survey'
   APIPublicSurveys = this.APISurvey + '/public'
 
-  constructor(private httpClient: HttpClient, private authService: AuthService) {
+  
 
+  constructor(private httpClient: HttpClient, private authService: AuthService) {
+     
    }
 
    getQuestions(): Observable<Question[]> {
@@ -28,7 +30,10 @@ export class SurveyService {
     return this.httpClient.get<Survey[]>(this.APIPublicSurveys,  { headers: this.authService.getAuthHeaders() } );
    }
 
-
+   getUsersSurveys(id: number): Observable<Survey[]> {
+     debugger
+     return this.httpClient.get<Survey[]>(this.APISurvey + 'user/' + id, { headers: this.authService.getAuthHeaders() } )
+   }
 
 
 }

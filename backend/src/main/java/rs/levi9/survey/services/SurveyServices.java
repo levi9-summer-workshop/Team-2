@@ -64,4 +64,8 @@ public class SurveyServices {
       return surveyRepository.findAllBySurveyStatusAndSurveyPrivacy(statusType, SurveyPrivacy.PrivacyType.PUBLIC);
     }
 
+    public List<Survey> findAllBySurveyUserId(Long id) {
+        return surveyRepository.findAllBySurveyUserId(id);
+    }
+
 }

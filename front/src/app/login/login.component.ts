@@ -10,8 +10,7 @@ import { Router } from '@angular/router';
  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
- //Property error
+//property error
  error: Error;
 
  constructor(private authService: AuthService, private router: Router) { }
@@ -29,7 +28,6 @@ export class LoginComponent implements OnInit {
            this.router.navigate(['/home']);
          } else {
            this.router.navigate(['/registration']);
-           console.log("User is blocked");
          }
        },
        (error) => {

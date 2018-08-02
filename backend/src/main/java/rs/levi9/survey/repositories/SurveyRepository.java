@@ -14,6 +14,7 @@ import java.util.List;
 @Repository
 public interface SurveyRepository extends JpaRepository<Survey, Long> {
 
+    List<Survey> findAllBySurveyUserId(Long id);
     List<Survey> findAllByCreationDate (Date creationDate);
     List<Survey> findAllSurveysBySurveyPrivacy (SurveyPrivacy.PrivacyType privacyType);
     List<Survey> findAllByTitleIsContaining (String title);
