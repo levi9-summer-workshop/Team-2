@@ -11,27 +11,29 @@
                             <th scope="col" class="text-center align-middle">Status</th>
                             <th scope="col" class="text-center align-middle">Privacy</th>
                             <th scope="col" class="text-center align-middle">Date closed</th>
-                            <th scope="col" class="text-center align-middle">Options</th>
+                            <th scope="col" class="text-center align-middle">Delete</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor='let survey of (mySurveys$ | async); let i = index'>
                             <th scope="row" class="text-center align-middle">{{ i + 1 }}</th>
-                            <td class="text-center align-middle">{{survey.title}}</td>
-                            <td class="text-center align-middle">{{survey.surveyStatus.statusType }}</td>
-                            <td class="text-center align-middle">{{survey.surveyPrivacy.privacyType }}</td>
-                            <td class="text-center align-middle">{{survey.expirationDate}}</td>
+                            <td class="text-center align-middle">{{ survey.title }}</td>
+                            <td class="text-center align-middle">{{ survey.surveyStatus.statusType }}</td>
+                            <td class="text-center align-middle">{{ survey.surveyPrivacy.privacyType }}</td>
+                            <td class="text-center align-middle">{{ survey.expirationDate }}</td>
 
                             <td class="text-center align-middle">
-                               
+                                <button type="button" class="btn btn-danger btn-sm" (click)="onSurveyDelete(survey)">
+                                    Delete
+                                </button>
                             </td>
 
                             <td class="text-center align-middle">
-                              
+
                             </td>
 
                             <td class="text-center align-middle">
-                              
+
                             </td>
 
                         </tr>
@@ -42,19 +44,19 @@
     </div>
 </div>
 
-<!-- Delete Modal
-<div class="modal fade" id="deleteUserModal" tabindex="-1" role="dialog" aria-labelledby="deleteUserModalLabel" aria-hidden="true">
+<!-- Delete Modal -->
+<!-- <div class="modal fade" id="deleteSurveyModal" tabindex="-1" role="dialog" aria-labelledby="deleteSurveyModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="deleteUserModalLabel">Delete User</h5>
+                <h5 class="modal-title" id="deleteSurveyModalLabel">Delete Survey</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
                 <p>Do you want to delete
-                    <i>{{selectedUser?.username}}</i>?</p>
+                    <i>{{selectedSurvey?.surveyTitle}}</i>?</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

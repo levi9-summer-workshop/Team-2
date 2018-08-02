@@ -20,9 +20,9 @@ INSERT INTO survey_privacy(privacy_type) VALUES ('PRIVATE');
 INSERT INTO survey_status(status_type) VALUES ('CLOSE');
 INSERT INTO survey_status(status_type) VALUES ('OPEN');
 
-INSERT INTO survey(creation_date, description, expiration_date, title, survey_privacy, survey_status, user_id) VALUES ('2018-08-08', 'description', '2018-08-09', 'title', '1', '2', '2');
-INSERT INTO survey(creation_date, description, expiration_date, title, survey_privacy, survey_status, user_id) VALUES ('2018-08-08', 'description', '2018-08-09', 'title', '1', '2', '2');
-INSERT INTO survey(creation_date, description, expiration_date, title, survey_privacy, survey_status, user_id) VALUES ('2018-08-08', 'description', '2018-08-09', 'title', '1', '2', '2');
+INSERT INTO survey(creation_date, description, expiration_date, title, survey_privacy, survey_status, user_id) VALUES ('2018-08-08', 'description', '2018-08-09', 'title', '1', '1', '2');
+INSERT INTO survey(creation_date, description, expiration_date, title, survey_privacy, survey_status, user_id) VALUES ('2018-08-08', 'description', '2018-08-09', 'title', '1', '1', '2');
+INSERT INTO survey(creation_date, description, expiration_date, title, survey_privacy, survey_status, user_id) VALUES ('2018-08-08', 'description', '2018-08-09', 'title', '1', '1', '2');
 
 
 INSERT INTO question(is_required, title, type, survey_id) VALUES (true ,'title', 'singlechoice', '1');

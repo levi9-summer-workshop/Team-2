@@ -14,6 +14,7 @@ export class MyServeysComponent implements OnInit {
   mySurveys$: Observable<Survey[]>;
   selectedSurvey: Survey = new Survey(null, null, null, null, null, null, null, null);
   surveyId: number;
+  survey:Survey;
 
   constructor(public surveyService: SurveyService, public authService: AuthService) { }
 
@@ -30,6 +31,17 @@ export class MyServeysComponent implements OnInit {
     else {
       return false;
     }
+  }
+
+  onSurveyDelete(survey:Survey){
+    this.selectedSurvey = survey;
+    this.surveyService.deleteSurvey(this.selectedSurvey.id)
+    .subscribe(
+      () => {
+        this.mySurveys$ = this.mySurveys$ = this.surveyService.getUsersSurveys();
+        this.selectedSurvey = new Survey(null, null, null, null, null, null, null, null);
+      }
+    )
   }
 
 

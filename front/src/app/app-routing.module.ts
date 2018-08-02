@@ -19,7 +19,7 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'registration', component: RegistrationComponent },
   { path: 'home', component: HomeComponent },
-  { path: 'myserveys', component: MyServeysComponent},
+  { path: 'myserveys', component: MyServeysComponent, canActivate:[AuthGuard], data: {expectedRole: 'user'}},
   { path: 'create-survey', component: CreateSurveyComponent},
   { path: 'choose-survey', component: ChooseSurveyComponent, canActivate:[AuthGuard], data: {expectedRole: 'user'}},
   { path: 'fill-survey', component: FillSurveyComponent },

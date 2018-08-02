@@ -51,4 +51,8 @@ export class SurveyService {
   getSurvey(surveyId: number): Observable<any> {
      return this.httpClient.get(this.APISurvey + '/' + (surveyId), { headers: this.authService.getAuthHeaders() });
   }
+
+  deleteSurvey(surveyId: number){
+    return this.httpClient.delete(this.APISurvey + '/' + (surveyId), { headers: this.authService.getAuthHeaders() });
+  }
 }

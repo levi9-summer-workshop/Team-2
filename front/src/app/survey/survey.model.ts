@@ -2,6 +2,7 @@ import { SurveyStatus } from "./survey-status";
 import { SurveyPrivacy } from "./survey-privacy";
 import { Question } from "../question/question.model";
 import { User } from "../users/user.model";
+import { constructDependencies } from "../../../node_modules/@angular/core/src/di/reflective_provider";
 
 export class Survey {
     public id: number;
@@ -22,5 +23,6 @@ export class Survey {
         this.surveyPrivacy = surveyPrivacy;
         this.surveyStatus = surveyStatus;
         this.surveyExpireDate = surveyExpireDate;
+
     }
 }
