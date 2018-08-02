@@ -1,6 +1,7 @@
 .my-container{
     background-color: #ECFAF7;
     height: auto;
+    min-height: 1100px;
  }
 
  .headline{

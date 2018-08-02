@@ -24,7 +24,7 @@ const appRoutes: Routes = [
 
   { path: 'choose-survey', component: ChooseSurveyComponent, canActivate:[AuthGuard], data: {expectedRole: 'user'}},
   { path: 'fill-survey', component: FillSurveyComponent },
-  { path: 'users', component: UserListComponent, canActivate: [AuthGuard], data: { expectedRole: 'admin'} }
+  { path: 'users', component: UserListComponent, canActivate: [AuthGuard], data: { expectedRole: 'admin'} },
 
   { path: 'users', component: UserListComponent, canActivate: [AuthGuard], data: { expectedRole: 'admin'} },
   { path: 'public', component: AllSurveysComponent}
