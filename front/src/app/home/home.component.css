@@ -1,5 +1,6 @@
 .my-container{
     background-color: #ECFAF7;
+    height: auto;
  }
 
 .headline{
@@ -34,4 +35,8 @@ h4 {
 a{
     text-decoration: none;
     color: #f5f6fa;
+}
+
+#blue-color {
+    background-color: #1D262D;
 }
