@@ -1,17 +1,26 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from '../login/auth.service';
-import { Survey } from './survey.model';
-import { Observable } from 'rxjs';
 import { Question } from '../question/question.model';
+import { Observable } from '../../../node_modules/rxjs';
+import { Survey } from './survey.model';
 
 @Injectable()
 export class SurveyService {
 
-  APIQuestion = 'http://localhost:8080/question';
-  APISurvey = 'http://localhost:8080/survey'
-  APIPublicSurveys = this.APISurvey + '/public'
+  id: number;
 
+  set surveysId(value: number) {
+     this.id = value;
+  }
+
+  get surveysId(): number {
+    return this.id;
+  }
+
+  APISurvey = 'http://localhost:8080/survey';
+  APIQuestion = 'http://localhost:8080/question';
+  APIPublicSurveys = this.APISurvey + '/public';
   
 
   constructor(private httpClient: HttpClient, private authService: AuthService) {
@@ -31,9 +40,14 @@ export class SurveyService {
    }
 
    getUsersSurveys(id: number): Observable<Survey[]> {
-     debugger
      return this.httpClient.get<Survey[]>(this.APISurvey + 'user/' + id, { headers: this.authService.getAuthHeaders() } )
    }
 
+  getSurveys(): Observable<Survey[]> {
+    return this.httpClient.get<Survey[]>(this.APISurvey, { headers: this.authService.getAuthHeaders() })
+  }
 
+  getSurvey(surveyId: number): Observable<any> {
+     return this.httpClient.get(this.APISurvey + '/' + (surveyId), { headers: this.authService.getAuthHeaders() });
+  }
 }
