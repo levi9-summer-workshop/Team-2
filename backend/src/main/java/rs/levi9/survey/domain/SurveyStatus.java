@@ -9,7 +9,7 @@ import javax.persistence.Enumerated;
 import java.io.Serializable;
 
 @Entity
-@JsonIgnoreProperties
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class SurveyStatus extends BaseEntity implements Serializable {
 
     @Enumerated(EnumType.STRING)

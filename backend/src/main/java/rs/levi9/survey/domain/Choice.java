@@ -7,7 +7,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "choices")
-public class Choice extends BaseEntity implements Serializable {
+public class Choice extends BaseEntity {
 
     @Column(nullable = false)
     private String text;
