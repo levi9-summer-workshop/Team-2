@@ -1,6 +1,7 @@
 package rs.levi9.survey.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -97,6 +98,17 @@ public class SurveyUserService implements UserDetailsService {
         }
 
         return false;
+    }
+
+    public SurveyUser getLoggedInSurveyUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+        SurveyUser surveyUser = findByUsername(currentPrincipalName);
+        if(surveyUser != null){
+            return surveyUser;
+        }else{
+            return null;
+        }
     }
 
     public SurveyUser findByEmail (String email){

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 import rs.levi9.survey.domain.Survey;
 import rs.levi9.survey.domain.SurveyPrivacy;
+import rs.levi9.survey.domain.SurveyStatus;
 import rs.levi9.survey.repositories.SurveyRepository;
 
 import javax.transaction.Transactional;
@@ -49,4 +50,18 @@ public class SurveyServices {
     public List<Survey> findAllPrivateSurveys() {
         return surveyRepository.findAllSurveysBySurveyPrivacy(SurveyPrivacy.PrivacyType.PRIVATE);
     }
+
+    public void setSurveyPrivacy(Long id, SurveyPrivacy.PrivacyType privacyType) {
+        Survey survey = findOne(id);
+        SurveyPrivacy surveyPrivacy = new SurveyPrivacy(privacyType);
+    }
+
+    public List<Survey> findAllByTitleIsContaining (String title) {
+        return surveyRepository.findAllByTitleIsContaining(title);
+    }
+
+    public List<Survey> findAllPublicSurveysBySurveyStatus (SurveyStatus.StatusType statusType){
+      return surveyRepository.findAllBySurveyStatusAndSurveyPrivacy(statusType, SurveyPrivacy.PrivacyType.PUBLIC);
+    }
+
 }
