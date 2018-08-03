@@ -9,7 +9,6 @@ import { AuthGuard } from './auth-guard.service';
 import { CreateSurveyComponent } from './create-survey/create-survey.component';
 
 import { FillSurveyComponent } from './fill-survey/fill-survey.component';
-import { ChooseSurveyComponent } from './choose-survey/choose-survey.component';
 
 import { AllSurveysComponent } from './all-surveys/all-surveys.component';
 import { ResultsComponent } from './results/results.component';
@@ -22,7 +21,6 @@ const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'myserveys', component: MyServeysComponent, canActivate:[AuthGuard], data: {expectedRole: 'user'}},
   { path: 'create-survey', component: CreateSurveyComponent, canActivate:[AuthGuard], data: {expectedRole: 'user'}},
-  { path: 'choose-survey', component: ChooseSurveyComponent, canActivate:[AuthGuard], data: {expectedRole: 'user'}},
   { path: 'fill-survey', component: FillSurveyComponent, canActivate:[AuthGuard], data: {expectedRole: 'user'}},
   { path: 'users', component: UserListComponent, canActivate: [AuthGuard], data: { expectedRole: 'admin'} },
   { path: 'users', component: UserListComponent, canActivate: [AuthGuard], data: { expectedRole: 'admin'} },

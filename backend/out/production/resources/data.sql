@@ -1,7 +1,5 @@
 INSERT INTO role(type) VALUES ('ROLE_ADMIN');
 INSERT INTO role(type) VALUES ('ROLE_USER');
-
-
 -- Check if admin already exists if not create new and limit to one
 INSERT INTO user (blocked, email, password, username)
 SELECT * FROM (SELECT false, 'admin@example.com', 'admin123', 'admin') AS tmp
@@ -30,3 +28,4 @@ INSERT INTO question(is_required, title, type, survey_id) VALUES (true ,'title',
 
 INSERT INTO choices(text, result, question_id) VALUES ('choice1', '65', '1');
 INSERT INTO choices(text, result, question_id) VALUES ('choice2', '35', '1');
+

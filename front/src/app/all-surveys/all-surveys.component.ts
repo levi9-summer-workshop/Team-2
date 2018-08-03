@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from '../../../node_modules/rxjs';
+import { Survey } from '../survey/survey.model';
+import { SurveyService } from '../survey/survey.service';
 
 @Component({
   selector: 'app-all-surveys',
@@ -7,9 +10,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AllSurveysComponent implements OnInit {
 
-  constructor() { }
+  surveyId: number;
+  surveys$: Observable<Survey[]>
 
-  ngOnInit() {
+  constructor(private surveyService: SurveyService) { 
+    
   }
 
+  ngOnInit() {
+    this.surveys$ = this.surveyService.getSurveys();
+  }
+
+  onSurveyChoose(value: number) {
+    this.surveyService.id = value;
+  }
 }
