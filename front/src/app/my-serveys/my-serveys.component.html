@@ -13,6 +13,7 @@
                             <th scope="col" class="text-center align-middle">Date expires</th>
                             <th scope="col" class="text-center align-middle">View results</th>
                             <th scope="col" class="text-center align-middle">Delete</th>
+                            <th scope="col" class="text-center align-middle">Privacy</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -21,7 +22,7 @@
                             <td class="text-center align-middle">{{ survey.title }}</td>
                             <td class="text-center align-middle">{{ survey.surveyStatus.statusType }}</td>
                             <td class="text-center align-middle">{{ survey.surveyPrivacy.privacyType }}</td>
-                            <td class="text-center align-middle">{{ survey.expirationDate }}</td>
+                            <td class="text-center align-middle">{{ survey.expirationDate | date }}</td>
 
                             <td class="text-center align-middle">
                                 <button type="submit" class="btn btn-primary btn-sm" (click)="onSurveyChoose(i+1)" routerLink="/results">View results</button>
@@ -29,6 +30,14 @@
                             <td class="text-center align-middle">
                                 <button type="button" class="btn btn-danger btn-sm" (click)="onSurveyDelete(survey)">
                                     Delete
+                                </button>
+                            </td>
+                            <td class="text-center align-middle">
+                                <button type="button" class="btn btn-primary btn-sm" id="btn-public" [disabled]="!checkPrivacy(survey)" (click)="onSurveyBtnPublic(survey)">
+                                    Public
+                                </button>
+                                <button type="button" class="btn btn-primary btn-sm" id="btn-private" [disabled]="checkPrivacy(survey)" (click)="onSurveyBtnPrivate(survey)">
+                                    Private
                                 </button>
                             </td>
                       

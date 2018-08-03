@@ -2,14 +2,12 @@ package rs.levi9.survey.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 import rs.levi9.survey.domain.Survey;
 import rs.levi9.survey.domain.SurveyPrivacy;
 import rs.levi9.survey.domain.SurveyStatus;
 import rs.levi9.survey.repositories.SurveyRepository;
 
 import javax.transaction.Transactional;
-import java.util.Date;
 import java.util.List;
 
 @Transactional
@@ -23,7 +21,7 @@ public class SurveyServices {
         this.surveyRepository = surveyRepository;
     }
 
-    public Survey save(@RequestBody Survey survey) {
+    public Survey save( Survey survey) {
         return surveyRepository.save(survey);
     }
 
@@ -39,25 +37,8 @@ public class SurveyServices {
         surveyRepository.delete(id);
     }
 
-    public List<Survey> findAllByCreationDate (Date date){
-        return surveyRepository.findAllByCreationDate(date);
-    }
-
     public List<Survey> findAllPublicSurveys() {
         return surveyRepository.findAllSurveysBySurveyPrivacy(SurveyPrivacy.PrivacyType.PUBLIC);
-    }
-
-    public List<Survey> findAllPrivateSurveys() {
-        return surveyRepository.findAllSurveysBySurveyPrivacy(SurveyPrivacy.PrivacyType.PRIVATE);
-    }
-
-    public void setSurveyPrivacy(Long id, SurveyPrivacy.PrivacyType privacyType) {
-        Survey survey = findOne(id);
-        SurveyPrivacy surveyPrivacy = new SurveyPrivacy(privacyType);
-    }
-
-    public List<Survey> findAllByTitleIsContaining (String title) {
-        return surveyRepository.findAllByTitleIsContaining(title);
     }
 
     public List<Survey> findAllPublicSurveysBySurveyStatus (SurveyStatus.StatusType statusType){
@@ -67,5 +48,13 @@ public class SurveyServices {
     public List<Survey> findAllBySurveyUserId(Long id) {
         return surveyRepository.findAllBySurveyUserId(id);
     }
+
+    public void setPrivacy (Survey survey, Long id, SurveyPrivacy.PrivacyType privacyType) {
+        SurveyPrivacy surveyPrivacy = survey.getSurveyPrivacy();
+        surveyPrivacy.setId(id);
+        surveyPrivacy.setPrivacyType(privacyType);
+        survey.setSurveyPrivacy(surveyPrivacy);
+    }
+
 
 }

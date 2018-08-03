@@ -3,6 +3,8 @@ package rs.levi9.survey.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -22,7 +24,7 @@ public class Survey extends BaseEntity implements Serializable {
     @Column
     private String title;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(optional = false, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private SurveyUser surveyUser;
 
@@ -52,18 +54,8 @@ public class Survey extends BaseEntity implements Serializable {
     @JoinColumn(name = "survey_status")
     private SurveyStatus surveyStatus = new SurveyStatus(SurveyStatus.StatusType.OPEN);
 
-    public Survey() {
-    }
+    public Survey(){}
 
-    public Survey(String title, String description, List<Question> questions, Date creationDate, Date expirationDate, SurveyPrivacy surveyPrivacy, SurveyStatus surveyStatus) {
-        this.title = title;
-        this.description = description;
-        this.questions = questions;
-        this.creationDate = creationDate;
-        this.expirationDate = expirationDate;
-        this.surveyPrivacy = surveyPrivacy;
-        this.surveyStatus = surveyStatus;
-    }
 
     public String getTitle() {
         return title;
@@ -71,6 +63,14 @@ public class Survey extends BaseEntity implements Serializable {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public SurveyUser getSurveyUser() {
+        return surveyUser;
+    }
+
+    public void setSurveyUser(SurveyUser surveyUser) {
+        this.surveyUser = surveyUser;
     }
 
     public String getDescription() {

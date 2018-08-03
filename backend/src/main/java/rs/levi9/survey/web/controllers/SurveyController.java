@@ -5,12 +5,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import rs.levi9.survey.domain.*;
+import rs.levi9.survey.domain.Survey;
+import rs.levi9.survey.domain.SurveyPrivacy;
+import rs.levi9.survey.domain.SurveyStatus;
+import rs.levi9.survey.domain.SurveyUser;
 import rs.levi9.survey.services.SurveyServices;
 import rs.levi9.survey.services.SurveyUserService;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -73,22 +74,24 @@ public class SurveyController {
 
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @PostMapping(path = "/set-public")
-    public ResponseEntity setSurveyPublic(Survey survey) {
-        try {
-            surveyServices.setSurveyPrivacy(survey.getId(), SurveyPrivacy.PrivacyType.PUBLIC);
+    public ResponseEntity setSurveyPublic(@RequestBody Survey survey) {
+        if(survey != null){
+            surveyServices.setPrivacy(survey, 1l, SurveyPrivacy.PrivacyType.PUBLIC);
+            surveyServices.save(survey);
             return new ResponseEntity(HttpStatus.OK);
-        }catch (NullPointerException e){
+        }else {
             return new ResponseEntity(HttpStatus.NO_CONTENT);
         }
     }
 
     @PreAuthorize("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
     @PostMapping(path = "/set-private")
-    public ResponseEntity setSurveyPrivate(Survey survey) {
-        try {
-            surveyServices.setSurveyPrivacy(survey.getId(), SurveyPrivacy.PrivacyType.PRIVATE);
+    public ResponseEntity setSurveyPrivate(@RequestBody Survey survey) {
+        if(survey != null){
+            surveyServices.setPrivacy(survey, 2l, SurveyPrivacy.PrivacyType.PRIVATE);
+            surveyServices.save(survey);
             return new ResponseEntity(HttpStatus.OK);
-        } catch (NullPointerException e) {
+        }else {
             return new ResponseEntity(HttpStatus.NO_CONTENT);
         }
     }
@@ -122,4 +125,5 @@ public class SurveyController {
         SurveyUser surveyUser = surveyUserService.getLoggedInSurveyUser();
         return surveyServices.findAllBySurveyUserId(surveyUser.getId());
     }
+
 }

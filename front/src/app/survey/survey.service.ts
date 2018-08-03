@@ -4,6 +4,7 @@ import { AuthService } from '../login/auth.service';
 import { Question } from '../question/question.model';
 import { Survey } from './survey.model';
 import { Observable } from 'rxjs/Observable';
+import { TagContentType } from '../../../node_modules/@angular/compiler';
 
 @Injectable()
 export class SurveyService {
@@ -21,6 +22,8 @@ export class SurveyService {
   APISurvey = 'http://localhost:8080/survey';
   APIQuestion = 'http://localhost:8080/question';
   APIPublicSurveys = this.APISurvey + '/public';
+  APISetPrivate = this.APISurvey + '/set-private';
+  APISetPublic = this.APISurvey + '/set-public';
   
 
   constructor(private httpClient: HttpClient, private authService: AuthService) {
@@ -39,8 +42,7 @@ export class SurveyService {
     return this.httpClient.get<Survey[]>(this.APIPublicSurveys,  { headers: this.authService.getAuthHeaders() } );
    }
 
-   getUsersSurveys(): Observable<Survey[]> {
-    
+   getUsersSurveys(): Observable<Survey[]> { 
      return this.httpClient.get<Survey[]>(this.APISurvey + '/user/id', { headers: this.authService.getAuthHeaders() } )
    }
 
@@ -53,6 +55,14 @@ export class SurveyService {
   }
 
   deleteSurvey(surveyId: number){
-    return this.httpClient.delete(this.APISurvey + '/' + (surveyId), { headers: this.authService.getAuthHeaders() });
+    return this.httpClient.delete(this.APISurvey + '/' + (surveyId), { headers: this.authService.getAuthHeaders()});
+  }
+
+  setSurveyPublic(survey:Survey): Observable<any> {
+    return this.httpClient.post(this.APISetPublic, survey, { headers: this.authService.getAuthHeaders()});
+  }
+
+  setSurveyPrivate(survey:Survey){
+    return this.httpClient.post(this.APISetPrivate, survey, { headers: this.authService.getAuthHeaders()};
   }
 }
