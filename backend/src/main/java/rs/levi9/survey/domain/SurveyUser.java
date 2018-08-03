@@ -1,7 +1,5 @@
 package rs.levi9.survey.domain;
 
-
-import org.hibernate.annotations.Cascade;
 import org.hibernate.validator.constraints.Length;
 import javax.persistence.*;
 import java.io.Serializable;
@@ -13,17 +11,17 @@ import java.util.Set;
 public class SurveyUser extends BaseEntity implements Serializable {
 
     @Length(min = 5)
-    @Column(nullable = false)
+    @Column
     private String username;
 
-    @Column(nullable = false)
+    @Column
     private String email;
 
     @Length(min = 5)
-    @Column(nullable = false)
+    @Column
     private String password;
 
-    @Column(nullable = false)
+    @Column
     private Boolean blocked = false;
 
     @OneToMany(mappedBy = "user_id", fetch = FetchType.EAGER, cascade = CascadeType.ALL)

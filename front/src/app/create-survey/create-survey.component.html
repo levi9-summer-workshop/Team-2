@@ -1,7 +1,6 @@
 <div class="headline text-center">
   <h1>Creating survey</h1>
 </div>
-
 <div class="container text-center shadow p-3 mb-5 rounded">
   <br>
   <div class="row">
@@ -10,96 +9,104 @@
         <div class="input-group-prepend">
           <span class="input-group-text" id="nameSurvey">Name your survey</span>
         </div>
-        <input type="text" class="form-control" placeholder="Title" aria-label="title" aria-describedby="nameSurvey">
+        <input for="title" type="text" class="form-control" placeholder="Title" aria-label="title" aria-describedby="nameSurvey" [(ngModel)]="title">
       </div>
     </div>
     <div class="col-lg-12 text-center">
-        <div class="input-group mb-3">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="datepick">Expires</span>
-          </div>
-          <input type="date" class="form-control"  aria-label="datepick" aria-describedby="datepick">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="datepick">Expires</span>
         </div>
-        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#addQuestionModal" (click)="resetData()">Add question</button>
+        <input type="date" class="form-control" aria-label="datepick" aria-describedby="datepick">
       </div>
-      <br>
+      <button type="button" class="btn btn-info" data-toggle="modal" data-target="#addQuestionModal" (click)="resetData()">Add question</button>
     </div>
-    
+    <br>
+  </div>
   <hr>
-<div class="saveFooter">
-<button type="button" class="btn btn-success">Save this survey</button>
+  <div class="saveFooter">
+    <button type="button" class="btn btn-success" (click)="onSurveySubmit(title)">Save this survey</button>
+  </div>
 </div>
-</div>
+
 
 
 
 <!--Add Question modal-->
 <div class="modal fade bd-example-modal-lg" id="addQuestionModal" tabindex="-1" role="dialog" aria-labelledby="addQuestionModalLabel"
-aria-hidden="true">
-<div class="modal-dialog modal-lg" role="document">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h5 class="modal-title" id="addQuestionModalLabel">Add question</h5>
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <form>
-    <div class="modal-body">
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <label class="input-group-text" for="inputGroupSelect01">Type of question</label>
-        </div>
-        <select class="custom-select" id="inputGroupSelect01" (change)="checkTypeOfQuestion()">
-          <option selected="selected" value="0">Choose...</option>
-          <option value="single">Single choice</option>
-          <option value="multiple">Multiple choice</option>
-        </select>
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addQuestionModalLabel">Add question</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-    </div>
+      <form>
+        <div class="modal-body">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="inputGroupSelect01">Type of question</label>
+            </div>
+            <select class="custom-select" id="inputGroupSelect01" (change)="checkTypeOfQuestion()">
+              <option selected="selected" value="0">Choose...</option>
+              <option value="single">Single choice</option>
+              <option value="multiple">Multiple choice</option>
+            </select>
+          </div>
+        </div>
 
-    <ng-container *ngIf="multipleAlowed">
-      <div class="questiontext">
-      <input type="text" class="form-control" placeholder="Question text" name="title" [(ngModel)]="selectedMultiple" required>
-      </div>
-      <ng-container *ngFor="let i of multipleAnswers; let index = i" (deleteEvent)="deleteEventHandler($event)">
-        <div class="choices">
-          <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Choice" aria-label="Choice" aria-describedby="basic-addon2">
-            <div class="input-group-append">
-              <button class="btn btn-danger" type="button" (click)="deleteChoice()">Delete</button>
-            </div>
+        <ng-container *ngIf="multipleAlowed">
+          <div class="questiontext">
+            <input type="text" class="form-control" placeholder="Question text" name="title" [(ngModel)]="selectedMultiple" required>
           </div>
-        </div>
-      </ng-container>
-      <button type="submit" class="btn btn-primary" (click)="addQuestion(selectedMultiple)">Add</button>
-    </ng-container>
-    <ng-container *ngIf="singleAllowed">
-      <div class="questiontext">
-      <input type="text" class="form-control" placeholder="Question text" name="title" [(ngModel)]="selectedSingle" required>
-      </div>
-      <ng-container *ngFor="let i of multipleAnswers; let index = i" (deleteEvent)="deleteEventHandler($event)">
-        <div class="choices">
-          <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Choice" aria-label="Choice" aria-describedby="basic-addon2">
-            <div class="input-group-append">
-              <button class="btn btn-danger" type="button" (click)="deleteChoice()">Delete</button>
+          <ng-container *ngFor="let i of multipleAnswers; let index = i" (deleteEvent)="deleteEventHandler($event)">
+            <div class="choices">
+              <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Choice text" name="choice" [(ngModel)]="selectedChoice" required>
+                <div class="input-group-append">
+                  <button class="btn btn-danger" type="button" (click)="deleteChoice()">Delete</button>
+                </div>
+              </div>
             </div>
+          </ng-container>
+          <button type="submit" class="btn btn-primary" (click)="addQuestion(selectedMultiple, 'checkbox')">AddQuestion</button>
+          <button type="submit" class="btn btn-primary" (click)="addChoices(selectedChoice)">Add choice</button>
+        </ng-container>
+        <ng-container *ngIf="singleAllowed">
+          <div class="questiontext">
+            <input type="text" class="form-control" placeholder="Question text" name="title" [(ngModel)]="selectedSingle" required>
           </div>
+          <ng-container *ngFor="let i of multipleAnswers; let index = i" (deleteEvent)="deleteEventHandler($event)">
+            <div class="choices">
+              <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Choice text" name="choice" [(ngModel)]="selectedChoice" required>
+                <div class="input-group-append">
+                  <button class="btn btn-danger" type="button" (click)="deleteChoice()">Delete</button>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+          <button type="submit" class="btn btn-primary" (click)="addQuestion(selectedSingle, 'radio')">Add question</button>
+          <button type="submit" class="btn btn-primary" (click)="addChoices(selectedChoice)">Add choice</button>
+        </ng-container>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-hidden="true" (click)="resetData()" #c>Close</button>
         </div>
-      </ng-container>
-      <button type="submit" class="btn btn-primary" (click)="addQuestion(selectedSingle)">Add</button>
-    </ng-container>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-hidden="true" (click)="resetData()" #c>Close</button>
+      </form>
     </div>
-  </form>
   </div>
 </div>
-</div>
 
-<div>
-  <label *ngFor='let title of question; let index = i'>
-    {{ title }}
-  </label>
+<div style="text-align: center;">
+  <ul *ngFor='let title of question; let index = i'>
+    {{ title.questionTitle }}
+    <br>
+    <ng-container *ngFor='let choices of title.choices; let i = index'>
+      <input type="{{ title.questionType }}" name="choice"> {{ choices.text }}
+      <br>
+    </ng-container>
+  </ul>
+  <br>
 </div>

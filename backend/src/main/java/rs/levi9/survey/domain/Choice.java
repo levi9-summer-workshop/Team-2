@@ -9,7 +9,7 @@ import java.io.Serializable;
 @Table(name = "choices")
 public class Choice extends BaseEntity {
 
-    @Column(nullable = false)
+    @Column
     private String text;
 
     private Long result = 0L;

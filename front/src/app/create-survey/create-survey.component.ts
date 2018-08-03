@@ -3,6 +3,10 @@ import { Observable } from 'rxjs';
 import { SurveyService } from '../survey/survey.service';
 import { Question } from '../question/question.model';
 import { CommonModule } from '@angular/common';
+import { Choice } from '../Choice/choice.model';
+import { Survey } from '../survey/survey.model';
+import { NgForm } from '../../../node_modules/@angular/forms';
+import { HttpErrorResponse } from '../../../node_modules/@angular/common/http';
 
 @Component({
   selector: 'app-create-survey',
@@ -11,22 +15,27 @@ import { CommonModule } from '@angular/common';
 })
 export class CreateSurveyComponent implements OnInit {
 
-  questions$: Observable<Question[]>
+  survey: Survey;
+  survey$: Observable<Survey[]>;
+  questions$: Observable<Question[]>;
   question: Question[] = [];
+  choice: Choice[] = [];
   public multipleAnswers = [];
   public multipleAlowed : boolean;
   public singleAllowed: boolean;
   public textAllowed: boolean;
   public addChoice: boolean;
   public i = 0;
-  public counter = 0;
+  public questionCounter = 0;
+  public choiceCounter = 0;
+  error: { title: string };
 
   constructor(private surveyService: SurveyService) { }
 
   ngOnInit() {
 
     this.multipleAnswers= [];
-    while(this.i < 2) {
+    while(this.i < 1) {
       this.multipleAnswers[this.i] = "item " + this.i;
 
       this.i++;
@@ -86,9 +95,49 @@ deleteChoice() {
     var buttonSingle = document.getElementById("addSingle") as HTMLButtonElement;
   }
 
-  addQuestion(value: any) {
-    this.question[this.counter] = value;
-    console.log(this.question[this.counter]);
-    this.counter++;
+  addQuestion(value: any, questionType: any) {
+    this.question.push(new Question(null, value, null, questionType, []));
   }
+
+  addChoices(value: any) {
+    this.question.length
+    this.question[this.question.length - 1].choices.push(new Choice(value));
+  }
+
+  onSurveySubmit(title: any) {
+    const survey: Survey = new Survey(
+      title,
+      null,
+      this.question,
+      null,
+      null,
+      null,
+      null,
+      null
+    );
+    this.surveyService.saveSurvey(survey)
+    .subscribe(
+      () => {
+        this.survey$ = this.surveyService.getAllSurveys();
+      },
+    );
+  }
+
+  errorHandler(error) {
+    switch (error.field) {
+      case 'title':
+        this.error.title = this.capitalize(error.message);
+        break;
+    }
+  }
+
+  capitalize(text) {
+    return text[0].toUpperCase() + text.slice(1) + '!';
+  }
+
+  getCurrentDate() {
+    return (new Date()).toISOString().slice(0, 10);
+  }
+
 }
+

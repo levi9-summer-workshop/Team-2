@@ -13,7 +13,7 @@ import java.io.Serializable;
 public class SurveyStatus extends BaseEntity implements Serializable {
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column
     private StatusType statusType;
 
     public SurveyStatus() {

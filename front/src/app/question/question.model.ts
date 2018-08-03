@@ -5,7 +5,7 @@ export class Question {
     public questionTitle: string;
     public isRequired: boolean;
     public questionType: string;
-    public choices: Choice[];
+    public choices: Choice[] = [];
 
     constructor(id: number, questionTitle: string, isRequired:boolean, questionType: string, choices: Choice[]) {
         this.id = id;

@@ -9,7 +9,7 @@ export class Survey {
     public surveyUser: User;
     public surveyTitle: string;
     public surveyDescription: string;
-    public surveyQuestions: Question[];
+    public surveyQuestions: Question[] = [];
     public surveyPrivacy: SurveyPrivacy;
     public surveyStatus: SurveyStatus;
     public surveyExpireDate: Date;

@@ -63,6 +63,10 @@ export class SurveyService {
   }
 
   setSurveyPrivate(survey:Survey){
-    return this.httpClient.post(this.APISetPrivate, survey, { headers: this.authService.getAuthHeaders()};
+    return this.httpClient.post(this.APISetPrivate, survey, { headers: this.authService.getAuthHeaders()});
+  }
+
+  saveSurvey(survey: Survey): Observable<any> {
+    return this.httpClient.post(this.APISurvey, survey, { headers: this.authService.getAuthHeaders()});
   }
 }

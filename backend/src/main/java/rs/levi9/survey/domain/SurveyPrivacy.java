@@ -13,7 +13,7 @@ import java.io.Serializable;
 public class SurveyPrivacy extends BaseEntity implements Serializable {
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column
     private PrivacyType privacyType;
 
     public SurveyPrivacy(){
