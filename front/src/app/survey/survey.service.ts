@@ -4,7 +4,6 @@ import { AuthService } from '../login/auth.service';
 import { Question } from '../question/question.model';
 import { Survey } from './survey.model';
 import { Observable } from 'rxjs/Observable';
-import { TagContentType } from '../../../node_modules/@angular/compiler';
 
 @Injectable()
 export class SurveyService {
@@ -63,6 +62,6 @@ export class SurveyService {
   }
 
   setSurveyPrivate(survey:Survey){
-    return this.httpClient.post(this.APISetPrivate, survey, { headers: this.authService.getAuthHeaders()};
+    return this.httpClient.post(this.APISetPrivate, survey, { headers: this.authService.getAuthHeaders()});
   }
 }

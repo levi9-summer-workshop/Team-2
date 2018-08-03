@@ -1,4 +1,5 @@
 <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
 <div class="container">
     <div class="row">
         <div class="col">
@@ -12,8 +13,9 @@
                             <th scope="col" class="text-center align-middle">Privacy</th>
                             <th scope="col" class="text-center align-middle">Date expires</th>
                             <th scope="col" class="text-center align-middle">View results</th>
+                            <th scope="col" class="text-center align-middle">Change privacy</th>
+                            <th scope="col" class="text-center align-middle">Share</th>
                             <th scope="col" class="text-center align-middle">Delete</th>
-                            <th scope="col" class="text-center align-middle">Privacy</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -24,14 +26,14 @@
                             <td class="text-center align-middle">{{ survey.surveyPrivacy.privacyType }}</td>
                             <td class="text-center align-middle">{{ survey.expirationDate | date }}</td>
 
+                            <!-- VIEW RESULTS -->
+
                             <td class="text-center align-middle">
-                                <button type="submit" class="btn btn-primary btn-sm" (click)="onSurveyChoose(i+1)" routerLink="/results">View results</button>
+                                <button type="submit" class="btn btn-success btn-sm" (click)="onSurveyChoose(i+1)" routerLink="/results">View results</button>
                             </td>
-                            <td class="text-center align-middle">
-                                <button type="button" class="btn btn-danger btn-sm" (click)="onSurveyDelete(survey)">
-                                    Delete
-                                </button>
-                            </td>
+
+                            <!-- PRIVATE/PUBLIC -->
+
                             <td class="text-center align-middle">
                                 <button type="button" class="btn btn-primary btn-sm" id="btn-public" [disabled]="!checkPrivacy(survey)" (click)="onSurveyBtnPublic(survey)">
                                     Public
@@ -40,7 +42,21 @@
                                     Private
                                 </button>
                             </td>
-                      
+
+                            <!-- SHARE  -->
+
+                            <td class="text-center align-middle">
+                                <button type="button" class="btn btn-link btn-sm" data-toggle="modal" data-target="#shareModal" (click)="onShare">Share</button>
+                            </td>
+
+                            <!-- DELETE -->
+
+                            <td class="text-center align-middle">
+                                <button type="button" class="btn btn-danger btn-sm" (click)="onSurveyDelete(survey)">
+                                    Delete
+                                </button>
+                            </td>
+
                         </tr>
                     </tbody>
                 </table>
@@ -49,24 +65,41 @@
     </div>
 </div>
 
-<!-- Delete Modal -->
-<!-- <div class="modal fade" id="deleteSurveyModal" tabindex="-1" role="dialog" aria-labelledby="deleteSurveyModalLabel" aria-hidden="true">
+
+
+<!-- Share Modal -->
+<div class="modal fade" id="shareModal" tabindex="-1" role="dialog" aria-labelledby="shareModal" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="deleteSurveyModalLabel">Delete Survey</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <h5 class="modal-title" id="shareModal">Share Survey</h5>
             </div>
             <div class="modal-body">
-                <p>Do you want to delete
-                    <i>{{selectedSurvey?.surveyTitle}}</i>?</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" id="delete-button" class="btn" data-dismiss="modal" (click)="onUserDeleteSubmit()">Submit</button>
-            </div>
-        </div>
-    </div>
-</div> -->
+                <div class="form-container text-center">
+                    <form role="form" #f="ngForm" (ngSubmit)="onShare(f)">
+
+                        <!-- EMAIL -->
+
+                        <div class="form-group">
+                            <input type="email" class="form-control" name="email" id="email" placeholder="Your email" ngModel required #email="ngModel"
+                                [ngClass]="{'is-invalid': error?.email || (email.invalid && (email.dirty || email.touched))}"
+                                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$">
+                            <div class="invalid-feedback" *ngIf="email.invalid && (email.dirty || email.touched)">Please enter a valid email address</div>
+                        </div>
+
+                        <!-- TEXT AREA -->
+                        <!-- 
+<div class="form-group">
+                            <input type="password" class="form-control" name="password" id="password" placeholder="Password" ngModel required #password="ngModel"
+                                [ngClass]="{'is-invalid': error?.password || (password.invalid && (password.dirty || password.touched))}"
+                                minlength="5" maxlength="30">
+                            <div class="invalid-feedback" *ngIf="password.invalid && (password.dirty || password.touched)">Please enter a valid password</div>
+                        </div>
+                    </form>
+                </div>
+            </div> -->
+                    </form>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                        <button type="button" id="delete-button" class="btn btn-sm" data-dismiss="modal" (click)="onShare(f)">Submit</button>
+                    </div>
