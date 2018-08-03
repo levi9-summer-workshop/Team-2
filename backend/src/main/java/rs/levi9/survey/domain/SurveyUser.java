@@ -25,10 +25,9 @@ public class SurveyUser extends BaseEntity implements Serializable {
 
     @Column(nullable = false)
     private Boolean blocked = false;
-  
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
-    @OneToMany
-    @JoinColumn(name = "user_id")
+
+    @OneToMany(mappedBy = "user_id", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @Transient
     private List<Survey> surveys;
 
     @ManyToMany
@@ -38,10 +37,6 @@ public class SurveyUser extends BaseEntity implements Serializable {
 
     public List<Survey> getSurveys() {
         return surveys;
-    }
-
-    public void setSurveys(List<Survey> surveys) {
-        this.surveys = surveys;
     }
 
     public String getUsername() {
@@ -74,6 +69,10 @@ public class SurveyUser extends BaseEntity implements Serializable {
 
     public void setBlocked(Boolean blocked) {
         this.blocked = blocked;
+    }
+
+    public void setSurveys(List<Survey> surveys) {
+        this.surveys = surveys;
     }
 
     public Set<Role> getRoles() {

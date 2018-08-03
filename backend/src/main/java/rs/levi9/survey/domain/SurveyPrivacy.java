@@ -6,10 +6,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import java.io.Serializable;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class SurveyPrivacy extends BaseEntity {
+public class SurveyPrivacy extends BaseEntity implements Serializable {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
