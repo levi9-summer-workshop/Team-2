@@ -35,7 +35,7 @@ public class Survey extends BaseEntity implements Serializable {
     @JoinColumn(name = "survey_id")
     private List<Question> questions;
 
-    @Column(name = "creation_date", updatable = false, nullable = false)
+    @Column(name = "creation_date", updatable = false)
     @JsonIgnore
     @Temporal(TemporalType.DATE)
     private Date creationDate;

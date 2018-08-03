@@ -9,7 +9,7 @@
       <br>
       <ng-container *ngFor='let choices of question.choices; let i = index'>
           <input type={{question.type}} name="choice"> 
-          {{ choices.choice }}
+          {{ choices.text }}
           <br>
       </ng-container>
       <button class="btn btn-primary " name="submit" type="submit">Vote</button>

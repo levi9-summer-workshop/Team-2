@@ -44,7 +44,7 @@ aria-hidden="true">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
-    <form (ngSubmit)="onAddQuestionSubmit(f, c)" #f="ngForm">
+    <form>
     <div class="modal-body">
       <div class="input-group mb-3">
         <div class="input-group-prepend">
@@ -52,7 +52,6 @@ aria-hidden="true">
         </div>
         <select class="custom-select" id="inputGroupSelect01" (change)="checkTypeOfQuestion()">
           <option selected="selected" value="0">Choose...</option>
-          <option value="text">Simple text</option>
           <option value="single">Single choice</option>
           <option value="multiple">Multiple choice</option>
         </select>
@@ -61,7 +60,7 @@ aria-hidden="true">
 
     <ng-container *ngIf="multipleAlowed">
       <div class="questiontext">
-      <input type="text" class="form-control" placeholder="Question text" name="title" [(ngModel)]="selectedQuestion.title" required #title="ngModel">
+      <input type="text" class="form-control" placeholder="Question text" name="title" [(ngModel)]="selectedMultiple" required>
       </div>
       <ng-container *ngFor="let i of multipleAnswers; let index = i" (deleteEvent)="deleteEventHandler($event)">
         <div class="choices">
@@ -73,11 +72,11 @@ aria-hidden="true">
           </div>
         </div>
       </ng-container>
+      <button type="submit" class="btn btn-primary" (click)="addQuestion(selectedMultiple)">Add</button>
     </ng-container>
-    <button type="button" class="btn btn-info" (click)="addMoreChoices()" hidden="true" id="addMultiple">Add more choices</button>
     <ng-container *ngIf="singleAllowed">
       <div class="questiontext">
-      <input type="text" class="form-control" placeholder="Question text" name="title" [(ngModel)]="selectedQuestion.title" required #title="ngModel">
+      <input type="text" class="form-control" placeholder="Question text" name="title" [(ngModel)]="selectedSingle" required>
       </div>
       <ng-container *ngFor="let i of multipleAnswers; let index = i" (deleteEvent)="deleteEventHandler($event)">
         <div class="choices">
@@ -89,70 +88,18 @@ aria-hidden="true">
           </div>
         </div>
       </ng-container>
+      <button type="submit" class="btn btn-primary" (click)="addQuestion(selectedSingle)">Add</button>
     </ng-container>
-    <ng-container *ngIf="textAllowed">
-      <div class="choices">
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Question text" aria-label="Text" aria-describedby="basic-addon2" name="title" [(ngModel)]="selectedQuestion.title" required #title="ngModel">
-          <div class="input-group-append">
-            <button class="btn btn-danger" type="button" (click)="deleteChoice()">Delete</button>
-          </div>
-        </div>
-      </div>
-    </ng-container>
-    <button type="button" class="btn btn-info" (click)="addMoreChoices()" hidden="true" id="addSingle">Add more choices</button>
     <div class="modal-footer">
       <button type="button" class="btn btn-secondary" data-dismiss="modal" aria-hidden="true" (click)="resetData()" #c>Close</button>
-      <button type="submit" class="btn btn-primary" (click)="onQuestionAdd()" >Add</button>
     </div>
   </form>
   </div>
 </div>
 </div>
 
-<!-- RADIOBUTTON form -->
-<!-- <form>
-<div class="form-group" style="text-align: center;"> 
-  <label class="control-label col" *ngFor='let question of (questions$ | async); let i = index'>{{ question.title }}
-  <div class="radio">
-    <label>
-    <input type="radio" name="pizza">
-    Pizza
-    </label>
-  </div>
-  <div class="radio">
-    <label>
-    <input type="radio" name="pizza">
-    Hamburgers
-    </label>
-  </div>
-  <button class="btn btn-primary " name="submit" type="submit">Vote</button>
-</label>
-</div>		
-</form> -->
-
-<!-- CHECKBOX form -->
-<!-- <form>
-<div class="form-group" style="text-align: center;">
-  <label class="control-label col" *ngFor='let question of (questions$ | async); let i = index'>
-    {{ question.title }}
-    <div class="row">
-      <div class="checkbox col">
-        <label>
-          <input type="checkbox">Pizza</label>
-      </div>
-    </div>
-    <div class="row">
-      <div class="checkbox col">
-        <label>
-          <input type="checkbox">Hamburgers</label>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col">
-        <button class="btn btn-primary " name="submit" type="submit">Vote</button>
-      </div>
-    </div>
+<div>
+  <label *ngFor='let title of question; let index = i'>
+    {{ title }}
   </label>
 </div>
-</form> -->

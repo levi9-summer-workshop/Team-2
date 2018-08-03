@@ -12,12 +12,14 @@ import { CommonModule } from '@angular/common';
 export class CreateSurveyComponent implements OnInit {
 
   questions$: Observable<Question[]>
+  question: Question[] = [];
   public multipleAnswers = [];
   public multipleAlowed : boolean;
   public singleAllowed: boolean;
   public textAllowed: boolean;
   public addChoice: boolean;
   public i = 0;
+  public counter = 0;
 
   constructor(private surveyService: SurveyService) { }
 
@@ -46,16 +48,13 @@ deleteChoice() {
   checkTypeOfQuestion() {
     var e = document.getElementById("inputGroupSelect01") as HTMLSelectElement;
     var choice = e.options[e.selectedIndex].value;
-    console.log(choice);
     if(choice == "single") {
       this.addSingleAllowed();
       var singleButton = document.getElementById("addSingle") as HTMLButtonElement;
-      singleButton.hidden = false;
     }
     else if(choice == "multiple"){
       this.addMultipleAlowed();
       var button = document.getElementById("addMultiple") as HTMLButtonElement;
-      button.hidden = false;
     }
     else {
       this.addTextAllowed();
@@ -84,16 +83,12 @@ deleteChoice() {
     this.multipleAlowed = false;
     this.textAllowed = false;
     var buttonMultiple = document.getElementById("addMultiple") as HTMLButtonElement;
-    buttonMultiple.hidden = true;
     var buttonSingle = document.getElementById("addSingle") as HTMLButtonElement;
-    buttonSingle.hidden = true;
-    
   }
 
-  onAddQuestionSubmit(){
-
-  }
-  onAddQuestion(question : any){
-
+  addQuestion(value: any) {
+    this.question[this.counter] = value;
+    console.log(this.question[this.counter]);
+    this.counter++;
   }
 }
